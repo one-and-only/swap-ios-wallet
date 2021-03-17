@@ -6,15 +6,6 @@
  * @flow strict-local
  */
 
-import React from 'react';
-import { View, Text, Image, ScrollView, TextInput } from 'react-native';
+import SwapMainHome from './Views/Home/home';
 
-const SwapWallet = () => {
-  return (
-    <View>
-      <Text>This is some text</Text>
-    </View>
-  );
-}
-
-export default SwapWallet;
+export default SwapMainHome;

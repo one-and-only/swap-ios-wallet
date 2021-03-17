@@ -61,7 +61,7 @@ export default class SwapMainHome extends Component {
                 </View>
                 <View>
                     <Animated.Image
-                        source={require('../../Resources/world-flags-globe.png')}
+                        source={require('../../Resources/Images/world-flags-globe.png')}
                         style={{
                             alignSelf: 'center',
                             width: '75%',

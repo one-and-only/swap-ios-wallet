@@ -36,11 +36,13 @@ export default class SwapMainHome extends Component {
 
     // return the page data to display
     render() {
+        // map animation 0-1 range to css 0-360 deg range
         const spin = this.state.spinAnim.interpolate({
             inputRange: [0, 1],
             outputRange: ['0deg', '360deg']
         });
 
+        // FIXME(styling): #1 Styling doesn't look similar in all devices
         return (
             <View style={{
                 padding: width * 0.1

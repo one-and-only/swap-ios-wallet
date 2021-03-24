@@ -1,15 +1,13 @@
-import React, { Component } from 'react';
-import { View, Text, StyleSheet, Animated, Easing, Dimensions, TouchableOpacity } from 'react-native';
+import React, {Component} from 'react';
+import { View, Text, StyleSheet, Animated, Easing, Dimensions, TouchableOpacity, } from 'react-native';
 
-const { width, height } = Dimensions.get('window')
-// this is the height scale of the country globe. It helps styling across multiple devices
-const globeScale = height / 300
+const {width, height} = Dimensions.get('window');
 
 export default class SwapMainHome extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { spinAnim: new Animated.Value(0) }
+        this.state = {spinAnim: new Animated.Value(0)};
     }
 
     componentDidMount() {
@@ -19,7 +17,7 @@ export default class SwapMainHome extends Component {
                 toValue: 1,
                 duration: 100000,
                 easing: Easing.linear,
-                useNativeDriver: true
+                useNativeDriver: true,
             }
         )).start();
     }
@@ -31,7 +29,7 @@ export default class SwapMainHome extends Component {
 
     // choose the language of the app
     languageClick() {
-        alert('Changing the app language is not currently supported.')
+        alert('Changing the app language is not currently supported.');
     }
 
     // return the page data to display
@@ -39,10 +37,9 @@ export default class SwapMainHome extends Component {
         // map animation 0-1 range to css 0-360 deg range
         const spin = this.state.spinAnim.interpolate({
             inputRange: [0, 1],
-            outputRange: ['0deg', '360deg']
+            outputRange: ['0deg', '360deg'],
         });
 
-        // FIXME(styling): #1 Styling doesn't look similar in all devices
         return (
             <View style={[styles.flexContainer, {flex: 1}]}>
                 <View style={[styles.flexContainerChild, {flex: 3}]}>

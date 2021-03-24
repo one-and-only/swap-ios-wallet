@@ -44,33 +44,32 @@ export default class SwapMainHome extends Component {
 
         // FIXME(styling): #1 Styling doesn't look similar in all devices
         return (
-            <View style={{
-                padding: width * 0.1
-            }}>
-                <View>
+            <View style={[styles.flexContainer, {flex: 1}]}>
+                <View style={[styles.flexContainerChild, {flex: 3}]}>
                     <Text
                         style={{
-                            alignSelf: 'center',
                             color: 'white',
                             marginTop: '10%',
                             fontSize: 20,
-                            marginBottom: height * 0.1
+                            marginBottom: height * 0.05,
+                            textAlign: 'center'
                         }}>
-                        Welcome - Wilkommen - Bonvenon - Bienvenido - Bienvenue
+                        Welcome - Wilkommen - Bonvenon - Bienvenido - Bienvenue - Välkommen - Selemanat datang - Benvenuto - asianLanguage - Welkom - Bem Vindo - Добро пожаловать
                     </Text>
                 </View>
-                <View>
+                <View style={[styles.flexContainerChild, {flex: 5}]}>
                     <Animated.Image
                         source={require('../../Resources/Images/world-flags-globe.png')}
                         style={{
-                            alignSelf: 'center',
-                            width: '75%',
-                            height: 225,
-                            transform: [{ rotate: spin }]
+                            width: width * 0.9,
+                            flex: 5,
+                            height: height * 0.5,
+                            transform: [{ rotate: spin }],
+                            marginBottom: height * 0.05
                         }}
                     />
                 </View>
-                <View style={{ flexDirection: "row", marginTop: height * 0.15, marginLeft: width * 0.06 }}>
+                <View style={[styles.flexContainerChild, {flexDirection: "row", flex: 1}]}>
                     <TouchableOpacity onPress={this.languageClick} style={[styles.buttonContainer, { marginRight: width * 0.05 }]}>
                         <Text style={styles.buttonText}>Language</Text>
                     </TouchableOpacity>
@@ -78,9 +77,8 @@ export default class SwapMainHome extends Component {
                         <Text style={styles.buttonText}>Continue</Text>
                     </TouchableOpacity>
                 </View>
-                <View>
-                    <Text
-                        style={styles.versionText}>
+                <View style={[styles.flexContainerChild, {flex: 1}]}>
+                    <Text style={{color: 'white', alignSelf: 'center'}}>
                         v3.2.1-07_iOS (React Native 0.64)
                     </Text>
                 </View>
@@ -91,12 +89,6 @@ export default class SwapMainHome extends Component {
 
 // stylesheet used for styling the page (almost identical to CSS styles)
 const styles = StyleSheet.create({
-
-    versionText: {
-        alignSelf: 'center',
-        color: 'white',
-        marginTop: '20%'
-    },
 
     buttonContainer: {
         elevation: 8,
@@ -112,5 +104,19 @@ const styles = StyleSheet.create({
         fontWeight: "700",
         alignSelf: "center",
         textTransform: "uppercase"
+    },
+
+    flexContainer: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "column"
+    },
+
+    flexContainerChild: {
+        width: width * 0.95,
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center'
     }
 })

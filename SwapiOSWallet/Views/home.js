@@ -1,9 +1,10 @@
-import React, {Component} from 'react';
+import * as React from 'react';
 import { View, Text, StyleSheet, Animated, Easing, Dimensions, TouchableOpacity, } from 'react-native';
 
 const {width, height} = Dimensions.get('window');
+const widthScale = width/375;
 
-export default class SwapMainHome extends Component {
+export default class SwapMainHome extends React.Component {
 
     constructor(props) {
         super(props);
@@ -22,45 +23,47 @@ export default class SwapMainHome extends Component {
         )).start();
     }
 
-    // continue to the next page (placeholder alert for now until navigation is complete)
-    continueClick() {
-        alert('you choose to continue!');
-    }
-
     // choose the language of the app
     languageClick() {
         alert('Changing the app language is not currently supported.');
     }
 
+    // normalize the input so that it scales evenly across devices
+    normalize (pre, scale) {
+        return Math.floor(pre * scale);
+    }
+
     // return the page data to display
     render() {
-        // map animation 0-1 range to css 0-360 deg range
+        // map animation 0-1 range to CSS 0-360 deg range
         const spin = this.state.spinAnim.interpolate({
             inputRange: [0, 1],
             outputRange: ['0deg', '360deg'],
         });
 
         return (
-            <View style={[styles.flexContainer, {flex: 1}]}>
-                <View style={[styles.flexContainerChild, {flex: 3}]}>
+            <View style={[styles.flexContainer, {flex: 2, backgroundColor: '#052344'}]}>
+                <View style={[styles.flexContainerChild, {flex: 2}]}>
                     <Text
                         style={{
                             color: 'white',
-                            marginTop: '10%',
-                            fontSize: 20,
+                            marginTop: '0%',
+                            fontSize: this.normalize(14, widthScale),
+                            flexWrap: 'wrap',
                             marginBottom: height * 0.05,
-                            textAlign: 'center'
+                            textAlign: 'center',
+                            fontWeight: '700'
                         }}>
-                        Welcome - Wilkommen - Bonvenon - Bienvenido - Bienvenue - Välkommen - Selemanat datang - Benvenuto - asianLanguage - Welkom - Bem Vindo - Добро пожаловать
+                        Welcome - Wilkommen - Bonvenon - Bienvenido - Bienvenue - Välkommen - Selemanat datang - Benvenuto - 歡迎 - Welkom - Bem Vindo - Добро пожаловать
                     </Text>
                 </View>
                 <View style={[styles.flexContainerChild, {flex: 5}]}>
                     <Animated.Image
-                        source={require('../../Resources/Images/world-flags-globe.png')}
+                        source={require('../Resources/Images/world-flags-globe.png')}
                         style={{
-                            width: width * 0.9,
-                            flex: 5,
-                            height: height * 0.5,
+                            maxWidth: this.normalize(350, widthScale),
+                            maxHeight: this.normalize(344, widthScale),
+                            resizeMode: 'stretch',
                             transform: [{ rotate: spin }],
                             marginBottom: height * 0.05
                         }}
@@ -70,13 +73,13 @@ export default class SwapMainHome extends Component {
                     <TouchableOpacity onPress={this.languageClick} style={[styles.buttonContainer, { marginRight: width * 0.05 }]}>
                         <Text style={styles.buttonText}>Language</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={this.continueClick} style={styles.buttonContainer}>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Welcome')} style={styles.buttonContainer}>
                         <Text style={styles.buttonText}>Continue</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={[styles.flexContainerChild, {flex: 1}]}>
-                    <Text style={{color: 'white', alignSelf: 'center'}}>
-                        v3.2.1-07_iOS (React Native 0.64)
+                    <Text style={{color: 'white', alignSelf: 'center', fontWeight: '700', fontSize: this.normalize(14, widthScale)}}>
+                        ©2021 Swap Foundation
                     </Text>
                 </View>
             </View>
@@ -100,7 +103,6 @@ const styles = StyleSheet.create({
         color: "#fff",
         fontWeight: "700",
         alignSelf: "center",
-        textTransform: "uppercase"
     },
 
     flexContainer: {

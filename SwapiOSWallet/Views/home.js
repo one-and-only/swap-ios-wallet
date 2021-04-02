@@ -23,11 +23,6 @@ export default class SwapMainHome extends React.Component {
         )).start();
     }
 
-    // choose the language of the app
-    languageClick() {
-        alert('Changing the app language is not currently supported.');
-    }
-
     // normalize the input so that it scales evenly across devices
     normalize (pre, scale) {
         return Math.floor(pre * scale);
@@ -70,7 +65,7 @@ export default class SwapMainHome extends React.Component {
                     />
                 </View>
                 <View style={[styles.flexContainerChild, {flexDirection: "row", flex: 1}]}>
-                    <TouchableOpacity onPress={this.languageClick} style={[styles.buttonContainer, { marginRight: width * 0.05 }]}>
+                    <TouchableOpacity onPress={() => alert("Changing the app language is not currently supported.")} style={[styles.buttonContainer, { marginRight: width * 0.05 }]}>
                         <Text style={styles.buttonText}>Language</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => this.props.navigation.navigate('Welcome')} style={styles.buttonContainer}>
@@ -95,7 +90,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#2074d4",
         borderRadius: 5,
         paddingVertical: 10,
-        paddingHorizontal: 12
+        paddingHorizontal: 12,
     },
 
     buttonText: {
@@ -109,13 +104,13 @@ const styles = StyleSheet.create({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        flexDirection: "column"
+        flexDirection: "column",
     },
 
     flexContainerChild: {
         width: width * 0.95,
         alignItems: 'center',
         justifyContent: 'center',
-        textAlign: 'center'
+        textAlign: 'center',
     }
 })

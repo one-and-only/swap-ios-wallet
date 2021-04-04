@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 /**
  * Swap iOS Wallet
  * https://github.com/one-and-only/swap-ios-wallet
@@ -6,11 +7,13 @@
  * @flow strict-local
  */
 
+// React Dependencies
 import * as React from 'react';
 import {Link, NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Image, TouchableOpacity, Linking, Alert,} from 'react-native';
 
+// Views
 import SwapLoadingScreen from './Views/loading-screen';
 import SwapMainHome from './Views/home';
 import SwapWelcome from './Views/welcome';
@@ -30,7 +33,13 @@ class Navigator extends React.Component {
         <TouchableOpacity onPress={() => {Linking.openURL('https://swap.foundation')}}>
           <Image
             source={require('./Resources/Images/maskot.png')}
-            style={{height: 30, width: 42, resizeMode: 'stretch', marginRight: 30, marginBottom: 7,}}
+            style={{
+              height: 30,
+              width: 42,
+              resizeMode: 'stretch',
+              marginRight: 30,
+              marginBottom: 7,
+            }}
           />
         </TouchableOpacity>
       );

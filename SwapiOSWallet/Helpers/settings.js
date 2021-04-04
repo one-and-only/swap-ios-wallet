@@ -10,7 +10,8 @@ export const insert = async (key, value) => {
 
 export const select = async (key) => {
     try {
-    return await AsyncStorage.getItem(key);
+    var data = await AsyncStorage.getItem(key);
+    return data;
     } catch(e) {
         alert("Error getting " + key + "." + e);
     }
@@ -26,7 +27,8 @@ export const remove = async (key) => {
 
 export const getAllKeys = async () => {
     try {
-      return await AsyncStorage.getAllKeys();
+      var data = await AsyncStorage.getAllKeys();
+      return data;
     } catch(e) {
         alert("Error while reading keys: " + e);
     }

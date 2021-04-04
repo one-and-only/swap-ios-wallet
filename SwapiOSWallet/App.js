@@ -11,6 +11,7 @@ import {Link, NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Image, TouchableOpacity, Linking, Alert,} from 'react-native';
 
+import SwapLoadingScreen from './Views/loading-screen';
 import SwapMainHome from './Views/home';
 import SwapWelcome from './Views/welcome';
 import SwapCreateWallet from './Views/create-wallet';
@@ -79,7 +80,8 @@ class Navigator extends React.Component {
 
     return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
+        <Stack.Navigator initialRouteName="Loading Screen">
+        <Stack.Screen name="Loading Screen" navigation={this.props.navigation} component={SwapLoadingScreen} options={this.options} />
           <Stack.Screen name="Home" navigation={this.props.navigation} component={SwapMainHome} options={this.options} />
           <Stack.Screen name="Welcome" navigation={this.props.navigation} component={SwapWelcome} options={this.options} />
           <Stack.Screen name="Create Wallet" navigation={this.props.navigation} component={SwapCreateWallet} options={this.options} />

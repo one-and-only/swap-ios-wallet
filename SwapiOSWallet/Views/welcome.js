@@ -17,7 +17,7 @@ export default class SwapWelcome extends React.Component {
     render() {
         return (
             <View style={[styles.flexContainer, {backgroundColor: '#052344', flex: 1,}]}>
-                <View style={[styles.flexContainer, {flex: 3, marginTop: normalize(15),}]}>
+                <View style={[styles.flexContainer, {flex: 3, marginTop: normalize(15), paddingTop: height * 0.1,}]}>
                     <View style={[styles.flexContainerChild, {flex: 1, marginLeft: normalize(15),}]}>
                         <TouchableOpacity style={{flexDirection: 'row',}} onPress={() => this.props.navigation.navigate('Create Wallet')}>
                             <View style={[styles.flexContainer, {flexDirection: 'row', width: '100%',}]}>
@@ -25,17 +25,6 @@ export default class SwapWelcome extends React.Component {
                                 <View style={{flexDirection: 'row', flexWrap: 'wrap', marginLeft: normalize(15),}}>
                                     <Text style={styles.optionTitle}>Create a new wallet</Text>
                                     <Text style={styles.optionBody}>Choose this option if this is your first time using Swap.</Text>
-                                </View>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={[styles.flexContainerChild, {flex: 1, marginLeft: normalize(15),}]}>
-                        <TouchableOpacity style={{flexDirection: 'row',}} onPress={() => this.props.navigation.navigate('Open Wallet')}>
-                            <View style={[styles.flexContainer, {flexDirection: 'row', width: '100%',}]}>
-                                <Image source={require('../Resources/Images/open-wallet.png')} style={{height: normalize(50), width: normalize(50), resizeMode: 'stretch'}} />
-                                <View style={{flexDirection: 'row', flexWrap: 'wrap', marginLeft: normalize(15),}}>
-                                    <Text style={styles.optionTitle}>Open current wallet</Text>
-                                    <Text style={styles.optionBody}>Choose this option if you have an active wallet.</Text>
                                 </View>
                             </View>
                         </TouchableOpacity>
@@ -52,9 +41,9 @@ export default class SwapWelcome extends React.Component {
                         </TouchableOpacity>
                     </View>
                 </View>
-                <View style={[styles.flexContainer, {backgroundColor: '#052344', flex: 4,}]}>
+                <View style={[styles.flexContainer, {backgroundColor: '#052344', flex: 8,}]}>
                     <View style={[styles.flexContainerChild, {flexDirection: "row", flex: 1, marginTop: height * 0.2,}]}>
-                        <TouchableOpacity onPress={() => this.props.navigation.goBack()} style={[styles.buttonContainer, { marginRight: width * 0.05 }]}>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Home')} style={[styles.buttonContainer, { marginRight: width * 0.05 }]}>
                             <Text style={styles.buttonText}>Cancel</Text>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => alert("Changing the app language is not currently supported.")} style={styles.buttonContainer}>

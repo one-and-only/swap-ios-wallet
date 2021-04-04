@@ -17,10 +17,10 @@ export default class SwapWelcome extends React.Component {
     render() {
         return (
             <View style={[styles.flexContainer, {backgroundColor: '#052344', flex: 1,}]}>
-                <View style={[styles.flexContainer, {flex: 3, marginTop: normalize(15), paddingTop: height * 0.1,}]}>
-                    <View style={[styles.flexContainerChild, {flex: 1, marginLeft: normalize(15),}]}>
+                <View style={[styles.flexContainer, {flex: 4, marginTop: normalize(15), paddingTop: height * 0.1,}]}>
+                    <View style={[styles.flexContainerChild, {flex: 1,}]}>
                         <TouchableOpacity style={{flexDirection: 'row',}} onPress={() => this.props.navigation.navigate('Create Wallet')}>
-                            <View style={[styles.flexContainer, {flexDirection: 'row', width: '100%',}]}>
+                            <View style={[styles.flexContainer, {flexDirection: 'row', width: '95%',}]}>
                                 <Image source={require('../Resources/Images/new-wallet.png')} style={{height: normalize(50), width: normalize(46), resizeMode: 'stretch'}} />
                                 <View style={{flexDirection: 'row', flexWrap: 'wrap', marginLeft: normalize(15),}}>
                                     <Text style={styles.optionTitle}>Create a new wallet</Text>
@@ -29,9 +29,9 @@ export default class SwapWelcome extends React.Component {
                             </View>
                         </TouchableOpacity>
                     </View>
-                    <View style={[styles.flexContainerChild, {flex: 1, marginLeft: normalize(35),}]}>
+                    <View style={[styles.flexContainerChild, {flex: 2, marginLeft: normalize(5), marginTop: height * 0.05,}]}>
                         <TouchableOpacity style={{flexDirection: 'row'}} onPress={() => this.props.navigation.navigate('Restore Wallet')}>
-                            <View style={[styles.flexContainer, {flexDirection: 'row', width: '100%',}]}>
+                            <View style={[styles.flexContainer, {flexDirection: 'row', width: '90%',}]}>
                                 <Image source={require('../Resources/Images/restore-wallet.png')} style={{height: normalize(75), width: normalize(75), resizeMode: 'stretch'}} />
                                 <View style={{flexDirection: 'row', flexWrap: 'wrap', marginLeft: normalize(10),}}>
                                     <Text style={[styles.optionTitle, {fontSize: normalize(22),}]}>Restore wallet from keys or mnemonic seed</Text>

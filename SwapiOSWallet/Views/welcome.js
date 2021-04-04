@@ -42,7 +42,7 @@ export default class SwapWelcome extends React.Component {
                     </View>
                 </View>
                 <View style={[styles.flexContainer, {backgroundColor: '#052344', flex: 8,}]}>
-                    <View style={[styles.flexContainerChild, {flexDirection: "row", flex: 1, marginTop: height * 0.2,}]}>
+                    <View style={[styles.flexContainerChild, {flexDirection: "row", flex: 1, marginTop: height * 0.35,}]}>
                         <TouchableOpacity onPress={() => this.props.navigation.navigate('Home')} style={[styles.buttonContainer, { marginRight: width * 0.05 }]}>
                             <Text style={styles.buttonText}>Cancel</Text>
                         </TouchableOpacity>
@@ -50,7 +50,7 @@ export default class SwapWelcome extends React.Component {
                             <Text style={styles.buttonText}>Change Language</Text>
                         </TouchableOpacity>
                     </View>
-                    <View style={[styles.flexContainerChild, {flex: 1, marginTop: height * 0.125,}]}>
+                    <View style={[styles.flexContainerChild, {flex: 1, marginTop: height * 0.05,}]}>
                         <Text style={{color: 'white', alignSelf: 'center', fontWeight: '700', fontSize: normalize(14)}}>
                             ©2021 Swap Foundation
                         </Text>

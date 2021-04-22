@@ -15,12 +15,6 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="Splash-image" translatesAutoresizingMaskIntoConstraints="NO" id="kS4-VQ-PW1">
-                                <rect key="frame" x="59" y="205" width="257" height="257"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="gvZ-Ph-Tqx"/>
                         <color key="backgroundColor" red="0.019607843137254902" green="0.13725490196078433" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -30,7 +24,4 @@
             <point key="canvasLocation" x="52.173913043478265" y="375"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="Splash-image" width="256.5" height="256.5"/>
-    </resources>
 </document>

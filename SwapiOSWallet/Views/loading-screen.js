@@ -1,5 +1,7 @@
 import * as React from 'react';
-import {View, Image, Dimensions,} from 'react-native';
+import { Dimensions, Image, View } from 'react-native';
+import * as Progress from 'react-native-progress';
+
 import * as Settings from '../Helpers/settings';
 
 const {width, height} = Dimensions.get('window');
@@ -32,11 +34,7 @@ export default class SwapLoadingScreen extends React.Component {
     render() {
         return (
             <View style={{backgroundColor: '#052344', paddingBottom: height * 0.5,}}>
-                <View style={{paddingTop: height * 0.2, paddingBottom: height * 0.125,}}></View>
-                <Image
-                    source={require('../Resources/Images/header-logo.png')}
-                    style={{width: this.normalize(323), height: this.normalize(100), resizeMode: 'stretch', alignSelf: 'center',}}
-                />
+                <Progress.CircleSnail size={this.normalize(300)} indeterminate={true} color={['#22b6f2', '#a260f8']} indeterminateAnimationDuration='500' style={{marginTop: height * 0.2}}/>
             </View>
         );
     }

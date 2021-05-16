@@ -11,9 +11,9 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		19500D90D469482F4452BDD0 /* libPods-SwapiOSWallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 942D8314B6A53763A39F6531 /* libPods-SwapiOSWallet.a */; };
-		1B7FA6772702651F1EADD4B2 /* libPods-SwapiOSWallet-SwapiOSWalletTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9CFF35CC616B44DBEF7C72A /* libPods-SwapiOSWallet-SwapiOSWalletTests.a */; };
+		15CB7B45626507CBEEE5976B /* libPods-SwapiOSWallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0EE6404D4EF97BD6BE12F6A /* libPods-SwapiOSWallet.a */; };
 		39F601EB2619580400D819E8 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39F601EA2619580400D819E8 /* SplashScreen.storyboard */; };
+		EF5A9925C1BD428EF6443630 /* libPods-SwapiOSWallet-SwapiOSWalletTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A04E1F21D3FFDF4693AF737 /* libPods-SwapiOSWallet-SwapiOSWalletTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,19 +30,19 @@
 		00E356EE1AD99517003FC87E /* SwapiOSWalletTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwapiOSWalletTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* SwapiOSWalletTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwapiOSWalletTests.m; sourceTree = "<group>"; };
-		02B00E4B9A32338BD20D5684 /* Pods-SwapiOSWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwapiOSWallet.release.xcconfig"; path = "Target Support Files/Pods-SwapiOSWallet/Pods-SwapiOSWallet.release.xcconfig"; sourceTree = "<group>"; };
-		09005C8DBE69E0D41FD88CE7 /* Pods-SwapiOSWallet-SwapiOSWalletTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwapiOSWallet-SwapiOSWalletTests.debug.xcconfig"; path = "Target Support Files/Pods-SwapiOSWallet-SwapiOSWalletTests/Pods-SwapiOSWallet-SwapiOSWalletTests.debug.xcconfig"; sourceTree = "<group>"; };
+		05E5A860024D592E8C110BB5 /* Pods-SwapiOSWallet-SwapiOSWalletTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwapiOSWallet-SwapiOSWalletTests.release.xcconfig"; path = "Target Support Files/Pods-SwapiOSWallet-SwapiOSWalletTests/Pods-SwapiOSWallet-SwapiOSWalletTests.release.xcconfig"; sourceTree = "<group>"; };
+		116F66EB046EDEB5D09FB726 /* Pods-SwapiOSWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwapiOSWallet.release.xcconfig"; path = "Target Support Files/Pods-SwapiOSWallet/Pods-SwapiOSWallet.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* SwapiOSWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwapiOSWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = SwapiOSWallet/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = SwapiOSWallet/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = SwapiOSWallet/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = SwapiOSWallet/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = SwapiOSWallet/main.m; sourceTree = "<group>"; };
-		2EBE34F56DEDD01B601A5937 /* Pods-SwapiOSWallet-SwapiOSWalletTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwapiOSWallet-SwapiOSWalletTests.release.xcconfig"; path = "Target Support Files/Pods-SwapiOSWallet-SwapiOSWalletTests/Pods-SwapiOSWallet-SwapiOSWalletTests.release.xcconfig"; sourceTree = "<group>"; };
+		323B33C42F3182323590A201 /* Pods-SwapiOSWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwapiOSWallet.debug.xcconfig"; path = "Target Support Files/Pods-SwapiOSWallet/Pods-SwapiOSWallet.debug.xcconfig"; sourceTree = "<group>"; };
 		39F601EA2619580400D819E8 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = SwapiOSWallet/SplashScreen.storyboard; sourceTree = "<group>"; };
-		5B1810B6E807E1848D7AC265 /* Pods-SwapiOSWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwapiOSWallet.debug.xcconfig"; path = "Target Support Files/Pods-SwapiOSWallet/Pods-SwapiOSWallet.debug.xcconfig"; sourceTree = "<group>"; };
-		942D8314B6A53763A39F6531 /* libPods-SwapiOSWallet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SwapiOSWallet.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C9CFF35CC616B44DBEF7C72A /* libPods-SwapiOSWallet-SwapiOSWalletTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SwapiOSWallet-SwapiOSWalletTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A04E1F21D3FFDF4693AF737 /* libPods-SwapiOSWallet-SwapiOSWalletTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SwapiOSWallet-SwapiOSWalletTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		490B109B0E2F2E6F80B59F5F /* Pods-SwapiOSWallet-SwapiOSWalletTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwapiOSWallet-SwapiOSWalletTests.debug.xcconfig"; path = "Target Support Files/Pods-SwapiOSWallet-SwapiOSWalletTests/Pods-SwapiOSWallet-SwapiOSWalletTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B0EE6404D4EF97BD6BE12F6A /* libPods-SwapiOSWallet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SwapiOSWallet.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -51,7 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B7FA6772702651F1EADD4B2 /* libPods-SwapiOSWallet-SwapiOSWalletTests.a in Frameworks */,
+				EF5A9925C1BD428EF6443630 /* libPods-SwapiOSWallet-SwapiOSWalletTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,7 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19500D90D469482F4452BDD0 /* libPods-SwapiOSWallet.a in Frameworks */,
+				15CB7B45626507CBEEE5976B /* libPods-SwapiOSWallet.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,10 +86,10 @@
 		1329093DB46A0FD469AF9BCC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5B1810B6E807E1848D7AC265 /* Pods-SwapiOSWallet.debug.xcconfig */,
-				02B00E4B9A32338BD20D5684 /* Pods-SwapiOSWallet.release.xcconfig */,
-				09005C8DBE69E0D41FD88CE7 /* Pods-SwapiOSWallet-SwapiOSWalletTests.debug.xcconfig */,
-				2EBE34F56DEDD01B601A5937 /* Pods-SwapiOSWallet-SwapiOSWalletTests.release.xcconfig */,
+				323B33C42F3182323590A201 /* Pods-SwapiOSWallet.debug.xcconfig */,
+				116F66EB046EDEB5D09FB726 /* Pods-SwapiOSWallet.release.xcconfig */,
+				490B109B0E2F2E6F80B59F5F /* Pods-SwapiOSWallet-SwapiOSWalletTests.debug.xcconfig */,
+				05E5A860024D592E8C110BB5 /* Pods-SwapiOSWallet-SwapiOSWalletTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -110,8 +110,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				942D8314B6A53763A39F6531 /* libPods-SwapiOSWallet.a */,
-				C9CFF35CC616B44DBEF7C72A /* libPods-SwapiOSWallet-SwapiOSWalletTests.a */,
+				B0EE6404D4EF97BD6BE12F6A /* libPods-SwapiOSWallet.a */,
+				3A04E1F21D3FFDF4693AF737 /* libPods-SwapiOSWallet-SwapiOSWalletTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -155,12 +155,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "SwapiOSWalletTests" */;
 			buildPhases = (
-				E5948D64274520AF87573CEE /* [CP] Check Pods Manifest.lock */,
+				E09919199EED41A74AB23180 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				AE6BF6FB50229D97EF403D24 /* [CP] Embed Pods Frameworks */,
-				E520288D7940D964954C5EEB /* [CP] Copy Pods Resources */,
+				457E350A0E3A7DA432DE1272 /* [CP] Embed Pods Frameworks */,
+				7801B01E2739FA2925CD9F57 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -176,14 +176,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "SwapiOSWallet" */;
 			buildPhases = (
-				01679BB9C003C835B93D6E4A /* [CP] Check Pods Manifest.lock */,
+				D1E717C83FF3D35E5DF48E95 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				9790EF2151F9C4AB4E556D2B /* [CP] Embed Pods Frameworks */,
-				8FC0E5F0BEB922358DCCF8B2 /* [CP] Copy Pods Resources */,
+				6235B6176E0AF97936B25C64 /* [CP] Embed Pods Frameworks */,
+				C509C967D604803D1AE1A0C8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -266,7 +266,75 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		01679BB9C003C835B93D6E4A /* [CP] Check Pods Manifest.lock */ = {
+		457E350A0E3A7DA432DE1272 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SwapiOSWallet-SwapiOSWalletTests/Pods-SwapiOSWallet-SwapiOSWalletTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SwapiOSWallet-SwapiOSWalletTests/Pods-SwapiOSWallet-SwapiOSWalletTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SwapiOSWallet-SwapiOSWalletTests/Pods-SwapiOSWallet-SwapiOSWalletTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6235B6176E0AF97936B25C64 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SwapiOSWallet/Pods-SwapiOSWallet-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SwapiOSWallet/Pods-SwapiOSWallet-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SwapiOSWallet/Pods-SwapiOSWallet-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7801B01E2739FA2925CD9F57 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SwapiOSWallet-SwapiOSWalletTests/Pods-SwapiOSWallet-SwapiOSWalletTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SwapiOSWallet-SwapiOSWalletTests/Pods-SwapiOSWallet-SwapiOSWalletTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SwapiOSWallet-SwapiOSWalletTests/Pods-SwapiOSWallet-SwapiOSWalletTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C509C967D604803D1AE1A0C8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SwapiOSWallet/Pods-SwapiOSWallet-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SwapiOSWallet/Pods-SwapiOSWallet-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SwapiOSWallet/Pods-SwapiOSWallet-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D1E717C83FF3D35E5DF48E95 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -288,75 +356,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8FC0E5F0BEB922358DCCF8B2 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SwapiOSWallet/Pods-SwapiOSWallet-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SwapiOSWallet/Pods-SwapiOSWallet-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SwapiOSWallet/Pods-SwapiOSWallet-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9790EF2151F9C4AB4E556D2B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SwapiOSWallet/Pods-SwapiOSWallet-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SwapiOSWallet/Pods-SwapiOSWallet-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SwapiOSWallet/Pods-SwapiOSWallet-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AE6BF6FB50229D97EF403D24 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SwapiOSWallet-SwapiOSWalletTests/Pods-SwapiOSWallet-SwapiOSWalletTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SwapiOSWallet-SwapiOSWalletTests/Pods-SwapiOSWallet-SwapiOSWalletTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SwapiOSWallet-SwapiOSWalletTests/Pods-SwapiOSWallet-SwapiOSWalletTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E520288D7940D964954C5EEB /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SwapiOSWallet-SwapiOSWalletTests/Pods-SwapiOSWallet-SwapiOSWalletTests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SwapiOSWallet-SwapiOSWalletTests/Pods-SwapiOSWallet-SwapiOSWalletTests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SwapiOSWallet-SwapiOSWalletTests/Pods-SwapiOSWallet-SwapiOSWalletTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E5948D64274520AF87573CEE /* [CP] Check Pods Manifest.lock */ = {
+		E09919199EED41A74AB23180 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -430,7 +430,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 09005C8DBE69E0D41FD88CE7 /* Pods-SwapiOSWallet-SwapiOSWalletTests.debug.xcconfig */;
+			baseConfigurationReference = 490B109B0E2F2E6F80B59F5F /* Pods-SwapiOSWallet-SwapiOSWalletTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -457,7 +457,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2EBE34F56DEDD01B601A5937 /* Pods-SwapiOSWallet-SwapiOSWalletTests.release.xcconfig */;
+			baseConfigurationReference = 05E5A860024D592E8C110BB5 /* Pods-SwapiOSWallet-SwapiOSWalletTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -481,7 +481,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B1810B6E807E1848D7AC265 /* Pods-SwapiOSWallet.debug.xcconfig */;
+			baseConfigurationReference = 323B33C42F3182323590A201 /* Pods-SwapiOSWallet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -510,7 +510,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 02B00E4B9A32338BD20D5684 /* Pods-SwapiOSWallet.release.xcconfig */;
+			baseConfigurationReference = 116F66EB046EDEB5D09FB726 /* Pods-SwapiOSWallet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

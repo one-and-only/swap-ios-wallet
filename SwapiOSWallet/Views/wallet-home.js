@@ -1,8 +1,6 @@
 import * as React from 'react';
 import {View, Text, Dimensions,} from 'react-native';
 
-import * as Settings from '../Helpers/settings';
-
 const {width, height} = Dimensions.get('window');
 const widthScale = width/375;
 

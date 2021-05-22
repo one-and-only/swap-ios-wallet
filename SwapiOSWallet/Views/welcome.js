@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {View, Text, StyleSheet, Dimensions, Image, TouchableOpacity,} from 'react-native';
+import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const {width, height} = Dimensions.get('window');
 const widthScale = width/375;
@@ -34,8 +34,8 @@ export default class SwapWelcome extends React.Component {
                             <View style={[styles.flexContainer, {flexDirection: 'row', width: '90%',}]}>
                                 <Image source={require('../Resources/Images/restore-wallet.png')} style={{height: normalize(75), width: normalize(75), resizeMode: 'stretch'}} />
                                 <View style={{flexDirection: 'row', flexWrap: 'wrap', marginLeft: normalize(10),}}>
-                                    <Text style={[styles.optionTitle, {fontSize: normalize(22),}]}>Restore wallet from keys or mnemonic seed</Text>
-                                    <Text style={styles.optionBody}>Enter your private keys or 25-word mnemonic seed to restore your wallet.</Text>
+                                    <Text style={[styles.optionTitle, {fontSize: normalize(22),}]}>Restore wallet from mnemonic seed</Text>
+                                    <Text style={styles.optionBody}>Enter your 25-word mnemonic seed to restore your wallet.</Text>
                                 </View>
                             </View>
                         </TouchableOpacity>

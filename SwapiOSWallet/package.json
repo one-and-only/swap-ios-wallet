@@ -13,6 +13,7 @@
     "@react-native-async-storage/async-storage": "^1.15.0",
     "@react-native-community/art": "^1.2.0",
     "@react-native-community/masked-view": "^0.1.10",
+    "@react-navigation/drawer": "^5.12.5",
     "@react-navigation/native": "^5.7.3",
     "@react-navigation/stack": "^5.9.0",
     "patch-package": "^6.4.7",

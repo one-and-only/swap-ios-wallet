@@ -20,7 +20,7 @@ import SwapWelcome from './Views/welcome';
 import SwapCreateWallet from './Views/create-wallet';
 import SwapOpenWallet from './Views/open-wallet';
 import SwapRestoreWallet from './Views/restore-wallet';
-import SwapWalletHome from './Views/wallet-home';
+import SwapWalletHome from './Views/wallet-navigator';
 
 class Navigator extends React.Component {
 

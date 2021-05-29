@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import SwapWallet from './Wallet/wallet';
 import SwapTransactions from './Wallet/transactions';
 import SwapSend from './Wallet/send';
+import SwapSettings from './Wallet/settings';
 
 export default class SwapWalletHome extends React.Component {
     constructor(props) {
@@ -20,6 +21,7 @@ export default class SwapWalletHome extends React.Component {
                     <Drawer.Screen name="Wallet" navigation={this.props.navigation} component={SwapWallet}/>
                     <Drawer.Screen name="Transactions" navigation={this.props.navigation} component={SwapTransactions}/>
                     <Drawer.Screen name="Send" navigation={this.props.navigation} component={SwapSend}/>
+                    <Drawer.Screen name="Settings" navigation={this.props.navigation} component={SwapSettings}/>
                 </Drawer.Navigator>
             </NavigationContainer>
         );

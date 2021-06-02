@@ -44,7 +44,7 @@ export default class SwapRestoreWallet extends React.Component {
                         </Text>
                     </View>
                     <View style={[styles.flexContainerChild, {flex: 2, marginLeft: normalize(5), marginTop: height * 0.05,}]}>
-                        <TextInput style={styles.textBox} underlineColorAndroid='transparent' placeholder='Wallet Address' placeholderTextColor='#c9c9c9' autoCapitalize='none' onChangeText={this.handleWalletAddress} scrollEnabled={true} autoCompleteType='password'></TextInput>
+                        <TextInput style={styles.textBox} underlineColorAndroid='transparent' placeholder='Wallet Address' placeholderTextColor='#c9c9c9' autoCapitalize='none' onChangeText={this.handleWalletAddress}></TextInput>
                     </View>
                     <View style={[styles.flexContainerChild, {flex: 2, marginLeft: normalize(5), marginTop: height * 0.05,}]}>
                         <Text style={{flexDirection: 'row'}} onPress={() => this.props.navigation.navigate('Restore Wallet')}>
@@ -56,7 +56,7 @@ export default class SwapRestoreWallet extends React.Component {
                         </Text>
                     </View>
                     <View style={[styles.flexContainerChild, {flex: 2, marginLeft: normalize(5), marginTop: height * 0.05,}]}>
-                        <TextInput style={styles.textBox} underlineColorAndroid='transparent' placeholder='View Key' placeholderTextColor='#c9c9c9' autoCapitalize='none' onChangeText={this.handleViewKey} scrollEnabled={true} autoCompleteType='password'></TextInput>
+                        <TextInput style={styles.textBox} underlineColorAndroid='transparent' placeholder='View Key' placeholderTextColor='#c9c9c9' autoCapitalize='none' onChangeText={this.handleViewKey}></TextInput>
                     </View>
                 </View>
                 <View style={[styles.flexContainer, {flex: 4,}]}></View>

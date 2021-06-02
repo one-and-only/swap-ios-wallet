@@ -92,7 +92,7 @@ export default class SwapWallet extends React.Component {
                         <Text numberOfLines={1} style={this.styles.balanceText}>Unlocked Balance: {this.state.total_unlocked_balance}</Text>
                         <Image style={[this.styles.balanceImage, {marginLeft: normalize(5),}]} source={require('../../Resources/Images/logo-circle-fill.png')} />
                     </View>
-                    <View style={this.styles.balanceChildContainer}>
+                    <View style={[this.styles.balanceChildContainer, {marginTop: normalize(15),}]}>
                         <Text numberOfLines={1} style={this.styles.balanceText}>Total Balance: {this.state.total_balance}</Text>
                         <Image style={[this.styles.balanceImage, {marginLeft: normalize(5),}]} source={require('../../Resources/Images/logo-circle-fill.png')} />
                     </View>

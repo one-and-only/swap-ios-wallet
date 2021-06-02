@@ -88,13 +88,13 @@ export default class SwapWallet extends React.Component {
         return (
             <View style={[{backgroundColor: '#052344', display: 'flex', flex: 1,}]}>
                 <View style={this.styles.balanceContainer}>
-                    <View style={this.styles.balanceChildContainer}>
-                        <Text numberOfLines={1} style={this.styles.balanceText}>Unlocked Balance: {this.state.total_unlocked_balance}</Text>
-                        <Image style={[this.styles.balanceImage, {marginLeft: normalize(5),}]} source={require('../../Resources/Images/logo-circle-fill.png')} />
+                    <View style={[this.styles.balanceChildContainer, {paddingTop: height * 0.03,}]}>
+                        <Text numberOfLines={1} style={this.styles.balanceText}>Unlocked: {this.state.total_unlocked_balance}</Text>
+                        <Image style={[this.styles.balanceImage, {marginLeft: normalize(5),}]} source={require('../../Resources/Images/logo-circle-white-nofill.png')} />
                     </View>
                     <View style={[this.styles.balanceChildContainer, {marginTop: normalize(15),}]}>
-                        <Text numberOfLines={1} style={this.styles.balanceText}>Total Balance: {this.state.total_balance}</Text>
-                        <Image style={[this.styles.balanceImage, {marginLeft: normalize(5),}]} source={require('../../Resources/Images/logo-circle-fill.png')} />
+                        <Text numberOfLines={1} style={this.styles.balanceText}>Total: {this.state.total_balance}</Text>
+                        <Image style={[this.styles.balanceImage, {marginLeft: normalize(5),}]} source={require('../../Resources/Images/logo-circle-white-nofill.png')} />
                     </View>
                 </View>
             </View>

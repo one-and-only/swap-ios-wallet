@@ -23,12 +23,9 @@ export default class SwapSettings extends React.Component {
 
         Promise.all([spendKeyPromise]).then((settings) => {
             var spendKey;
-            if (settings[0] != null) {
-                spendKey = settings[0];
-            } else {
-                spendKey = "";
-            }
 
+            (settings[0] != null) ? spendKey = settings[0] : spendKey = "";
+            
             this.setState({
                 spendKey: spendKey,
             })

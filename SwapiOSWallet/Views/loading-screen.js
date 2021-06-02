@@ -15,7 +15,6 @@ export default class SwapLoadingScreen extends React.Component {
             defaultPage.then((value) => {
                 defaultPageString = value;
                 if (defaultPageString != null) {
-                    console.debug();
                     this.props.navigation.navigate(defaultPageString);
                 } else {
                     this.props.navigation.navigate("Home");

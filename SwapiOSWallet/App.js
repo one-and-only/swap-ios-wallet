@@ -18,7 +18,6 @@ import SwapLoadingScreen from './Views/loading-screen';
 import SwapMainHome from './Views/home';
 import SwapWelcome from './Views/welcome';
 import SwapCreateWallet from './Views/create-wallet';
-import SwapOpenWallet from './Views/open-wallet';
 import SwapRestoreWallet from './Views/restore-wallet';
 import SwapWalletHome from './Views/wallet-navigator';
 
@@ -95,7 +94,6 @@ class Navigator extends React.Component {
           <Stack.Screen name="Home" navigation={this.props.navigation} component={SwapMainHome} options={this.options} />
           <Stack.Screen name="Welcome" navigation={this.props.navigation} component={SwapWelcome} options={this.options} />
           <Stack.Screen name="Create Wallet" navigation={this.props.navigation} component={SwapCreateWallet} options={this.options} />
-          <Stack.Screen name="Open Wallet" navigation={this.props.navigation} component={SwapOpenWallet} options={this.options} />
           <Stack.Screen name="Restore Wallet" navigation={this.props.navigation} component={SwapRestoreWallet} options={this.options} />
           <Stack.Screen name="Wallet Home" navigation={this.props.navigation} component={SwapWalletHome} options={this.options} />
         </Stack.Navigator>

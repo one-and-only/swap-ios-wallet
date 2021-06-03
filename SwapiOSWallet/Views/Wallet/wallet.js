@@ -122,5 +122,5 @@ export default class SwapWallet extends React.Component {
             height: normalize(22),
             width: normalize(22),
         }
-    })
+    });
 }

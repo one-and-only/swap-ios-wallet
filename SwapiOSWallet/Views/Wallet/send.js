@@ -14,7 +14,7 @@ function normalize (pre) {
     return Math.floor(pre * widthScale);
 }
 
-export default class SwapSettings extends React.Component {
+export default class SwapSend extends React.Component {
     constructor(props) {
         super(props);
 
@@ -58,7 +58,7 @@ export default class SwapSettings extends React.Component {
                         <Text style={this.styles.text}>Address:</Text>
                         <View style={[this.styles.flexContainerChild, {marginLeft: normalize(10),}]}>
                             <TextInput style={[this.styles.text, this.styles.textBox]} underlineColorAndroid='transparent' placeholder='Address' placeholderTextColor='#c9c9c9' autoCapitalize='none' keyboardType='ascii-capable' onChangeText={this.handleAddress}></TextInput>
-                            <Image style={[this.styles.addressImage, {marginLeft: normalize(3), marginTop: normalize(7), marginBottom: normalize(3),}]} source={require('../../Resources/Images/address-book.png')} />
+                            <Image style={[this.styles.addressImage, {marginLeft: normalize(5), marginTop: normalize(7), marginBottom: normalize(3),}]} source={require('../../Resources/Images/address-book.png')} />
                         </View>
                     </View>
                 </View>

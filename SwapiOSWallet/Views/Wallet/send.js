@@ -46,7 +46,7 @@ export default class SwapSend extends React.Component {
     render() {
         return (
             <View style={this.styles.mainView}>
-                <View style={{flex: 17}}>
+                <View style={{flex: 15}}>
                     <View style={{flexDirection: 'row', marginTop: normalize(10),}}>
                         <Text style={this.styles.text}>Amount:</Text>
                         <View style={[this.styles.flexContainerChild, {marginLeft: normalize(10),}]}>
@@ -62,7 +62,7 @@ export default class SwapSend extends React.Component {
                         </View>
                     </View>
                 </View>
-                <View style={[this.styles.flexContainerChild, {flex: 1, marginBottom: height * 0.1,}]}>
+                <View style={[this.styles.flexContainerChild, {flex: 1, marginBottom: height * 0.07,}]}>
                     <TouchableOpacity onPress={() => alert("Sending XWP is not currently supported.")} style={[this.styles.buttonContainer, { marginRight: width * 0.05 }]}>
                         <Text style={this.styles.buttonText}>Send</Text>
                     </TouchableOpacity>

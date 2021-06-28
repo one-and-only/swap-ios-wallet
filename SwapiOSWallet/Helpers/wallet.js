@@ -1,10 +1,10 @@
-import * as Settings from '../Helpers/settings';
+import * as Settings from "../Helpers/settings";
 
 export const currentBlockHeight = () => {
-    var height = 0;
-    // add height request here
-    return height;
-}
+	var height = 0;
+	// add height request here
+	return height;
+};
 
 /*export const openWallet = () =>  {
 

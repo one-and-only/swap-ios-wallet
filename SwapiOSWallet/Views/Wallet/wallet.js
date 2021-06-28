@@ -24,17 +24,10 @@ export default class SwapWallet extends React.Component {
         total_balance_unlockedPromise = Settings.select('total_unlocked_balance');
 
         Promise.all([total_balancePromise, total_balance_unlockedPromise]).then((balances) => {
-            if (balances[0] != null && balances[0] != null) {
-                this.state = {
-                    total_balance: balances[0] / au_to_xwp,
-                    total_unlocked_balance: balances[1] / au_to_xwp,
-                };
-            } else {
-                this.state = {
-                    total_balance: "Syncing",
-                    total_unlocked_balance: "Syncing",
-                };
-            }
+            this.state = {
+                total_balance: (typeof balances[0] == "number" && balances[0] != NaN) ? balances[0] / au_to_xwp : "Syncing",
+                total_unlocked_balance: (typeof balances[1] == "number" && balances[1] != NaN) ? balances[1] / au_to_xwp : "Syncing",
+            };
         });
     }
 
@@ -77,8 +70,25 @@ export default class SwapWallet extends React.Component {
                         total_balance: result.total_received / au_to_xwp,
                         total_unlocked_balance: result.total_received_unlocked / au_to_xwp,
                     });
-                    Settings.insert('total_balance', result.total_received);
-                    Settings.insert('total_unlocked_balance', result.total_received_unlocked);
+                    switch(result.status) {
+                        case "success":
+                            Settings.insert('total_balance', result.total_received);
+                            Settings.insert('total_unlocked_balance', result.total_received_unlocked);
+                            break;
+                        case "error":
+                            switch(result.reason) {
+                                case "Search thread does not exist.":
+                                    this.setState({
+                                        total_balance: 0,
+                                        total_unlocked_balance: 0,
+                                    });
+                                default:
+                                    alert("An unknown error occured when fetching your balance. Please try again later. If the issue persists, please notify the developers of this app. Thank you.");
+                            }
+                            break;
+                        default:
+                            alert("An unknown error occured when fetching the status of the fetch balance request. Please notify the developers of this app if the issue persists. Thank you.");
+                    }
                 });
             })();
         });

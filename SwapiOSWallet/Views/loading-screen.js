@@ -19,7 +19,8 @@ export default class SwapLoadingScreen extends React.Component {
 				} else {
 					this.props.navigation.navigate("Home");
 				}
-			}).catch((reason) => {
+			}).catch((error) => {
+				console.log(error);
 				this.props.navigation.navigate("Home");
 			});
 		}, 500);

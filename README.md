@@ -28,7 +28,7 @@ iOS Wallet for Swap, made by Revvz (me, but on Discord).
 1. **Your app should build, and then subsequently launch! 🎉**
 
 ## Running on an M1 Mac
-1. Do everything in [Setting Up Code Workspace](#setting-up-code-workspace) up to step X. IT IS IMPORTANT YOU DON'T DO ANYTHING AFTER THAT STEP.
+1. Do everything in [Setting Up Code Workspace](#setting-up-code-workspace) up to step 5. IT IS IMPORTANT YOU DON'T DO ANYTHING AFTER THAT STEP.
 1. In a terminal, run `sudo gem install ffi`
 1. Since CocoaPods only works on Intel Macs, you will either need to run the entire terminal with Rosetta 2 and then run `cd ios && pod install`, or install pods using `cd ios && arch -x86_64 pod install`
 1. Now you may proceed to [Running Development Versions of Swap iOS Wallet](#running-development-versions-of-swap-ios-wallet)

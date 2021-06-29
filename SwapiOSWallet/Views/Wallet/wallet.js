@@ -12,9 +12,41 @@ function normalize (pre) {
 	return Math.floor(pre * widthScale);
 }
 
+function refreshWalletSearchThread() {
+	// every 5 minutes, send a "heartbeat" to the web wallet
+	// this ensures that the wallet is still being synced while the user is in the wallet
+	// 300,000ms = 5 minutes
+	setInterval(() => {
+		address_promise = Settings.select("walletAddress");
+		viewKey_promise = Settings.select("viewKey");
+		Promise.all([address_promise, viewKey_promise]).then(wallet => {
+			var data = "{\"address\": \"" + wallet[0] + "\", \"view_key\": \"" + wallet[1] + "\"}";
+			fetch(
+				"https://wallet.getswap.eu/api/ping",
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: data
+				}
+			).then(response => response.json())
+				.then((jsonResponse) => {
+					switch (jsonResponse.status) {
+					case "error":
+						console.log("Ping resulted in an error");
+						console.log(jsonResponse.reason);
+						break;
+					}
+				}).catch(err => console.log("Error" + err));
+		});
+	}, 300_000);
+}
+
 export default class SwapWallet extends React.Component {
 	constructor(props) {
 		super(props);
+		refreshWalletSearchThread();
 		// overcome the delay of the async function so we don't run into problems
 		this.state = {
 			total_balance: "Syncing",

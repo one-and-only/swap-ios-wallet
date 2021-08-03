@@ -29,12 +29,24 @@ export default class SwapLoadingScreen extends React.Component {
 						case "success":
 							switch (jsonResponse.new_address) {
 							case true:
-								Settings.insert("spendKey", new_wallet.spendKey);
-								Settings.insert("viewKey", new_wallet.viewKey);
-								Settings.insert("mnemonic", new_wallet.mnemonic);
-								Settings.insert("walletAddress", new_wallet.wallet_address);
-								Settings.insert("defaultPage", "Wallet Home");
-								props.navigation.navigate("Wallet Home");
+								// chain Promises just in case there isn't
+								// enought time to create the wallet before
+								// the page navigates to the wallet home
+								Settings.insert("spendKey_pub", new_wallet.spendKey_pub).then(() => {
+									Settings.insert("viewKey_pub", new_wallet.viewKey_pub).then(() => {
+										Settings.insert("spendKey_sec", new_wallet.spendKey_sec).then(() => {
+											Settings.insert("viewKey_sec", new_wallet.viewKey_sec).then(() => {
+												Settings.insert("mnemonic", new_wallet.mnemonic).then(() => {
+													Settings.insert("walletAddress", new_wallet.wallet_address).then(() => {
+														Settings.insert("defaultPage", "Wallet Home").then(() => {
+															props.navigation.navigate("Wallet Home")
+														})
+													})
+												})
+											})
+										})
+									})
+								});
 								break;
 							case false:
 								create_wallet(); // recursion in case somehow we generated the same wallet as someone else

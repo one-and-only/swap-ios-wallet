@@ -589,8 +589,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 3.2.1;
-				DEVELOPMENT_TEAM = 9GAK4JAJCH;
+				DEVELOPMENT_TEAM = KKHJNPDDK5;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SwapiOSWallet/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -604,8 +606,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "swap.swap-ios-wallet";
+				PRODUCT_BUNDLE_IDENTIFIER = eu.getswap.ioswallet;
 				PRODUCT_NAME = SwapiOSWallet;
+				PROVISIONING_PROFILE_SPECIFIER = "Swap iOS Wallet Prod";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -619,8 +622,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 3.2.1;
-				DEVELOPMENT_TEAM = 9GAK4JAJCH;
+				DEVELOPMENT_TEAM = KKHJNPDDK5;
 				INFOPLIST_FILE = SwapiOSWallet/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -633,8 +638,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "swap.swap-ios-wallet";
+				PRODUCT_BUNDLE_IDENTIFIER = eu.getswap.ioswallet;
 				PRODUCT_NAME = SwapiOSWallet;
+				PROVISIONING_PROFILE_SPECIFIER = "Swap iOS Wallet Prod";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";

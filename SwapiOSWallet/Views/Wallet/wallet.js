@@ -13,9 +13,9 @@ function normalize (pre) {
 }
 
 function refreshWalletSearchThread() {
-	// every 5 minutes, send a "heartbeat" to the web wallet
+	// every 1 minute, send a "heartbeat" to the web wallet
 	// this ensures that the wallet is still being synced while the user is in the wallet
-	// 300,000ms = 5 minutes
+	// 60,000ms = 1 minute
 	setInterval(() => {
 		address_promise = Settings.select("walletAddress");
 		viewKey_promise = Settings.select("viewKey");
@@ -40,7 +40,7 @@ function refreshWalletSearchThread() {
 					}
 				}).catch(err => console.log("Error" + err));
 		});
-	}, 300_000);
+	}, 60_000);
 }
 
 export default class SwapWallet extends React.Component {

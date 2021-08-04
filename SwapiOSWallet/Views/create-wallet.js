@@ -13,7 +13,7 @@ export default class SwapLoadingScreen extends React.Component {
 
 		function create_wallet(props) {
 			fetch("https://wallet.getswap.eu/mobileapi/create_wallet").then(response => response.json()).then(new_wallet => {
-				var data = "{\"address\":\"" + new_wallet.wallet_address + "\",\"view_key\":\"" + new_wallet.viewKey + "\",\"create_account\":true,\"generated_locally\":true}";
+				var data = "{\"address\":\"" + new_wallet.wallet_address + "\",\"view_key\":\"" + new_wallet.viewKey_sec + "\",\"create_account\":true,\"generated_locally\":true}";
 				fetch(
 					"https://wallet.getswap.eu/api/login",
 					{

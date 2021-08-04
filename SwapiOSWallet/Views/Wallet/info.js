@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Dimensions, Text, View, StyleSheet, } from "react-native";
+import { Dimensions, Text, ScrollView, StyleSheet, } from "react-native";
 
 import * as Settings from "../../Helpers/settings";
 
@@ -18,33 +18,41 @@ export default class SwapWalletInfo extends React.Component {
 		this.state = {
 			mnemonic: "Fetching...",
 			address: "Fetching...",
-			viewKey: "Fetching...",
-			spendKey: "Fetching...",
+			viewKey_sec: "Fetching...",
+			viewKey_pub: "Fetching...",
+			spendKey_sec: "Fetching...",
+			spendKey_pub: "Fetching...",
 		};
 
-		mnemonic_promise = Settings.select("mnemonic");
-		address_promise = Settings.select("walletAddress");
-		viewKey_promise = Settings.select("viewKey");
-		spendKey_promise = Settings.select("spendKey");
+		mnemonic = Settings.select("mnemonic");
+		address = Settings.select("walletAddress");
+		viewKeySec = Settings.select("viewKey_sec");
+		viewKeyPub = Settings.select("viewKey_pub");
+		spendKeySec = Settings.select("spendKey_sec");
+		spendKeyPub = Settings.select("spendKey_pub");
 
-		Promise.all([mnemonic_promise, address_promise, viewKey_promise, spendKey_promise]).then(wallet => {
+		Promise.all([mnemonic, address, viewKeySec, viewKeyPub, spendKeySec, spendKeyPub]).then(wallet => {
 			this.setState({
 				mnemonic: wallet[0],
 				address: wallet[1],
-				viewKey: wallet[2],
-				spendKey: wallet[3],
+				viewKey_sec: wallet[2],
+				viewKey_pub: wallet[3],
+				spendKey_sec: wallet[4],
+				spendKey_pub: wallet[5],
 			});
 		});
 	}
 
 	render() {
 		return (
-			<View style={{backgroundColor: "#052344", paddingBottom: height * 0.5, paddingLeft: normalize(10), paddingTop: height * 0.02,}}>
+			<ScrollView style={{backgroundColor: "#052344", paddingBottom: height * 0.5, paddingLeft: normalize(10), paddingTop: height * 0.02,}}>
 				<Text style={styles.text}>Mnemonic Seed (Private): <Text style={{fontSize: normalize(15),}}>{this.state.mnemonic}</Text></Text>
 				<Text style={styles.text}>Account Address (Public): <Text style={{fontSize: normalize((15),)}}>{this.state.address}</Text></Text>
-				<Text style={styles.text}>View Key (Private): <Text style={{fontSize: normalize((15),)}}>{this.state.viewKey}</Text></Text>
-				<Text style={styles.text}>Spend Key (Private): <Text style={{fontSize: normalize((15),)}}>{this.state.spendKey}</Text></Text>
-			</View>
+				<Text style={styles.text}>View Key (Private): <Text style={{fontSize: normalize((15),)}}>{this.state.viewKey_sec}</Text></Text>
+				<Text style={styles.text}>Spend Key (Private): <Text style={{fontSize: normalize((15),)}}>{this.state.spendKey_sec}</Text></Text>
+				<Text style={styles.text}>View Key (Public): <Text style={{fontSize: normalize((15),)}}>{this.state.viewKey_pub}</Text></Text>
+				<Text style={styles.text}>Spend Key (Public): <Text style={{fontSize: normalize((15),)}}>{this.state.spendKey_pub}</Text></Text>
+			</ScrollView>
 		);
 	}
 
@@ -54,6 +62,6 @@ const styles = StyleSheet.create({
 	text: {
 		color: "white",
 		fontSize: normalize(20),
-		paddingTop: height * 0.02,
+		padding: normalize(5),
 	}
 });

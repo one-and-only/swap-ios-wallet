@@ -2,6 +2,10 @@
 #
 **/.DS_Store
 
+# Watchman
+#
+.watchman-cookie-**
+
 # Xcode
 #
 build/

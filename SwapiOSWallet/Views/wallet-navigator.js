@@ -4,13 +4,14 @@ import { NavigationContainer } from "@react-navigation/native";
 
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
-import { Dimensions,} from "react-native";
+import { Dimensions } from "react-native";
 
 import SwapWallet from "./Wallet/wallet";
 import SwapTransactions from "./Wallet/transactions";
 import SwapSend from "./Wallet/send";
 import SwapSettings from "./Wallet/settings";
 import SwapWalletInfo from "./Wallet/info";
+import SwapTransactionInfo from "./Wallet/transaction-info";
 
 const {width, height} = Dimensions.get("window");
 const widthScale = width/375;
@@ -69,6 +70,15 @@ export default class SwapWalletHome extends React.Component {
 		super(props);
 	}
 
+	hiddenOptions = {
+		// hide the button from the tab bar
+		/*
+		This is a hidden page that can only
+		be accessed by explicit navigation.
+		*/
+		tabBarButton: () => null,
+	};
+
 	render() {
 		const Tab = createBottomTabNavigator();
 
@@ -80,6 +90,7 @@ export default class SwapWalletHome extends React.Component {
 					<Tab.Screen name="Send" navigation={this.props.navigation} component={SwapSend} options={sendOptions}/>
 					<Tab.Screen name="Settings" navigation={this.props.navigation} component={SwapSettings} options={settingsOptions}/>
 					<Tab.Screen name="Wallet Info" navigation={this.props.navigation} component={SwapWalletInfo} options={infoOptions}/>
+					<Tab.Screen name="Transaction Details" navigation={this.props.navigation} component={SwapTransactionInfo} options={this.hiddenOptions} />
 				</Tab.Navigator>
 			</NavigationContainer>
 		);

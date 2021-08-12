@@ -40,7 +40,7 @@ function refreshWalletSearchThread() {
 					}
 				}).catch(err => console.log("Error" + err));
 		});
-	}, 60_000);
+	}, 60000);
 }
 
 export default class SwapWallet extends React.Component {

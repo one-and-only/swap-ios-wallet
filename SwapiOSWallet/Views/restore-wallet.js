@@ -71,7 +71,6 @@ export default class SwapRestoreWallet extends React.Component {
 					</View>
 					<View style={[styles.flexContainerChild, {flex: 1, marginTop: height * 0.05,}]}>
 						<Text style={{color: "white", alignSelf: "center", fontWeight: "700", fontSize: normalize(14)}}>
-                            ©2021 Swap Foundation
 						</Text>
 					</View>
 				</View>

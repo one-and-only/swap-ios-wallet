@@ -47,7 +47,7 @@ class Navigator extends React.Component {
 
 		const headerLeft = () => {
 			return (
-				<TouchableOpacity onPress={() => {Alert.alert("About", "Swap iOS Wallet v3.2.1\n\n©2021 Swap Foundation");}}>
+				<TouchableOpacity onPress={() => {Alert.alert("About", "Swap Mobile Wallet v0.8.0\n\n©2021 Antonios Papadakis");}}>
 					<Image
 						source={require("./Resources/Images/info.png")}
 						style={{height: 30, width: 30, resizeMode: "stretch", marginLeft: 30, marginBottom: 7,}}

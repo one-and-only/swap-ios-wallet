@@ -1,8 +1,8 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import EncryptedStorage from 'react-native-encrypted-storage';
 
 export const insert = async (key, value) => {
 	try {
-		await AsyncStorage.setItem(key, value);
+		await EncryptedStorage.setItem(key, value);
 	} catch (e) {
 		alert("Error while saving " + key + "." + e);
 	}
@@ -10,7 +10,7 @@ export const insert = async (key, value) => {
 
 export const select = async (key) => {
 	try {
-		var data = await AsyncStorage.getItem(key);
+		var data = await EncryptedStorage.getItem(key);
 		return data;
 	} catch(e) {
 		alert("Error getting " + key + "." + e);
@@ -19,17 +19,8 @@ export const select = async (key) => {
 
 export const remove = async (key) => {
 	try {
-		await AsyncStorage.removeItem(key);
+		await EncryptedStorage.removeItem(key);
 	} catch(e) {
 		alert("Error while removing " + key + "." + e);
-	}
-};
-
-export const getAllKeys = async () => {
-	try {
-		var data = await AsyncStorage.getAllKeys();
-		return data;
-	} catch(e) {
-		alert("Error while reading keys: " + e);
 	}
 };

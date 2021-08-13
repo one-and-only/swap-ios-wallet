@@ -27,6 +27,32 @@ static void InitializeFlipper(UIApplication *application) {
 }
 #endif
 
+/**
+ Deletes all Keychain items accessible by this app if this is the first time the user launches the app
+ This should not be an issue on Android, as encrypted Shared Preferences clears when the user uninstalls the app
+ */
+static void ClearKeychainIfNecessary() {
+    // Checks wether or not this is the first time the app is run
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HAS_RUN_BEFORE"] == NO) {
+        // Set the appropriate value so we don't clear next time the app is launched
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HAS_RUN_BEFORE"];
+
+        NSArray *secItemClasses = @[
+            (__bridge id)kSecClassGenericPassword,
+            (__bridge id)kSecClassInternetPassword,
+            (__bridge id)kSecClassCertificate,
+            (__bridge id)kSecClassKey,
+            (__bridge id)kSecClassIdentity
+        ];
+
+        // Maps through all Keychain classes and deletes all items that match
+        for (id secItemClass in secItemClasses) {
+            NSDictionary *spec = @{(__bridge id)kSecClass: secItemClass};
+            SecItemDelete((__bridge CFDictionaryRef)spec);
+        }
+    }
+}
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -34,6 +60,9 @@ static void InitializeFlipper(UIApplication *application) {
 #ifdef FB_SONARKIT_ENABLED
   InitializeFlipper(application);
 #endif
+  
+  // Clear the keychain if app has launched for the first time
+  ClearKeychainIfNecessary();
   
   // In this case, index.bundle matches the index.js file that contains your component code
   NSURL *jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.bundle?platform=ios"];

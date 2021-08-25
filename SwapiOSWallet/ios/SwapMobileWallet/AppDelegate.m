@@ -86,8 +86,6 @@ static void ClearKeychainIfNecessary() {
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   UIViewController *rootViewController = [UIViewController new];
   rootViewController.view = rootView;
-  // set the app's background color to the one used in the desktop Swap wallets
-  rootView.backgroundColor = [[UIColor alloc] initWithRed:0.0196f green:0.1373f blue:0.2666f alpha:1.0];
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
   return YES;

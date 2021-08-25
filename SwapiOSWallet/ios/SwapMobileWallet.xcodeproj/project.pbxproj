@@ -12,6 +12,7 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		68A5838571384EE2066E3F83 /* libPods-SwapMobileWallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21E363778F96D56A5DBBB1F6 /* libPods-SwapMobileWallet.a */; };
+		EAEEA7AA26D6C5D40093719F /* VerbLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB137F1CC15E4823980A947E /* VerbLight.ttf */; };
 		FA0C33170CC913F503760146 /* libPods-SwapMobileWallet-SwapMobileWalletTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 003A53D1E60C0DC822997729 /* libPods-SwapMobileWallet-SwapMobileWalletTests.a */; };
 /* End PBXBuildFile section */
 
@@ -286,6 +287,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAEEA7AA26D6C5D40093719F /* VerbLight.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

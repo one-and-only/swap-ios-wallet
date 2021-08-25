@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from 'react';
 import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 const {width, height} = Dimensions.get("window");
@@ -52,7 +52,6 @@ export default class SwapWelcome extends React.Component {
 					</View>
 					<View style={[styles.flexContainerChild, {flex: 1, marginTop: height * 0.05,}]}>
 						<Text style={{color: "white", alignSelf: "center", fontWeight: "700", fontSize: normalize(14)}}>
-                            ©2021 Antonios Papadakis
 						</Text>
 					</View>
 				</View>

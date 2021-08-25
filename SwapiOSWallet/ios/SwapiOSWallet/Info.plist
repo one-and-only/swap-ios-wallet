@@ -40,7 +40,7 @@
 	<key>NSHumanReadableCopyright</key>
 	<string> ©2021 Antonios Papadakis</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>NSSupportsSuddenTermination</key>
 	<true/>
 	<key>UIAppFonts</key>
@@ -61,6 +61,7 @@
 		<string>Octicons.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
+		<string>VerbLight.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>SplashScreen</string>

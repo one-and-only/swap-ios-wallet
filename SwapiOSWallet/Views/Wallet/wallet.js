@@ -3,12 +3,12 @@ import { Dimensions, Text, View, StyleSheet, Image, } from "react-native";
 
 import * as Settings from "../../Helpers/settings";
 
-const {width, height} = Dimensions.get("window");
-const widthScale = width/375;
+const { width, height } = Dimensions.get("window");
+const widthScale = width / 375;
 const au_to_xwp = 1000000000000; // 1,000,000,000,000 atomic units in one XWP (like XMR)
 
 // normalize the input so that it scales evenly across devices
-function normalize (pre) {
+function normalize(pre) {
 	return Math.floor(pre * widthScale);
 }
 
@@ -18,7 +18,7 @@ function refreshWalletSearchThread() {
 	// 60,000ms = 1 minute
 	setInterval(() => {
 		address_promise = Settings.select("walletAddress");
-		viewKey_promise = Settings.select("viewKey");
+		viewKey_promise = Settings.select("viewKey_sec");
 		Promise.all([address_promise, viewKey_promise]).then(wallet => {
 			var data = "{\"address\": \"" + wallet[0] + "\", \"view_key\": \"" + wallet[1] + "\"}";
 			fetch(
@@ -33,12 +33,14 @@ function refreshWalletSearchThread() {
 			).then(response => response.json())
 				.then((jsonResponse) => {
 					switch (jsonResponse.status) {
-					case "error":
-						console.log("Ping resulted in an error");
-						console.log(jsonResponse.reason);
-						break;
+						case "error":
+							console.log("Ping resulted in an error");
+							console.log(jsonResponse.reason);
+							break;
+						default:
+							throw jsonResponse.reason;
 					}
-				}).catch(err => console.log("Error" + err));
+				}).catch(err => console.log(err || "Ping failed with an unknown error"));
 		});
 	}, 60000);
 }
@@ -102,26 +104,26 @@ export default class SwapWallet extends React.Component {
 						total_balance: result.total_received / au_to_xwp,
 						total_unlocked_balance: result.total_received_unlocked / au_to_xwp,
 					});
-					switch(result.status) {
-					case "success":
-						Settings.insert("total_balance", result.total_received);
-						Settings.insert("total_unlocked_balance", result.total_received_unlocked);
-						break;
-					case "error":
-						switch(result.reason) {
-						case "Search thread does not exist.":
-							this.setState({
-								total_balance: 0,
-								total_unlocked_balance: 0,
-							});
+					switch (result.status) {
+						case "success":
+							Settings.insert("total_balance", result.total_received);
+							Settings.insert("total_unlocked_balance", result.total_received_unlocked);
+							break;
+						case "error":
+							switch (result.reason) {
+								case "Search thread does not exist.":
+									this.setState({
+										total_balance: 0,
+										total_unlocked_balance: 0,
+									});
+									break;
+								default:
+									alert("An unknown error occured when fetching your balance. Please try again later. If the issue persists, please notify the developers of this app. Thank you.");
+									break;
+							}
 							break;
 						default:
-							alert("An unknown error occured when fetching your balance. Please try again later. If the issue persists, please notify the developers of this app. Thank you.");
-							break;
-						}
-						break;
-					default:
-						alert("An unknown error occured when fetching the status of the fetch balance request. Please notify the developers of this app if the issue persists. Thank you.");
+							alert("An unknown error occured when fetching the status of the fetch balance request. Please notify the developers of this app if the issue persists. Thank you.");
 					}
 				});
 			})();
@@ -130,15 +132,15 @@ export default class SwapWallet extends React.Component {
 
 	render() {
 		return (
-			<View style={{backgroundColor: "#052344", display: "flex", flex: 1,}}>
+			<View style={{ backgroundColor: "#052344", display: "flex", flex: 1, }}>
 				<View style={styles.balanceContainer}>
-					<View style={[styles.balanceChildContainer, {paddingTop: height * 0.03,}]}>
+					<View style={[styles.balanceChildContainer, { paddingTop: height * 0.03, }]}>
 						<Text numberOfLines={1} style={styles.balanceText}>Unlocked: {this.state.total_unlocked_balance}</Text>
-						<Image style={[styles.balanceImage, {marginLeft: normalize(5),}]} source={require("../../Resources/Images/logo-circle-white-nofill.png")} />
+						<Image style={[styles.balanceImage, { marginLeft: normalize(5), }]} source={require("../../Resources/Images/logo-circle-white-nofill.png")} />
 					</View>
-					<View style={[styles.balanceChildContainer, {marginTop: normalize(15),}]}>
+					<View style={[styles.balanceChildContainer, { marginTop: normalize(15), }]}>
 						<Text numberOfLines={1} style={styles.balanceText}>Total: {this.state.total_balance}</Text>
-						<Image style={[styles.balanceImage, {marginLeft: normalize(5),}]} source={require("../../Resources/Images/logo-circle-white-nofill.png")} />
+						<Image style={[styles.balanceImage, { marginLeft: normalize(5), }]} source={require("../../Resources/Images/logo-circle-white-nofill.png")} />
 					</View>
 				</View>
 			</View>

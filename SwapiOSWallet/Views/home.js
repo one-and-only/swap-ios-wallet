@@ -75,6 +75,7 @@ export default class SwapMainHome extends React.Component {
 				</View>
 				<View style={[styles.flexContainerChild, {flex: 1}]}>
 					<Text style={{color: "white", alignSelf: "center", fontWeight: "700", fontSize: this.normalize(14, widthScale)}}>
+						©2021 Antonios Papadakis
 					</Text>
 				</View>
 			</View>

@@ -63,6 +63,14 @@ export default class SwapSettings extends React.Component {
 	render() {
 		return (
 			<ScrollView contentContainerStyle={styles.mainView}>
+				<View style={styles.row}>
+					<Text style={styles.text}>Spend Key (Private): </Text>
+					<TextInput style={[styles.text, styles.textBox]} underlineColorAndroid='transparent' placeholder='Spend Key (Private)' placeholderTextColor='#c9c9c9' defaultValue={this.state.spendKey_sec} autoCapitalize='none' onChangeText={handleSpendKeySec}></TextInput>
+				</View>
+			</ScrollView>
+		);
+		/*return (
+			<ScrollView contentContainerStyle={styles.mainView}>
 				<View style={{flexDirection: "row", marginTop: normalize(10),}}>
 					<Text style={styles.text}>Spend Key (Private):</Text>
 					<View style={[styles.flexContainerChild, {marginLeft: normalize(10),}]}>
@@ -88,7 +96,7 @@ export default class SwapSettings extends React.Component {
 					</View>
 				</View>
 			</ScrollView>
-		);
+		);*/
 	}
 }
 
@@ -97,9 +105,15 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		backgroundColor: "#052344",
 		display: "flex",
-		flexDirection: "column",
 		flex: 1,
-		justifyContent: "flex-start",
+	},
+
+	txContainer: {
+		flexDirection: "column",
+	},
+
+	row: {
+		flexDirection: "row",
 	},
 
 	text: {
@@ -108,6 +122,6 @@ const styles = StyleSheet.create({
 	},
 
 	textBox: {
-		maxWidth: width * 0.55,
+		maxWidth: width * 0.5,
 	}
 });

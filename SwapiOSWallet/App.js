@@ -11,7 +11,7 @@
 import * as React from "react";
 import {NavigationContainer} from "@react-navigation/native";
 import {createStackNavigator} from "@react-navigation/stack";
-import {Image, TouchableOpacity, Linking, Alert,} from "react-native";
+import {Dimensions, Image, TouchableOpacity, Linking, Alert, Text, StyleSheet, View,} from "react-native";
 
 // Views
 import SwapLoadingScreen from "./Views/loading-screen";
@@ -20,6 +20,17 @@ import SwapWelcome from "./Views/welcome";
 import SwapCreateWallet from "./Views/create-wallet";
 import SwapRestoreWallet from "./Views/restore-wallet";
 import SwapWalletHome from "./Views/wallet-navigator";
+
+//FontAwesome
+import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+
+const {width, height} = Dimensions.get("window");
+const widthScale = width/375;
+
+// normalize the input so that it scales evenly across devices
+function normalize (pre) {
+	return Math.floor(pre * widthScale);
+}
 
 class Navigator extends React.Component {
 
@@ -38,7 +49,6 @@ class Navigator extends React.Component {
 							width: 42,
 							resizeMode: "stretch",
 							marginRight: 30,
-							marginBottom: 7,
 						}}
 					/>
 				</TouchableOpacity>
@@ -48,23 +58,15 @@ class Navigator extends React.Component {
 		const headerLeft = () => {
 			return (
 				<TouchableOpacity onPress={() => {Alert.alert("About", "Swap Mobile Wallet v0.8.1\n\n©2021 Antonios Papadakis");}}>
-					<Image
-						source={require("./Resources/Images/info.png")}
-						style={{height: 30, width: 30, resizeMode: "stretch", marginLeft: 30, marginBottom: 7,}}
-					/>
+					<FontAwesome5 style={styles.infoIcon} size={normalize(30)} name={"info-circle"} color={"white"} />
 				</TouchableOpacity>
 			);
 		};
 
 		const title = (
-			<Image 
-				source={require("./Resources/Images/header-logo.png")}
-				style={{
-					height: 30,
-					width: 96,
-					resizeMode: "stretch",
-				}}
-			/>
+			<View>
+				<Text style={styles.centerText}><Image style={styles.swapLogo} source={require('./Resources/Images/header-logo.png')} /> Swap</Text>
+			</View>
 		);
 
 		var options = {
@@ -103,4 +105,19 @@ class Navigator extends React.Component {
 
 }
 
+const styles = StyleSheet.create({
+	centerText: {
+		fontWeight: "normal",
+		fontFamily: "VerbLight",
+		color: "#fff",
+		fontSize: normalize(30),
+	},
+	swapLogo: {
+		width: normalize(30),
+		height: normalize(30),
+	},
+	infoIcon: {
+		marginLeft: normalize(30),
+	},
+});
 export default Navigator;

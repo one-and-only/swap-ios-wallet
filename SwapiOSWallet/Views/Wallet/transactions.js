@@ -57,8 +57,8 @@ const transactions = [
 // dynamic generation of rows
 const styles = StyleSheet.create({
 	mainView: {
+		display: "flex",
 		flex: 1,
-		flexDirection: "column",
 		backgroundColor: "#052344",
 		alignItems: "center",
 	},
@@ -79,11 +79,6 @@ const styles = StyleSheet.create({
 
 	row: {
 		flexDirection: "row",
-	},
-
-	column: {
-		display: "flex",
-		flexDirection: "column",
 	},
 
 	txContainer: {
@@ -121,7 +116,7 @@ export default class SwapTransactions extends React.Component {
 								</TouchableOpacity>
 							);
 						})
-					}{rows}{/*clear rows so they don't duplicate on app restart*/ rows = []}
+					}{rows}{/* clear rows so they don't duplicate on app restart */ rows = []}
 				</View>
 			</ScrollView>
 		);

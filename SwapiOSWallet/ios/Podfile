@@ -3,7 +3,7 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 platform :ios, '10.0'
 
-target 'SwapiOSWallet' do
+target 'SwapMobileWallet' do
   config = use_native_modules!
 
   use_react_native!(
@@ -12,7 +12,7 @@ target 'SwapiOSWallet' do
     :hermes_enabled => false
   )
 
-  target 'SwapiOSWalletTests' do
+  target 'SwapMobileWalletTests' do
     inherit! :complete
     # Pods for testing
   end

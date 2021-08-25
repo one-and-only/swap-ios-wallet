@@ -74,7 +74,7 @@ static void ClearKeychainIfNecessary() {
     [bridge moduleForClass:[RCTDevLoadingView class]];
   #endif
     RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
-                                                     moduleName:@"SwapiOSWallet"
+                                                     moduleName:@"SwapMobileWallet"
                                               initialProperties:nil];
 
   if (@available(iOS 13.0, *)) {

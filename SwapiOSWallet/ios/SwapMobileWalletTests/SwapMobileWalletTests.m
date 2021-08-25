@@ -7,11 +7,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"©2021 Swap Foundation"
 
-@interface SwapiOSWalletTests : XCTestCase
+@interface SwapMobileWalletTests : XCTestCase
 
 @end
 
-@implementation SwapiOSWalletTests
+@implementation SwapMobileWalletTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL(^)(UIView *view))test
 {

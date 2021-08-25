@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "SwapiOSWallet.app"
-               BlueprintName = "SwapiOSWallet"
-               ReferencedContainer = "container:SwapiOSWallet.xcodeproj">
+               BuildableName = "SwapMobileWallet.app"
+               BlueprintName = "SwapMobileWallet"
+               ReferencedContainer = "container:SwapMobileWallet.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "SwapiOSWalletTests.xctest"
-               BlueprintName = "SwapiOSWalletTests"
-               ReferencedContainer = "container:SwapiOSWallet.xcodeproj">
+               BuildableName = "SwapMobileWalletTests.xctest"
+               BlueprintName = "SwapMobileWalletTests"
+               ReferencedContainer = "container:SwapMobileWallet.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -59,9 +59,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "SwapiOSWallet.app"
-            BlueprintName = "SwapiOSWallet"
-            ReferencedContainer = "container:SwapiOSWallet.xcodeproj">
+            BuildableName = "SwapMobileWallet.app"
+            BlueprintName = "SwapMobileWallet"
+            ReferencedContainer = "container:SwapMobileWallet.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "SwapiOSWallet.app"
-            BlueprintName = "SwapiOSWallet"
-            ReferencedContainer = "container:SwapiOSWallet.xcodeproj">
+            BuildableName = "SwapMobileWallet.app"
+            BlueprintName = "SwapMobileWallet"
+            ReferencedContainer = "container:SwapMobileWallet.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

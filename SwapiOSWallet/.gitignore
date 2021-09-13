@@ -2,6 +2,10 @@
 #
 **/.DS_Store
 
+# Firebase Analytics
+#
+ios/GoogleService-Info.plist
+
 # Xcode
 #
 build/

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Dimensions, View } from "react-native";
 import * as Progress from "react-native-progress";
+import { logActionError, logAppLaunch } from "../Helpers/analytics";
 
 import * as Settings from "../Helpers/settings";
 
@@ -9,21 +10,23 @@ const widthScale = width/375;
 
 export default class SwapLoadingScreen extends React.Component {
 	constructor(props) {
-		super(props); 
-		setTimeout(() => {
-			var defaultPage = Settings.select("defaultPage");
-			defaultPage.then((value) => {
-				defaultPageString = value;
-				if (defaultPageString != null) {
-					this.props.navigation.navigate(defaultPageString);
-				} else {
-					this.props.navigation.navigate("Home");
-				}
-			}).catch((error) => {
-				console.log(error);
+		super(props);
+	}
+
+	componentDidMount() {
+		Settings.select("defaultPage").then(defaultPage => {
+			if (defaultPage != null) {
+				defaultPage == "Wallet Home" ? logAppLaunch(true) : logAppLaunch(false);
+				this.props.navigation.navigate(defaultPage);
+			} else {
+				logAppLaunch(false);
 				this.props.navigation.navigate("Home");
-			});
-		}, 500);
+			}
+		}).catch((error) => {
+			console.log(error);
+			logActionError("Select Default Page", error);
+			this.props.navigation.navigate("Home");
+		});
 	}
 
 	// normalize the input so that it scales evenly across devices

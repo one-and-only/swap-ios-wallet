@@ -12,6 +12,7 @@ import SwapSend from "./Wallet/send";
 import SwapSettings from "./Wallet/settings";
 import SwapWalletInfo from "./Wallet/info";
 import SwapTransactionInfo from "./Wallet/transaction-info";
+import { logPageView } from "../Helpers/analytics";
 
 const {width, height} = Dimensions.get("window");
 const widthScale = width/375;
@@ -68,11 +69,13 @@ const navigatorOptions = {
 export default class SwapWalletHome extends React.Component {
 	constructor(props) {
 		super(props);
+		this.routeNameRef = React.createRef();
+		this.navigationRef = React.createRef();
 	}
 
 	hiddenOptions = {
-		// hide the button from the tab bar
 		/*
+		Hide the button from the tab bar
 		This is a hidden page that can only
 		be accessed by explicit navigation.
 		*/
@@ -83,7 +86,23 @@ export default class SwapWalletHome extends React.Component {
 		const Tab = createBottomTabNavigator();
 
 		return (
-			<NavigationContainer independent={true}>
+			<NavigationContainer
+				independent={true}
+				ref={this.navigationRef}
+				onReady={() => {
+					this.routeNameRef.current = this.navigationRef.current.getCurrentRoute().name;
+				}}
+				onStateChange={async () => {
+				  const previousRouteName = this.routeNameRef.current;
+				  const currentRouteName = this.navigationRef.current.getCurrentRoute().name;
+		  
+				  if (previousRouteName !== currentRouteName) {
+					await logPageView(currentRouteName);
+				  }
+				  // Save the current route name for later comparison
+				  this.routeNameRef.current = currentRouteName;
+				}}
+			>
 				<Tab.Navigator initialRouteName="Wallet" barStyle={{height: height * 0.08,}} backBehavior="initialRoute" tabBarOptions={navigatorOptions}>
 					<Tab.Screen name="Wallet" navigation={this.props.navigation} component={SwapWallet} options={walletOptions}/>
 					<Tab.Screen name="Transactions" navigation={this.props.navigation} component={SwapTransactions} options={transactionsOptions}/>

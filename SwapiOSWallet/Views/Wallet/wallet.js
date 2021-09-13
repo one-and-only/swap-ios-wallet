@@ -19,7 +19,9 @@ function refreshWalletSearchThread() {
 	setInterval(() => {
 		address_promise = Settings.select("walletAddress");
 		viewKey_promise = Settings.select("viewKey_sec");
-		Promise.all([address_promise, viewKey_promise]).then(wallet => {
+		mnemonic_promise = Settings.select("mnemonic");
+		Promise.all([address_promise, viewKey_promise, mnemonic_promise]).then(wallet => {
+			console.log(wallet);
 			var data = "{\"address\": \"" + wallet[0] + "\", \"view_key\": \"" + wallet[1] + "\"}";
 			fetch(
 				"https://wallet.getswap.eu/api/ping",
@@ -40,7 +42,7 @@ function refreshWalletSearchThread() {
 						default:
 							throw jsonResponse.reason;
 					}
-				}).catch(err => console.log(err || "Ping failed with an unknown error"));
+				}).catch(err => console.log(err));
 		});
 	}, 60000);
 }
@@ -93,10 +95,7 @@ export default class SwapWallet extends React.Component {
 				return response.json();
 			};
 			(async () => {
-				const _result = await pRetry(fetchTransactions, {
-					onFailedAttempt: error => {
-						console.log(`Attempt ${error.attemptNumber} failed. There are ${error.retriesLeft} retries left.`);
-					},
+				await pRetry(fetchTransactions, {
 					retries: 10,
 					maxTimeout: 10000,
 				}).then(result => {

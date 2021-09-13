@@ -1,4 +1,5 @@
 apply plugin: "com.android.application"
+apply plugin: 'com.google.gms.google-services'
 
 import com.android.build.OutputFile
 
@@ -134,8 +135,8 @@ android {
         applicationId "eu.getswap.mobile"
         minSdkVersion 30
         targetSdkVersion 31
-        versionCode 81
-        versionName "0.8.1"
+        versionCode 90
+        versionName "0.9.0"
     }
     splits {
         abi {

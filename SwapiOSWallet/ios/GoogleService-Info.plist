@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>771800556745-o7qllqtfgi44ib6csgui9gjdk24i90o4.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.771800556745-o7qllqtfgi44ib6csgui9gjdk24i90o4</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>771800556745-51g4ufhvahl4b5rkmej7pvluq156q16k.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCjTSHJVyfGPCb0J69cH__WQDPGGpAYAQY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>771800556745</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>eu.getswap.mobile</string>
+	<key>PROJECT_ID</key>
+	<string>swap-mobile-wallet</string>
+	<key>STORAGE_BUCKET</key>
+	<string>swap-mobile-wallet.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:771800556745:ios:b7d9735e96f3c4e2dd9918</string>
+</dict>
+</plist>

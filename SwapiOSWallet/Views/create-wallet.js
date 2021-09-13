@@ -58,7 +58,7 @@ export default class SwapLoadingScreen extends React.Component {
 							Settings.select("defaultPage").then(defaultPage => props.navigation.navigate(defaultPage));
 							break;
 						}
-					}).catch(err => console.log("Error " + err));
+					}).catch(err => {throw "Fatal error when creating a wallet:\n\n" + err + "\n\nPlease report this to our repository or Swap's Discord"});
 			});
 		}
 		create_wallet(this.props);

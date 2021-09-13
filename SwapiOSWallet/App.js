@@ -24,6 +24,9 @@ import SwapWalletHome from "./Views/wallet-navigator";
 //FontAwesome
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
+//Analytics
+import { logPageView } from "./Helpers/analytics";
+
 const {width, height} = Dimensions.get("window");
 const widthScale = width/375;
 
@@ -36,6 +39,8 @@ class Navigator extends React.Component {
 
 	constructor(props) {
 		super(props);
+		this.routeNameRef = React.createRef();
+		this.navigationRef = React.createRef();
 	}
 
 	options() {
@@ -57,7 +62,7 @@ class Navigator extends React.Component {
 
 		const headerLeft = () => {
 			return (
-				<TouchableOpacity onPress={() => {Alert.alert("About", "Swap Mobile Wallet v0.8.1\n\n©2021 Antonios Papadakis");}}>
+				<TouchableOpacity onPress={() => {Alert.alert("About", "Swap Mobile Wallet v0.9.0\n\n©2021 Antonios Papadakis");}}>
 					<FontAwesome5 style={styles.infoIcon} size={normalize(30)} name={"info-circle"} color={"white"} />
 				</TouchableOpacity>
 			);
@@ -90,7 +95,22 @@ class Navigator extends React.Component {
 		const Stack = createStackNavigator();
 
 		return (
-			<NavigationContainer>
+			<NavigationContainer
+				ref={this.navigationRef}
+				onReady={() => {
+					this.routeNameRef.current = this.navigationRef.current.getCurrentRoute().name;
+				}}
+				onStateChange={async () => {
+				const previousRouteName = this.routeNameRef.current;
+				const currentRouteName = this.navigationRef.current.getCurrentRoute().name;
+		
+				if (previousRouteName !== currentRouteName) {
+					await logPageView(currentRouteName);
+				}
+				// Save the current route name for later comparison
+				this.routeNameRef.current = currentRouteName;
+				}}
+			>
 				<Stack.Navigator initialRouteName="Loading Screen">
 					<Stack.Screen name="Loading Screen" navigation={this.props.navigation} component={SwapLoadingScreen} options={this.options} />
 					<Stack.Screen name="Home" navigation={this.props.navigation} component={SwapMainHome} options={this.options} />

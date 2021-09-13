@@ -1,4 +1,5 @@
 #import "AppDelegate.h"
+#import <Firebase.h>
 
 #if RCT_DEV
 #import <React/RCTDevLoadingView.h>
@@ -57,15 +58,31 @@ static void ClearKeychainIfNecessary() {
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-#ifdef FB_SONARKIT_ENABLED
-  InitializeFlipper(application);
-#endif
+  if ([FIRApp defaultApp] == nil) {
+    [FIRApp configure];
+  }
+  #ifdef FB_SONARKIT_ENABLED
+    InitializeFlipper(application);
+  #endif
   
   // Clear the keychain if app has launched for the first time
   ClearKeychainIfNecessary();
   
+  /**
+   Set the bundle location as an NSString
+   If the app is of type DEBUG, then the location should be the URL that the bundler is listening on
+   if the app is of type RELEASE, then the location should be the relative file path of the bundle inside the app binary (main.jsbundle)
+   */
+  NSString* bundleLocation;
+  #if DEBUG
+    bundleLocation = @"http://localhost:8081/index.bundle?platform=ios";
+  #else
+    bundleLocation = @"main.jsbundle";
+  #endif
+  
+  
   // In this case, index.bundle matches the index.js file that contains your component code
-  NSURL *jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.bundle?platform=ios"];
+  NSURL *jsCodeLocation = [NSURL URLWithString:bundleLocation];
 
   RCTBridge *bridge = [[RCTBridge alloc] initWithBundleURL:jsCodeLocation
                                               moduleProvider:nil

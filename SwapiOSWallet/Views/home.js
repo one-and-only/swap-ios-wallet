@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
 
 	buttonText: {
 		alignSelf: "center",
-		color: "#fff",
+		color: "white",
 		fontSize: 18,
 		fontWeight: "700",
 	},

@@ -21,7 +21,6 @@ function refreshWalletSearchThread() {
 		viewKey_promise = Settings.select("viewKey_sec");
 		mnemonic_promise = Settings.select("mnemonic");
 		Promise.all([address_promise, viewKey_promise, mnemonic_promise]).then(wallet => {
-			console.log(wallet);
 			var data = "{\"address\": \"" + wallet[0] + "\", \"view_key\": \"" + wallet[1] + "\"}";
 			fetch(
 				"https://wallet.getswap.eu/api/ping",

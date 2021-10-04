@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
 
 	buttonText: {
 		alignSelf: "center",
-		color: "#fff",
+		color: "white",
 		fontSize: 18,
 		fontWeight: "700",
 	},
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
 	},
 
 	optionTitle: {
-		color: "#fff",
+		color: "white",
 		fontSize: normalize(25),
 		fontWeight: "700",
 	},

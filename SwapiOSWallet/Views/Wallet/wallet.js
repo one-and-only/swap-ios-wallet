@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Dimensions, Text, View, StyleSheet, Image, } from "react-native";
+import { add } from "react-native-reanimated";
 
 import * as Settings from "../../Helpers/settings";
 
@@ -12,38 +13,51 @@ function normalize(pre) {
 	return Math.floor(pre * widthScale);
 }
 
-function refreshWalletSearchThread() {
+async function refreshWalletSearchThread() {
 	// every 1 minute, send a "heartbeat" to the web wallet
 	// this ensures that the wallet is still being synced while the user is in the wallet
 	// 60,000ms = 1 minute
+	const address = await Settings.select("walletAddress");
+	const viewKey = await Settings.select("viewKey_sec");
 	setInterval(() => {
-		address_promise = Settings.select("walletAddress");
-		viewKey_promise = Settings.select("viewKey_sec");
-		mnemonic_promise = Settings.select("mnemonic");
-		Promise.all([address_promise, viewKey_promise, mnemonic_promise]).then(wallet => {
-			var data = "{\"address\": \"" + wallet[0] + "\", \"view_key\": \"" + wallet[1] + "\"}";
-			fetch(
-				"https://wallet.getswap.eu/api/ping",
-				{
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json"
-					},
-					body: data
-				}
-			).then(response => response.json())
-				.then((jsonResponse) => {
-					switch (jsonResponse.status) {
-						case "error":
-							console.log("Ping resulted in an error");
-							console.log(jsonResponse.reason);
-							break;
-						default:
-							throw jsonResponse.reason;
-					}
-				}).catch(err => console.log(err));
+		const body = JSON.stringify({
+			"address": address,
+			"view_key": viewKey,
+			"create_account": true,
+			"generated_locally": false,
+			"withCredentials": true
 		});
-	}, 60000);
+		fetch(
+			"https://wallet.getswap.eu/api/login",
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					"Referer": "https://wallet.getswap.eu/",
+					"Origin": "https://wallet.getswap.eu",
+					"Accept": "application/json, text/plain, */*",
+					"Host": "wallet.getswap.eu",
+					"Content-Length": body.length,
+					"Sec-Fetch-Site": "same-origin",
+					"Sec-Fetch-Mode": "cors",
+					"Sec-Fetch-Dest": "empty"
+				},
+				body: body
+			}
+		).then(response => response.json().then(jsonResponse => {
+			switch (jsonResponse.status) {
+				case "success":
+					console.log("wallet search thread: success");
+					break;
+				case "error":
+					console.log("Ping resulted in an error");
+					console.log(jsonResponse.reason);
+					break;
+				default:
+					throw jsonResponse.reason;
+			}
+		}).catch(err => console.log("error pinging", err)));
+	}, 10000);
 }
 
 export default class SwapWallet extends React.Component {

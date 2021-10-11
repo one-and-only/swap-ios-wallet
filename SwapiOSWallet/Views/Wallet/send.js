@@ -3,6 +3,7 @@ import { Dimensions, Text, View, StyleSheet, TextInput, Image, TouchableOpacity,
 import * as Progress from 'react-native-progress';
 
 import * as Settings from "../../Helpers/settings";
+import * as Blockchain from "../../Helpers/blockchain";
 
 const { width, height } = Dimensions.get("window");
 const widthScale = width / 375;
@@ -48,50 +49,62 @@ export default class SwapSend extends React.Component {
 	}
 
 	async sendXWP() {
-		this.setState({
-			spendKey: this.state.spendKey,
-			statusText: "Status: Sending XWP",
-			progressBar: <Progress.Bar indeterminate={true} color="#22b6f2" unfilledColor="#a260f8" width={width * 0.75} height={8} />,
-		});
-
 		// TODO use these instead of the hardcoded values
 		const address = await Settings.select("walletAddress");
 		const viewKey = await Settings.select("viewKey_sec");
 		const spendKey_pub = await Settings.select("spendKey_pub");
 		const spendKey_sec = await Settings.select("spendKey_sec");
 
-		const data = JSON.stringify({
-			"from_address_string": address,
-			"view_key": viewKey,
-			"spendKey_sec": spendKey_sec,
-			"spendKey_pub": spendKey_pub,
-			"is_sweeping": false,
-			"payment_id_string": null,
-			"sending_amount": auToSend,
-			"to_address_string": addressToSendTo,
-			"priority": 1,
-			"nettype": 0
+		this.setState({
+			spendKey: this.state.spendKey,
+			statusText: "Status: Checking Wallet Status",
+			progressBar: <Progress.Bar indeterminate={true} color="#22b6f2" unfilledColor="#a260f8" width={width * 0.75} height={8} />,
 		});
 
-		await fetch("https://wallet.getswap.eu/mobileapi/send_funds", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-				"Content-Length": data.length,
-			},
-			body: data,
-		}).then(response => response.json().then(responseJson => {
-			switch (responseJson.success) {
-				case true:
-					Alert.alert("Success", `Sucessfully sent ${auToSend} XWP.\n\nPlease check the Transactions page for more details.`);
-					break;
-				case false:
-					Alert.alert("Error", `Error sending ${auToSend} XWP:\n\n${responseJson.err_msg}`);
-					break;
-				default:
-					Alert.alert("Error", `An unkown error occured while sending ${auToSend} XWP. Please notify the developers of the app. Raw error message:\n\n${responseJson}`);
-			}
-		}).catch(error => console.log("error while sending XWP:", error)));
+		const walletIsSynced = await Blockchain.walletSynced();
+
+		if (walletIsSynced) {
+			this.setState({
+				spendKey: this.state.spendKey,
+				statusText: "Status: Sending XWP",
+				progressBar: <Progress.Bar indeterminate={true} color="#22b6f2" unfilledColor="#a260f8" width={width * 0.75} height={8} />,
+			});
+
+			const data = JSON.stringify({
+				"from_address_string": address,
+				"view_key": viewKey,
+				"spendKey_sec": spendKey_sec,
+				"spendKey_pub": spendKey_pub,
+				"is_sweeping": false,
+				"payment_id_string": null,
+				"sending_amount": auToSend,
+				"to_address_string": addressToSendTo,
+				"priority": 1,
+				"nettype": 0
+			});
+
+			await fetch("https://wallet.getswap.eu/mobileapi/send_funds", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					"Content-Length": data.length,
+				},
+				body: data,
+			}).then(response => response.json().then(responseJson => {
+				switch (responseJson.success) {
+					case true:
+						Alert.alert("Success", `Sucessfully sent ${auToSend} XWP.\n\nPlease check the Transactions page for more details.`);
+						break;
+					case false:
+						Alert.alert("Error", `Error sending ${auToSend} XWP:\n\n${responseJson.err_msg}`);
+						break;
+					default:
+						Alert.alert("Error", `An unkown error occured while sending ${auToSend} XWP. Please notify the developers of the app. Raw error message:\n\n${responseJson}`);
+				}
+			}).catch(error => console.log("error while sending XWP:", error)));
+		} else {
+			Alert.alert("Error", `Error sending ${auToSend} XWP:\n\nYour wallet is not synchronized yet. Please wait until it is synchronized and try again later.`);
+		}
 
 		this.setState({
 			spendKey: this.state.spendKey,

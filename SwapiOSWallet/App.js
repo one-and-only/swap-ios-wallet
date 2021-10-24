@@ -63,7 +63,7 @@ class Navigator extends React.Component {
 
 		const headerLeft = () => {
 			return (
-				<TouchableOpacity onPress={() => {Alert.alert("About", "Swap Mobile Wallet v0.9.0\n\n©2021 Antonios Papadakis");}}>
+				<TouchableOpacity onPress={() => {Alert.alert("About", "Swap Mobile Wallet v0.11.0\n\n©2021 Antonios Papadakis");}}>
 					<FontAwesome5 style={styles.infoIcon} size={normalize(30)} name={"info-circle"} color={"white"} />
 				</TouchableOpacity>
 			);

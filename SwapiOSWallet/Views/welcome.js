@@ -30,12 +30,23 @@ export default class SwapWelcome extends React.Component {
 						</TouchableOpacity>
 					</View>
 					<View style={[styles.flexContainerChild, {flex: 2, marginLeft: normalize(5), marginTop: height * 0.05,}]}>
-						<TouchableOpacity style={{flexDirection: "row"}} onPress={() => this.props.navigation.navigate("Restore Wallet")}>
+						<TouchableOpacity style={{flexDirection: "row"}} onPress={() => this.props.navigation.navigate("Restore Wallet From Keys")}>
 							<View style={[styles.flexContainer, {flexDirection: "row", width: "90%",}]}>
 								<Image source={require("../Resources/Images/restore-wallet.png")} style={{height: normalize(75), width: normalize(75), resizeMode: "stretch"}} />
 								<View style={{flexDirection: "row", flexWrap: "wrap", marginLeft: normalize(10),}}>
-									<Text style={[styles.optionTitle, {fontSize: normalize(22),}]}>Restore wallet from mnemonic seed</Text>
-									<Text style={styles.optionBody}>Enter your 25-word mnemonic seed to restore your wallet.</Text>
+									<Text style={[styles.optionTitle, {fontSize: normalize(22),}]}>Restore wallet from private keys</Text>
+									<Text style={styles.optionBody}>Enter your address and view key</Text>
+								</View>
+							</View>
+						</TouchableOpacity>
+					</View>
+					<View style={[styles.flexContainerChild, {flex: 2, marginLeft: normalize(5), marginTop: height * 0.05,}]}>
+						<TouchableOpacity style={{flexDirection: "row"}} onPress={() => this.props.navigation.navigate("Restore Wallet From Mnemonic")}>
+							<View style={[styles.flexContainer, {flexDirection: "row", width: "90%",}]}>
+								<Image source={require("../Resources/Images/restore-wallet.png")} style={{height: normalize(75), width: normalize(75), resizeMode: "stretch"}} />
+								<View style={{flexDirection: "row", flexWrap: "wrap", marginLeft: normalize(10),}}>
+									<Text style={[styles.optionTitle, {fontSize: normalize(22),}]}>Restore wallet from mnemonic</Text>
+									<Text style={styles.optionBody}>Enter your 25-word mnemonic</Text>
 								</View>
 							</View>
 						</TouchableOpacity>

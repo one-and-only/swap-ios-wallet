@@ -47,7 +47,6 @@ async function refreshWalletSearchThread() {
 		).then(response => response.json().then(jsonResponse => {
 			switch (jsonResponse.status) {
 				case "success":
-					console.log("wallet search thread: success");
 					break;
 				case "error":
 					console.log("Ping resulted in an error");

@@ -19,7 +19,7 @@ const handleViewKey = (text) => {
 	Settings.insert("viewKey", text);
 };
 
-export default class SwapRestoreWallet extends React.Component {
+export default class SwapRestoreWalletFromKeys extends React.Component {
 	constructor(props) {
 		super(props);
 	}
@@ -28,12 +28,6 @@ export default class SwapRestoreWallet extends React.Component {
 		return (
 			<View style={[styles.flexContainer, {backgroundColor: "#052344", flex: 1,}]}>
 				<View style={[styles.flexContainer, {flex: 8, marginTop: normalize(15), paddingTop: height * 0.1,}]}>
-					<View style={[styles.flexContainerChild, {flex: 1,}]}>
-						<TouchableOpacity style={{flexDirection: "row",}} onPress={() => this.props.navigation.navigate("Create Wallet")}>
-							<View style={[styles.flexContainer, {flexDirection: "row", width: "95%",}]}>
-							</View>
-						</TouchableOpacity>
-					</View>
 					<View style={[styles.flexContainerChild, {flex: 2, marginTop: height * 0.05,}]}>
 						<Text style={{flexDirection: "row"}} onPress={() => this.props.navigation.navigate("Restore Wallet")}>
 							<View style={[styles.flexContainer, {flexDirection: "row", width: "90%",}]}>
@@ -65,7 +59,7 @@ export default class SwapRestoreWallet extends React.Component {
 						<TouchableOpacity onPress={() => this.props.navigation.goBack()} style={[styles.buttonContainer, { marginRight: width * 0.05 }]}>
 							<Text style={styles.buttonText}>Cancel</Text>
 						</TouchableOpacity>
-						<TouchableOpacity onPress={() => {var addressPromise=Settings.select("walletAddress"),viewKeyPromise=Settings.select("viewKey_sec");Promise.all([addressPromise,viewKeyPromise]).then(e=>{var t='{"withCredentials":true,"address":"'+e[0]+'","view_key":"'+e[1]+'","create_account":true,"generated_locally":false}';fetch("https://wallet.getswap.eu/api/login",{method:"POST",headers:{"Content-Type":"application/json"},body:t}).then(e=>e.json()).then(e=>{switch(e.status){case"success":Settings.insert("defaultPage","Wallet Home"),Settings.select("defaultPage").then(e=>this.props.navigation.navigate(e));break;case"error":alert("Login Error. Check your address and private key")}}).catch(e=>console.log("Error "+e))});}} style={styles.buttonContainer}>
+						<TouchableOpacity onPress={() => {let addressPromise=Settings.select("walletAddress"),viewKeyPromise=Settings.select("viewKey_sec");Promise.all([addressPromise,viewKeyPromise]).then(e=>{let t='{"withCredentials":true,"address":"'+e[0]+'","view_key":"'+e[1]+'","create_account":true,"generated_locally":false}';fetch("https://wallet.getswap.eu/api/login",{method:"POST",headers:{"Content-Type":"application/json"},body:t}).then(e=>e.json()).then(e=>{switch(e.status){case"success":Settings.insert("defaultPage","Wallet Home"),Settings.select("defaultPage").then(e=>this.props.navigation.navigate(e));break;case"error":alert("Login Error. Check your address and private key")}}).catch(e=>console.log("Error "+e))});}} style={styles.buttonContainer}>
 							<Text style={styles.buttonText}>Open Wallet</Text>
 						</TouchableOpacity>
 					</View>

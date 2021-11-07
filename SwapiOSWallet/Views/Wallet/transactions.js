@@ -1,57 +1,16 @@
 import * as React from "react";
-import { Dimensions, Text, View, StyleSheet, TouchableOpacity, ScrollView, Image } from "react-native";
-import * as Blockchain from '../../Helpers/blockchain';
+import { Dimensions, Text, View, StyleSheet, TouchableOpacity, ScrollView, Image, Settings } from "react-native";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import { select, insert } from "../../Helpers/settings";
+import * as Progress from 'react-native-progress';
 
-const {width, height} = Dimensions.get("window");
-const widthScale = width/375;
+const { width, height } = Dimensions.get("window");
+const widthScale = width / 375;
 
 // normalize the input so that it scales evenly across devices
-function normalize (pre) {
+function normalize(pre) {
 	return Math.floor(pre * widthScale);
 }
-
-const transactions = [
-    {
-        "height": 5705751,
-        "hash": "5340428e1226376dcc5c3e51f640add30949da968c29657ba2a57d368ae88919",
-        "size": 0.1,
-        "fee": 850,
-		"amount": 5.77,
-		"version": 2,
-		"confirmations": 0,
-		"pubKey": "abc123",
-		"ringct_info": "YES/0",
-		"stealthAddress": "ff313fb3d560ed1573a77d8f3db051c617515d81ae344c0e6f96832jsdgjksjksdf89",
-		"receiving": false,
-    },
-    {
-        "height": 5701100,
-        "hash": "5340428e1223jhj34j3424e51f640add30949da968c29657ba2a57d368ae88919",
-        "size": 5.7,
-        "fee": 400,
-		"amount": 2.35,
-		"version": 2,
-		"confirmations": 0,
-		"pubKey": "abc123",
-		"ringct_info": "YES/0",
-		"stealthAddress": "ff313fb3d560ed1573a77d8f3db051c617515d81ae344c0e6f96832jsdgjksjksdf89",
-		"receiving": true,
-    },
-    {
-        "height": 5600000,
-        "hash": "jl23bj4h3444hhlll1226376dcc5c3e51f640add30949da968c29657ba2a57d368",
-        "size": 29.9,
-        "fee": 1215,
-		"amount": 1.321,
-		"version": 2,
-		"confirmations": 0,
-		"pubKey": "abc123",
-		"ringct_info": "YES/0",
-		"stealthAddress": "ff313fb3d560ed1573a77d8f3db051c617515d81ae344c0e6f96832jsdgjksjksdf89",
-		"receiving": false,
-    },
-]
 
 // styles need to be defined before
 // dynamic generation of rows
@@ -88,37 +47,144 @@ const styles = StyleSheet.create({
 	swapCurrencyLogo: {
 		height: normalize(22),
 		width: normalize(22),
-	}
+	},
+
+	statusText: {
+		textAlign: "center",
+		color: "white",
+		margin: normalize(12),
+		fontSize: normalize(18),
+	},
 });
 
-var rows = [];
-
 export default class SwapTransactions extends React.Component {
+	transactionIndex = -1; // index of the transaction we're parsing; needed because of Promise.all (async, but much faster)
+	totalTransactions = -1;
+	hasInitialSync = false;
+
+	generate_transaction_row(transaction) {
+		const date = new Date(transaction.timestamp).toLocaleDateString();
+		const txColor = (transaction.receiving) ? "lime" : "orange";
+		const directionIcon = (transaction.receiving) ? "arrow-down" : "arrow-up";
+		return (
+			// we need some sort of unique key for each row so RN doesn't complain. tx_hash works great for this
+			<TouchableOpacity key={transaction.hash} style={styles.row} key={transaction.hash} onPress={() => { this.props.navigation.navigate("Transaction Details", { hash: transaction.hash, amount: transaction.amount, timestamp: transaction.timestamp, block: transaction.height, size: transaction.size, fee: transaction.fee, version: transaction.version, confirmations: transaction.confirmations, pubKey: transaction.pubKey, ringCT_type: transaction.ringct_info }) }}>
+				<Text style={[styles.item, { color: txColor, }]}><FontAwesome5 size={normalize(18)} name={"calendar-day"} color={txColor} solid />  {date}</Text>
+				<Text style={[styles.item, { marginLeft: width * 0.15, color: txColor, }]}><FontAwesome5 size={normalize(18)} name={directionIcon} color={txColor} solid /> <Image source={require("../../Resources/Images/logo-circle-white-nofill.png")} style={styles.swapCurrencyLogo} /> {transaction.amount}</Text>
+			</TouchableOpacity>
+		);
+	}
+
 	constructor(props) {
 		super(props);
+		this.state = {
+			rows: [<Progress.Bar key="progress" indeterminate={true} color="#22b6f2" unfilledColor="#a260f8" width={width * 0.75} height={8} />],
+			statusText: "Prepairing",
+		}
+		this.getTransactions();
+	}
+
+	async getTransactions() {
+		select("transactions").then(transactions => {
+			const transactionsJson = transactions ? JSON.parse(transactions) : [];
+			if (transactionsJson.length > 0) {
+				this.hasInitialSync = true;
+				let localRows = [];
+				transactionsJson.map(transaction => {
+					localRows.push(this.generate_transaction_row(transaction));
+				});
+				this.setState({
+					rows: localRows,
+					savedTransactions: localTransactions,
+					statusText: "",
+				});
+			}
+		}).catch(err => console.log("Error getting saved transactions:", err));
+
+		const address = await select("walletAddress");
+		const viewKey = await select("viewKey_sec");
+		const transactions = await fetch("https://wallet.getswap.eu/api/get_address_txs", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				address: address,
+				view_key: viewKey
+			}),
+		});
+		const transactionsJSON = await transactions.json().catch(err => console.log("Error getting transactions for parsing:", err));
+		let localTransactions = [];
+
+		this.totalTransactions = transactionsJSON.transactions.length;
+		this.transactionIndex = 0;
+		for (let i = 0; i < transactionsJSON.transactions.length; i++) {
+			localTransactions.push(await this.getTransactionDetails(address, viewKey, transactionsJSON.transactions[i].hash));
+			this.transactionIndex++;
+		}
+		localTransactions.sort((a, b) => b.timestamp - a.timestamp);
+		await insert("transactions", JSON.stringify(localTransactions));
+		let localRows = [];
+		localTransactions.map(transaction => {
+			localRows.push(this.generate_transaction_row(transaction));
+		});
+		this.setState({
+			rows: localRows,
+			savedTransactions: localTransactions,
+			statusText: "",
+		});
+		this.totalTransactions = -1;
+		this.transactionIndex = -1;
+	}
+
+	getTransactionDetails(address, viewKey, tx_hash) {
+		return new Promise((resolve, reject) => {
+			console.log(`Parsing Transaction ${this.transactionIndex + 1}/${this.totalTransactions}`);
+			!this.hasInitialSync && this.setState({
+				rows: this.state.rows,
+				savedTransactions: this.state.savedTransactions,
+				statusText: `Parsing Transaction ${this.transactionIndex + 1}/${this.totalTransactions}`,
+			});
+			fetch("https://wallet.getswap.eu/api/get_tx", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify({
+					address: address,
+					view_key: viewKey,
+					tx_hash: tx_hash
+				}),
+			}).then(data => data.json().then(dataJson => {
+				console.log("dataJson:", dataJson);
+				resolve({
+					hash: dataJson.tx_hash,
+					receiving: dataJson.total_sent > dataJson.total_received,
+					amount: (dataJson.total_sent > dataJson.total_received) ? (dataJson.total_sent / 1000000000000).toPrecision(4) : (dataJson.total_received / 1000000000000).toPrecision(4),
+					fee: dataJson.fee / 1000000000000, // AU to XWP
+					timestamp: dataJson.timestamp,
+					height: dataJson.tx_height,
+					size: dataJson.size / 1000, // bytes to KB
+					version: dataJson.tx_version,
+					confirmations: dataJson.no_confirmations,
+					pubKey: dataJson.pub_key,
+					ringct_info: `YES/${dataJson.rct_type}`,
+				});
+			})).catch(err => reject("Error getting transaction details for parsing:" + err));
+		});
 	}
 
 	render() {
 		return (
-			<ScrollView contentContainerStyle={styles.mainView}>
-				<Text style={[styles.titleText, {paddingBottom: height * 0.05,}]}>Transactions</Text>
-				<View style={styles.txContainer}>
-					{
-						transactions.map(transaction => {
-							const timestamp = Blockchain.blockToDate(transaction.height).valueOf();
-							const date = Blockchain.blockToDate(transaction.height).toLocaleDateString();
-							const txColor = (transaction.receiving) ? "lime" : "orange";
-							const directionIcon = (transaction.receiving) ? "arrow-down" : "arrow-up";
-							rows.push(
-								<TouchableOpacity style={styles.row} key={transaction.hash} onPress={() => { this.props.navigation.navigate("Transaction Details", {hash: transaction.hash, amount: transaction.amount, timestamp: timestamp, block: transaction.height, size: transaction.size, fee: transaction.fee, version: transaction.version, confirmations: transaction.confirmations, pubKey: transaction.pubKey, ringCT_type: transaction.ringct_info, stealthAddress: transaction.stealthAddress}) }}>
-									<Text style={[styles.item, {color: txColor,}]}><FontAwesome5 size={normalize(18)} name={"calendar-day"} color={txColor} solid />  {date}</Text>
-									<Text style={[styles.item, {marginLeft: width * 0.15, color: txColor,}]}><FontAwesome5 size={normalize(18)} name={directionIcon} color={txColor} solid /> <Image source={require("../../Resources/Images/logo-circle-white-nofill.png")} style={styles.swapCurrencyLogo} /> {transaction.amount}</Text>
-								</TouchableOpacity>
-							);
-						})
-					}{rows}{/* clear rows so they don't duplicate on app restart */ rows = []}
-				</View>
-			</ScrollView>
+			<View style={styles.mainView}>
+				<Text style={[styles.titleText, { paddingBottom: height * 0.05, }]}>Transactions</Text>
+				<ScrollView>
+					<View style={styles.txContainer}>
+						<Text style={styles.statusText}>{this.state.statusText}</Text>
+						{this.state.rows}
+					</View>
+				</ScrollView>
+			</View>
 		);
 	}
 }

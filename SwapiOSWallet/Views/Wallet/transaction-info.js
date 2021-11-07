@@ -56,7 +56,6 @@ export default class SwapTransactionInfo extends React.Component {
                     <Text style={[styles.propertyText, styles.text]}><FontAwesome5 size={normalize(18)} name={"clock"} color={"white"} solid /> Age: <Text style={{color: "lime"}}>{_txage}</Text></Text>
                     <Text style={[styles.propertyText, styles.text]}><FontAwesome5 size={normalize(18)} name={"hdd"} color={"white"} solid /> Size: <Text style={{color: "lime"}}>{params.size} kB</Text></Text>
                     <Text style={[styles.propertyText, styles.text]}><FontAwesome5 size={normalize(18)} name={"shield-alt"} color={"white"} solid /> RingCT/type: <Text style={{color: "lime"}}>{params.ringCT_type}</Text></Text>
-                    <Text style={[styles.propertyText, styles.text]}><FontAwesome5 size={normalize(18)} name={"eye-slash"} color={"white"} solid /> Stealth Address: <Text style={{color: "lime"}}>{params.stealthAddress}</Text></Text>
                 </View>
                 <View style={{marginTop: normalize(height * 0.16)}}></View>
                 <TouchableOpacity onPress={() => this.props.navigation.navigate("Transactions")} style={styles.buttonContainer}>

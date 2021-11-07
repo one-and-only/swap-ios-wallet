@@ -41,7 +41,6 @@ async function mnemonicLogin() {
             const loginResponseJson = await loginResponse.json().catch((err) => console.log("Error Logging in with mnemonic: ", err));
             switch (loginResponseJson.status) {
                 case "success":
-                    console.log("success for mnemonic");
                     await Settings.insert("defaultPage", "Wallet Home");
                     await Settings.insert("spendKey_pub", walletDataJson.wallet.pub_spendKey_string);
                     await Settings.insert("viewKey_pub", walletDataJson.wallet.pub_viewKey_string);

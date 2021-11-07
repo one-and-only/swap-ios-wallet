@@ -1,16 +1,19 @@
 import analytics from '@react-native-firebase/analytics';
 import * as Settings from './settings';
-
-Settings.select('enableAnalytics').then(async enableAnalytics => {
-    if (enableAnalytics == null) {
-        analytics().setAnalyticsCollectionEnabled(true);
-    } else if (enableAnalytics) {
-        analytics().setAnalyticsCollectionEnabled(true);
-    }
-});
+setTimeout(() => {
+    Settings.select('enableAnalytics').then(async enableAnalytics => {
+        if (enableAnalytics == null) {
+            analytics().setAnalyticsCollectionEnabled(true);
+        } else if (enableAnalytics == "true") {
+            analytics().setAnalyticsCollectionEnabled(true);
+        } else if (!enableAnalytics == "false") {
+            analytics().setAnalyticsCollectionEnabled(false);
+        }
+    });
+}, 60000);
 
 export const logPageView = async (pageName) => {
-    await analytics().logScreenView({  screen_name: pageName, screen_class: pageName });
+    await analytics().logScreenView({ screen_name: pageName, screen_class: pageName });
 }
 
 export const logActionError = async (actionName, errorMessage) => {

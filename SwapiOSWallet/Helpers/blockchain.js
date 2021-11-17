@@ -16,10 +16,8 @@ export const walletSynced = async () => {
     });
     const addressTXsJSON = await addressTXs.json();
     if (addressTXsJSON.blockchain_height == addressTXsJSON.scanned_block_height) {
-        console.log("synco de mayo");
         return true;
     } else {
-        console.log("no synco de mayo");
         return false;
     }
 }

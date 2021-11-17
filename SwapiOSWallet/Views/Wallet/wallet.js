@@ -1,8 +1,8 @@
 import * as React from "react";
 import { Dimensions, Text, View, StyleSheet, Image, } from "react-native";
-import { add } from "react-native-reanimated";
 
 import * as Settings from "../../Helpers/settings";
+import { walletSynced } from "../../Helpers/blockchain";
 
 const { width, height } = Dimensions.get("window");
 const widthScale = width / 375;
@@ -20,33 +20,22 @@ async function refreshWalletSearchThread() {
 	const address = await Settings.select("walletAddress");
 	const viewKey = await Settings.select("viewKey_sec");
 	setInterval(() => {
-		const body = JSON.stringify({
-			"address": address,
-			"view_key": viewKey,
-			"create_account": true,
-			"generated_locally": false,
-			"withCredentials": true
-		});
 		fetch(
-			"https://wallet.getswap.eu/api/login",
+			"https://wallet.getswap.eu/api/ping",
 			{
 				method: "POST",
 				headers: {
-					"Content-Type": "application/json",
-					"Referer": "https://wallet.getswap.eu/",
-					"Origin": "https://wallet.getswap.eu",
-					"Accept": "application/json, text/plain, */*",
-					"Host": "wallet.getswap.eu",
-					"Content-Length": body.length,
-					"Sec-Fetch-Site": "same-origin",
-					"Sec-Fetch-Mode": "cors",
-					"Sec-Fetch-Dest": "empty"
+					"Content-Type": "application/json"
 				},
-				body: body
+				body: JSON.stringify({
+					"address": address,
+					"view_key": viewKey
+				})
 			}
 		).then(response => response.json().then(jsonResponse => {
 			switch (jsonResponse.status) {
 				case "success":
+					console.log("pinged");
 					break;
 				case "error":
 					console.log("Ping resulted in an error");
@@ -56,12 +45,41 @@ async function refreshWalletSearchThread() {
 					throw jsonResponse.reason;
 			}
 		}).catch(err => console.log("error pinging", err)));
-	}, 10000);
+	}, 60000);
 }
 
 export default class SwapWallet extends React.Component {
 	constructor(props) {
 		super(props);
+		const address = Settings.select("walletAddress");
+		const viewKey = Settings.select("viewKey_sec");
+		Promise.all([address, viewKey]).then(wallet => {
+			fetch("https://wallet.getswap.eu/api/login", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify({
+					"address": wallet[0],
+					"view_key": wallet[1],
+					"create_account": true,
+					"generated_locally": false,
+					"withCredentials": true
+				})
+			}).then(response => response.json().then(jsonResponse => {
+				switch (jsonResponse.status) {
+					case "success":
+						console.log("logged in");
+						refreshWalletSearchThread();
+						break;
+					case "error":
+						console.log("Login resulted in an error:", jsonResponse.reason);
+						break;
+					default:
+						throw jsonResponse.reason;
+				}
+			}));
+		});
 		refreshWalletSearchThread();
 		// overcome the delay of the async function so we don't run into problems
 		this.state = {
@@ -80,13 +98,11 @@ export default class SwapWallet extends React.Component {
 	}
 
 	componentDidMount() {
-		var addressPromise = Settings.select("walletAddress");
-		var viewKeyPromise = Settings.select("viewKey");
+		let addressPromise = Settings.select("walletAddress");
+		let viewKeyPromise = Settings.select("viewKey_sec");
 
 		Promise.all([addressPromise, viewKeyPromise]).then((wallet) => {
-			const pRetry = require("p-retry");
-			const fetch = require("node-fetch");
-			var data = "{\"address\":\"" + wallet[0] + "\",\"view_key\":\"" + wallet[1] + "\"}";
+			let data = "{\"address\":\"" + wallet[0] + "\",\"view_key\":\"" + wallet[1] + "\"}";
 
 			const fetchTransactions = async () => {
 				const response = await fetch(
@@ -107,36 +123,51 @@ export default class SwapWallet extends React.Component {
 				return response.json();
 			};
 			(async () => {
-				await pRetry(fetchTransactions, {
-					retries: 10,
-					maxTimeout: 10000,
-				}).then(result => {
+				const total_saved_balance = await Settings.select("total_balance");
+				const total_saved_unlocked_balance = await Settings.select("total_unlocked_balance");
+				if (total_saved_balance && total_saved_unlocked_balance) {
 					this.setState({
-						total_balance: result.total_received / au_to_xwp,
-						total_unlocked_balance: result.total_received_unlocked / au_to_xwp,
+						total_balance: (total_saved_balance / au_to_xwp).toFixed(4),
+						total_unlocked_balance: (total_saved_unlocked_balance / au_to_xwp).toFixed(4),
 					});
-					switch (result.status) {
-						case "success":
-							Settings.insert("total_balance", result.total_received);
-							Settings.insert("total_unlocked_balance", result.total_received_unlocked);
-							break;
-						case "error":
-							switch (result.reason) {
-								case "Search thread does not exist.":
+				}
+				const updateBalance = async () => {
+					await fetchTransactions().then(async result => {
+						switch (result.status) {
+							case "success":
+								if (await walletSynced()) {
+									console.log("Wallet synced");
 									this.setState({
-										total_balance: 0,
-										total_unlocked_balance: 0,
+										total_balance: (result.total_received / au_to_xwp).toFixed(4),
+										total_unlocked_balance: (result.total_received_unlocked / au_to_xwp).toFixed(4),
 									});
-									break;
-								default:
-									alert("An unknown error occured when fetching your balance. Please try again later. If the issue persists, please notify the developers of this app. Thank you.");
-									break;
-							}
-							break;
-						default:
-							alert("An unknown error occured when fetching the status of the fetch balance request. Please notify the developers of this app if the issue persists. Thank you.");
-					}
-				});
+									Settings.insert("total_balance", result.total_received);
+									Settings.insert("total_unlocked_balance", result.total_received_unlocked);
+								} else {
+									console.log("Wallet not synced");
+								}
+								break;
+							case "error":
+								switch (result.reason) {
+									case "Search thread does not exist.":
+										this.setState({
+											total_balance: 0,
+											total_unlocked_balance: 0,
+										});
+										alert("Your wallet is not syncing. Please wait a few minutes and try again.");
+										break;
+									default:
+										alert("An unknown error occured when fetching your balance. Please try again later. If the issue persists, please notify the developers of this app. Thank you.");
+										break;
+								}
+								break;
+							default:
+								alert("An unknown error occured when fetching the status of the fetch balance request. Please notify the developers of this app if the issue persists. Thank you.");
+						}
+					});
+				};
+				await updateBalance();
+				setInterval(async () => { await updateBalance(); }, 60000);
 			})();
 		});
 	}

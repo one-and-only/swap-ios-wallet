@@ -54,7 +54,6 @@ async function mnemonicLogin() {
                     break;
                 default:
                     alert("Login Error. Check your address and private key");
-                    console.log(loginResponseJson);
             }
         } else {
             switch (walletDataJson.err_msg) {

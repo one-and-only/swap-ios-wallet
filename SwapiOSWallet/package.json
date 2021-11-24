@@ -12,6 +12,7 @@
     "build-release-apk": "npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/build/intermediates/res/merged/release/ && rm -rf android/app/src/main/res/drawable-* && rm -rf android/app/src/main/res/raw/* && cd android && ./gradlew assembleRelease && cd .."
   },
   "dependencies": {
+    "@react-native-clipboard/clipboard": "^1.9.0",
     "@react-native-community/art": "^1.2.0",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-native-firebase/analytics": "^12.7.3",

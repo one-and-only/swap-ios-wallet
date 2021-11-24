@@ -139,7 +139,6 @@ export default class SwapTransactions extends React.Component {
 
 	getTransactionDetails(address, viewKey, tx_hash) {
 		return new Promise((resolve, reject) => {
-			console.log(`Parsing Transaction ${this.transactionIndex + 1}/${this.totalTransactions}`);
 			!this.hasInitialSync && this.setState({
 				rows: this.state.rows,
 				savedTransactions: this.state.savedTransactions,
@@ -156,7 +155,6 @@ export default class SwapTransactions extends React.Component {
 					tx_hash: tx_hash
 				}),
 			}).then(data => data.json().then(dataJson => {
-				console.log("dataJson:", dataJson);
 				resolve({
 					hash: dataJson.tx_hash,
 					receiving: dataJson.total_sent > dataJson.total_received,

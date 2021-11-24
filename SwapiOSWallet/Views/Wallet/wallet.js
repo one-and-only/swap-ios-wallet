@@ -35,7 +35,6 @@ async function refreshWalletSearchThread() {
 		).then(response => response.json().then(jsonResponse => {
 			switch (jsonResponse.status) {
 				case "success":
-					console.log("pinged");
 					break;
 				case "error":
 					console.log("Ping resulted in an error");
@@ -69,7 +68,6 @@ export default class SwapWallet extends React.Component {
 			}).then(response => response.json().then(jsonResponse => {
 				switch (jsonResponse.status) {
 					case "success":
-						console.log("logged in");
 						refreshWalletSearchThread();
 						break;
 					case "error":
@@ -136,15 +134,12 @@ export default class SwapWallet extends React.Component {
 						switch (result.status) {
 							case "success":
 								if (await walletSynced()) {
-									console.log("Wallet synced");
 									this.setState({
 										total_balance: (result.total_received / au_to_xwp).toFixed(4),
 										total_unlocked_balance: (result.total_received_unlocked / au_to_xwp).toFixed(4),
 									});
 									Settings.insert("total_balance", result.total_received);
 									Settings.insert("total_unlocked_balance", result.total_received_unlocked);
-								} else {
-									console.log("Wallet not synced");
 								}
 								break;
 							case "error":

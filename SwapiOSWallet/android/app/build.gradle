@@ -79,7 +79,7 @@ import com.android.build.OutputFile
  */
 
 project.ext.react = [
-    enableHermes: false,  // clean and rebuild if changing
+    enableHermes: true,  // clean and rebuild if changing
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
@@ -135,8 +135,8 @@ android {
         applicationId "eu.getswap.mobile"
         minSdkVersion 30
         targetSdkVersion 31
-        versionCode 121
-        versionName "0.12.1"
+        versionCode 130
+        versionName "0.13.0"
     }
     splits {
         abi {

@@ -24,3 +24,11 @@ export const remove = async (key) => {
 		alert("Error while removing " + key + "." + e);
 	}
 };
+
+export const clear = async () => {
+	try {
+		await EncryptedStorage.clear();
+	} catch (e) {
+		alert("Error while clearing encrypted storage");
+	}
+}

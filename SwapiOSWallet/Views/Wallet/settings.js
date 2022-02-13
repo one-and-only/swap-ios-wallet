@@ -1,13 +1,14 @@
 import * as React from "react";
-import { Dimensions, Text, View, ScrollView, StyleSheet, TextInput, Switch, } from "react-native";
+import { Dimensions, Text, View, ScrollView, StyleSheet, TextInput, Switch, TouchableOpacity, Alert } from "react-native";
+import RNRestart from "react-native-restart";
 
 import * as Settings from "../../Helpers/settings";
 
-const {width, height} = Dimensions.get("window");
-const widthScale = width/375;
+const { width, height } = Dimensions.get("window");
+const widthScale = width / 375;
 
 // normalize the input so that it scales evenly across devices
-function normalize (pre) {
+function normalize(pre) {
 	return Math.floor(pre * widthScale);
 }
 
@@ -19,6 +20,20 @@ const handleSpendKeyPub = (text) => {
 };
 const handleEnableAnalytics = (bool) => {
 	Settings.insert("enableAnalytics", JSON.stringify(bool));
+}
+const logout = () => {
+	Alert.alert("Logout", "Are you sure you want to logout?",
+		[
+			{ text: "No" },
+			{
+				text: "Yes",
+				onPress: async () => {
+					await Settings.clear();
+					RNRestart.Restart();
+				}
+			}
+		]
+	)
 }
 
 export default class SwapSettings extends React.Component {
@@ -43,7 +58,7 @@ export default class SwapSettings extends React.Component {
 			(settings[0] != null) ? spendKey_sec = settings[0] : spendKey_sec = "";
 			(settings[1] != null) ? spendKey_pub = settings[1] : spendKey_pub = "";
 			(settings[2] != null) ? enableAnalytics = JSON.parse(settings[2]) : enableAnalytics = true;
-            
+
 			this.setState({
 				spendKey_sec: spendKey_sec,
 				spendKey_pub: spendKey_pub,
@@ -55,21 +70,21 @@ export default class SwapSettings extends React.Component {
 	render() {
 		return (
 			<ScrollView contentContainerStyle={styles.mainView}>
-				<View style={{flexDirection: "row", marginTop: normalize(10),}}>
+				<View style={{ flexDirection: "row", marginTop: normalize(10), }}>
 					<Text style={styles.text}>Spend Key (Private):</Text>
-					<View style={[styles.flexContainerChild, {marginLeft: normalize(10),}]}>
+					<View style={[styles.flexContainerChild, { marginLeft: normalize(10), }]}>
 						<TextInput style={[styles.text, styles.textBox]} underlineColorAndroid='transparent' placeholder='Spend Key (Private)' placeholderTextColor='#c9c9c9' defaultValue={this.state.spendKey_sec} autoCapitalize='none' onChangeText={handleSpendKeySec}></TextInput>
 					</View>
 				</View>
-				<View style={{flexDirection: "row", marginTop: normalize(10),}}>
+				<View style={{ flexDirection: "row", marginTop: normalize(10), }}>
 					<Text style={styles.text}>Spend Key (Public):</Text>
-					<View style={[styles.flexContainerChild, {marginLeft: normalize(10),}]}>
+					<View style={[styles.flexContainerChild, { marginLeft: normalize(10), }]}>
 						<TextInput style={[styles.text, styles.textBox]} underlineColorAndroid='transparent' placeholder='Spend Key (Public)' placeholderTextColor='#c9c9c9' defaultValue={this.state.spendKey_pub} autoCapitalize='none' onChangeText={handleSpendKeyPub}></TextInput>
 					</View>
 				</View>
-				<View style={{flexDirection: "row", marginTop: normalize(10),}}>
+				<View style={{ flexDirection: "row", marginTop: normalize(10), }}>
 					<Text style={styles.text}>Enable Analytics:</Text>
-					<View style={[styles.flexContainerChild, {marginLeft: normalize(10),}]}>
+					<View style={[styles.flexContainerChild, { marginLeft: normalize(10), }]}>
 						<Switch
 							trackColor={{ false: "#767577", true: "#55a1f3" }}
 							thumbColor={this.state.enableAnalytics ? "#a065fa" : "#a065fa"}
@@ -79,12 +94,22 @@ export default class SwapSettings extends React.Component {
 						/>
 					</View>
 				</View>
+				<View style={{ flexDirection: "row", marginTop: normalize(10), alignSelf: "center", marginTop: height * 0.05 }}>
+					<TouchableOpacity style={styles.buttonContainer} onPress={logout}><Text style={[styles.text, {color: "white"}]}>Logout</Text></TouchableOpacity>
+				</View>
 			</ScrollView>
 		);
 	}
 }
 
 const styles = StyleSheet.create({
+	buttonContainer: {
+		backgroundColor: "#eb4034",
+		borderRadius: 5,
+		elevation: 8,
+		paddingHorizontal: 12,
+		paddingVertical: 10,
+	},
 	mainView: {
 		alignItems: "flex-start",
 		backgroundColor: "#052344",

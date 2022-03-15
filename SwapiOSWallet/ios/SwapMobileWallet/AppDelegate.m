@@ -9,7 +9,8 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 
-#ifdef FB_SONARKIT_ENABLED
+// disable flipper due to build issues
+/*#ifdef FB_SONARKIT_ENABLED
 #import <FlipperKit/FlipperClient.h>
 #import <FlipperKitLayoutPlugin/FlipperKitLayoutPlugin.h>
 #import <FlipperKitUserDefaultsPlugin/FKUserDefaultsPlugin.h>
@@ -26,7 +27,7 @@ static void InitializeFlipper(UIApplication *application) {
   [client addPlugin:[[FlipperKitNetworkPlugin alloc] initWithNetworkAdapter:[SKIOSNetworkAdapter new]]];
   [client start];
 }
-#endif
+#endif*/
 
 /**
  Deletes all Keychain items accessible by this app if this is the first time the user launches the app
@@ -61,9 +62,10 @@ static void ClearKeychainIfNecessary() {
   if ([FIRApp defaultApp] == nil) {
     [FIRApp configure];
   }
-  #ifdef FB_SONARKIT_ENABLED
+  // disable flipper due to build issues
+  /*#ifdef FB_SONARKIT_ENABLED
     InitializeFlipper(application);
-  #endif
+  #endif*/
   
   // Clear the keychain if app has launched for the first time
   ClearKeychainIfNecessary();

@@ -11,26 +11,26 @@ function normalize(pre) {
 	return Math.floor(pre * widthScale);
 }
 
-// initializing a simple variable to store
+// initializing a simple letiable to store
 // route parameters means less typing + cleaner code
-var params = {};
-var _txdate;
-var _txage;
+let params = {};
+let _txdate;
+let _txage;
 
 function formatTXAge(seconds) {
 	seconds = Number(seconds);
-	var d = Math.floor(seconds / (3600 * 24));
-	var h = Math.floor(seconds % (3600 * 24) / 3600);
-	var m = Math.floor(seconds % 3600 / 60);
+	let d = Math.floor(seconds / (3600 * 24));
+	let h = Math.floor(seconds % (3600 * 24) / 3600);
+	let m = Math.floor(seconds % 3600 / 60);
 
-	var dDisplay = d > 0 ? d + (d == 1 ? " Day, " : " Days, ") : "";
-	var hDisplay = h > 0 ? h + (h == 1 ? " Hour, " : " Hours, ") : "";
-	var mDisplay = m > 0 ? m + (m == 1 ? " Minute " : " Minutes ") : "";
+	let dDisplay = d > 0 ? d + (d == 1 ? " Day, " : " Days, ") : "";
+	let hDisplay = h > 0 ? h + (h == 1 ? " Hour, " : " Hours, ") : "";
+	let mDisplay = m > 0 ? m + (m == 1 ? " Minute " : " Minutes ") : "";
 	return dDisplay + hDisplay + mDisplay;
 }
 
-var confirmationColor;
-var confirmationWarning;
+let confirmationColor;
+let confirmationWarning;
 
 export default class SwapTransactionInfo extends React.Component {
 	constructor(props) {

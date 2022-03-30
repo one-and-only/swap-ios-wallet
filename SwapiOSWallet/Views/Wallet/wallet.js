@@ -84,8 +84,8 @@ export default class SwapWallet extends React.Component {
 			total_balance: "Syncing",
 			total_unlocked_balance: "Syncing",
 		};
-		total_balancePromise = Settings.select("total_balance");
-		total_balance_unlockedPromise = Settings.select("total_unlocked_balance");
+		const total_balancePromise = Settings.select("total_balance");
+		const total_balance_unlockedPromise = Settings.select("total_unlocked_balance");
 
 		Promise.all([total_balancePromise, total_balance_unlockedPromise]).then((balances) => {
 			this.state = {

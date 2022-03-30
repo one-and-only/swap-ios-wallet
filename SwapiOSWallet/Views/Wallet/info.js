@@ -25,12 +25,12 @@ export default class SwapWalletInfo extends React.Component {
 			spendKey_pub: "Fetching...",
 		};
 
-		mnemonic = Settings.select("mnemonic");
-		address = Settings.select("walletAddress");
-		viewKeySec = Settings.select("viewKey_sec");
-		viewKeyPub = Settings.select("viewKey_pub");
-		spendKeySec = Settings.select("spendKey_sec");
-		spendKeyPub = Settings.select("spendKey_pub");
+		const mnemonic = Settings.select("mnemonic");
+		const address = Settings.select("walletAddress");
+		const viewKeySec = Settings.select("viewKey_sec");
+		const viewKeyPub = Settings.select("viewKey_pub");
+		const spendKeySec = Settings.select("spendKey_sec");
+		const spendKeyPub = Settings.select("spendKey_pub");
 
 		Promise.all([mnemonic, address, viewKeySec, viewKeyPub, spendKeySec, spendKeyPub]).then(wallet => {
 			this.setState({

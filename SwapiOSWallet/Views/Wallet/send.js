@@ -33,7 +33,7 @@ export default class SwapSend extends React.Component {
 			progressBar: null,
 		};
 
-		spendKeyPromise = Settings.select("spendKey");
+		const spendKeyPromise = Settings.select("spendKey");
 
 		Promise.all([spendKeyPromise]).then((settings) => {
 			let spendKey;
@@ -49,7 +49,6 @@ export default class SwapSend extends React.Component {
 	}
 
 	async sendXWP() {
-		// TODO use these instead of the hardcoded values
 		const address = await Settings.select("walletAddress");
 		const viewKey = await Settings.select("viewKey_sec");
 		const spendKey_pub = await Settings.select("spendKey_pub");

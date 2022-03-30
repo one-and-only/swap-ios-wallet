@@ -4,7 +4,7 @@ import RNRestart from "react-native-restart";
 
 import * as Settings from "../../Helpers/settings";
 
-const { width, height } = Dimensions.get("window");
+const { width } = Dimensions.get("window");
 const widthScale = width / 375;
 
 // normalize the input so that it scales evenly across devices
@@ -46,9 +46,9 @@ export default class SwapSettings extends React.Component {
 			enableAnalytics: false,
 		};
 
-		spendKeySec = Settings.select("spendKey_sec");
-		spendKeyPub = Settings.select("spendKey_pub");
-		enableAnalytics = Settings.select("enableAnalytics");
+		const spendKeySec = Settings.select("spendKey_sec");
+		const spendKeyPub = Settings.select("spendKey_pub");
+		const enableAnalytics = Settings.select("enableAnalytics");
 
 		Promise.all([spendKeySec, spendKeyPub, enableAnalytics]).then((settings) => {
 			let spendKey_sec;

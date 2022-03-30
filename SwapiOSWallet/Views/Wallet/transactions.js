@@ -68,7 +68,7 @@ export default class SwapTransactions extends React.Component {
 		const directionIcon = (transaction.receiving) ? "arrow-down" : "arrow-up";
 		return (
 			// we need some sort of unique key for each row so RN doesn't complain. tx_hash works great for this
-			<TouchableOpacity key={transaction.hash} style={styles.row} key={transaction.hash} onPress={() => { this.props.navigation.navigate("Transaction Details", { hash: transaction.hash, amount: transaction.amount, timestamp: transaction.timestamp, block: transaction.height, size: transaction.size, fee: transaction.fee, version: transaction.version, confirmations: transaction.confirmations, pubKey: transaction.pubKey, ringCT_type: transaction.ringct_info }) }}>
+			<TouchableOpacity key={transaction.hash} style={styles.row} onPress={() => { this.props.navigation.navigate("Transaction Details", { hash: transaction.hash, amount: transaction.amount, timestamp: transaction.timestamp, block: transaction.height, size: transaction.size, fee: transaction.fee, version: transaction.version, confirmations: transaction.confirmations, pubKey: transaction.pubKey, ringCT_type: transaction.ringct_info }) }}>
 				<Text style={[styles.item, { color: txColor, }]}><FontAwesome5 size={normalize(18)} name={"calendar-day"} color={txColor} solid />  {date}</Text>
 				<Text style={[styles.item, { marginLeft: width * 0.15, color: txColor, }]}><FontAwesome5 size={normalize(18)} name={directionIcon} color={txColor} solid /> <Image source={require("../../Resources/Images/logo-circle-white-nofill.png")} style={styles.swapCurrencyLogo} /> {transaction.amount}</Text>
 			</TouchableOpacity>

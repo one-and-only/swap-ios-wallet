@@ -9,9 +9,9 @@
 
 // React Dependencies
 import * as React from "react";
-import {NavigationContainer} from "@react-navigation/native";
-import {createStackNavigator} from "@react-navigation/stack";
-import {Dimensions, Image, TouchableOpacity, Linking, Alert, Text, StyleSheet, View,} from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { Dimensions, Image, TouchableOpacity, Linking, Alert, Text, StyleSheet, View, } from "react-native";
 
 // Views
 import SwapLoadingScreen from "./Views/loading-screen";
@@ -28,11 +28,11 @@ import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 //Analytics
 import { logPageView } from "./Helpers/analytics";
 
-const {width, height} = Dimensions.get("window");
-const widthScale = width/375;
+const { width, height } = Dimensions.get("window");
+const widthScale = width / 375;
 
 // normalize the input so that it scales evenly across devices
-function normalize (pre) {
+function normalize(pre) {
 	return Math.floor(pre * widthScale);
 }
 
@@ -47,7 +47,7 @@ class Navigator extends React.Component {
 	options() {
 		const headerRight = () => {
 			return (
-				<TouchableOpacity onPress={() => {Linking.openURL("https://swap.foundation");}}>
+				<TouchableOpacity onPress={() => { Linking.openURL("https://swap.foundation"); }}>
 					<Image
 						source={require("./Resources/Images/maskot.png")}
 						style={{
@@ -63,7 +63,7 @@ class Navigator extends React.Component {
 
 		const headerLeft = () => {
 			return (
-				<TouchableOpacity onPress={() => {Alert.alert("About", "Swap Mobile Wallet v0.13.0\n©2021 Antonios Papadakis");}}>
+				<TouchableOpacity onPress={() => { Alert.alert("About", "Swap Mobile Wallet v0.13.0\n©2021 Antonios Papadakis"); }}>
 					<FontAwesome5 style={styles.infoIcon} size={normalize(30)} name={"info-circle"} color={"white"} />
 				</TouchableOpacity>
 			);
@@ -71,7 +71,7 @@ class Navigator extends React.Component {
 
 		const title = (
 			<View>
-				<Text style={styles.centerText}><Image style={styles.swapLogo} source={require('./Resources/Images/header-logo.png')} /> Swap</Text>
+				<Text style={styles.centerText}><Image style={styles.swapLogo} source={require("./Resources/Images/header-logo.png")} /> Swap</Text>
 			</View>
 		);
 
@@ -102,14 +102,14 @@ class Navigator extends React.Component {
 					this.routeNameRef.current = this.navigationRef.current.getCurrentRoute().name;
 				}}
 				onStateChange={async () => {
-				const previousRouteName = this.routeNameRef.current;
-				const currentRouteName = this.navigationRef.current.getCurrentRoute().name;
-		
-				if (previousRouteName !== currentRouteName) {
-					await logPageView(currentRouteName);
-				}
-				// Save the current route name for later comparison
-				this.routeNameRef.current = currentRouteName;
+					const previousRouteName = this.routeNameRef.current;
+					const currentRouteName = this.navigationRef.current.getCurrentRoute().name;
+
+					if (previousRouteName !== currentRouteName) {
+						await logPageView(currentRouteName);
+					}
+					// Save the current route name for later comparison
+					this.routeNameRef.current = currentRouteName;
 				}}
 			>
 				<Stack.Navigator initialRouteName="Loading Screen">
@@ -129,17 +129,17 @@ class Navigator extends React.Component {
 
 const styles = StyleSheet.create({
 	centerText: {
-		fontWeight: "normal",
-		fontFamily: "VerbLight",
 		color: "#fff",
+		fontFamily: "VerbLight",
 		fontSize: normalize(30),
-	},
-	swapLogo: {
-		width: normalize(30),
-		height: normalize(30),
+		fontWeight: "normal",
 	},
 	infoIcon: {
 		marginLeft: normalize(30),
+	},
+	swapLogo: {
+		height: normalize(30),
+		width: normalize(30),
 	},
 });
 export default Navigator;

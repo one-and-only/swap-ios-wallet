@@ -14,11 +14,11 @@ import SwapWalletInfo from "./Wallet/info";
 import SwapTransactionInfo from "./Wallet/transaction-info";
 import { logPageView } from "../Helpers/analytics";
 
-const {width, height} = Dimensions.get("window");
-const widthScale = width/375;
+const { width, height } = Dimensions.get("window");
+const widthScale = width / 375;
 
 // normalize the input so that it scales evenly across devices
-function normalize (pre) {
+function normalize(pre) {
 	return Math.floor(pre * widthScale);
 }
 
@@ -93,22 +93,22 @@ export default class SwapWalletHome extends React.Component {
 					this.routeNameRef.current = this.navigationRef.current.getCurrentRoute().name;
 				}}
 				onStateChange={async () => {
-				  const previousRouteName = this.routeNameRef.current;
-				  const currentRouteName = this.navigationRef.current.getCurrentRoute().name;
-		  
-				  if (previousRouteName !== currentRouteName) {
-					await logPageView(currentRouteName);
-				  }
-				  // Save the current route name for later comparison
-				  this.routeNameRef.current = currentRouteName;
+					const previousRouteName = this.routeNameRef.current;
+					const currentRouteName = this.navigationRef.current.getCurrentRoute().name;
+
+					if (previousRouteName !== currentRouteName) {
+						await logPageView(currentRouteName);
+					}
+					// Save the current route name for later comparison
+					this.routeNameRef.current = currentRouteName;
 				}}
 			>
-				<Tab.Navigator initialRouteName="Wallet" barStyle={{height: height * 0.08,}} backBehavior="initialRoute" tabBarOptions={navigatorOptions}>
-					<Tab.Screen name="Wallet" navigation={this.props.navigation} component={SwapWallet} options={walletOptions}/>
-					<Tab.Screen name="Transactions" navigation={this.props.navigation} component={SwapTransactions} options={transactionsOptions}/>
-					<Tab.Screen name="Send" navigation={this.props.navigation} component={SwapSend} options={sendOptions}/>
-					<Tab.Screen name="Settings" navigation={this.props.navigation} component={SwapSettings} options={settingsOptions}/>
-					<Tab.Screen name="Wallet Info" navigation={this.props.navigation} component={SwapWalletInfo} options={infoOptions}/>
+				<Tab.Navigator initialRouteName="Wallet" barStyle={{ height: height * 0.08, }} backBehavior="initialRoute" tabBarOptions={navigatorOptions}>
+					<Tab.Screen name="Wallet" navigation={this.props.navigation} component={SwapWallet} options={walletOptions} />
+					<Tab.Screen name="Transactions" navigation={this.props.navigation} component={SwapTransactions} options={transactionsOptions} />
+					<Tab.Screen name="Send" navigation={this.props.navigation} component={SwapSend} options={sendOptions} />
+					<Tab.Screen name="Settings" navigation={this.props.navigation} component={SwapSettings} options={settingsOptions} />
+					<Tab.Screen name="Wallet Info" navigation={this.props.navigation} component={SwapWalletInfo} options={infoOptions} />
 					<Tab.Screen name="Transaction Details" navigation={this.props.navigation} component={SwapTransactionInfo} options={this.hiddenOptions} />
 				</Tab.Navigator>
 			</NavigationContainer>

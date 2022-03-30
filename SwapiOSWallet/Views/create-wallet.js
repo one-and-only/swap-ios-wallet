@@ -39,13 +39,13 @@ export default class SwapLoadingScreen extends React.Component {
 												Settings.insert("mnemonic", new_wallet.mnemonic).then(() => {
 													Settings.insert("walletAddress", new_wallet.wallet_address).then(() => {
 														Settings.insert("defaultPage", "Wallet Home").then(() => {
-															props.navigation.navigate("Wallet Home")
-														})
-													})
-												})
-											})
-										})
-									})
+															props.navigation.navigate("Wallet Home");
+														});
+													});
+												});
+											});
+										});
+									});
 								});
 								break;
 							case false:
@@ -58,7 +58,7 @@ export default class SwapLoadingScreen extends React.Component {
 							Settings.select("defaultPage").then(defaultPage => props.navigation.navigate(defaultPage));
 							break;
 						}
-					}).catch(err => {throw "Fatal error when creating a wallet:\n\n" + err + "\n\nPlease report this to our repository or Swap's Discord"});
+					}).catch(err => {throw "Fatal error when creating a wallet:\n\n" + err + "\n\nPlease report this to our repository or Swap's Discord";});
 			});
 		}
 		create_wallet(this.props);

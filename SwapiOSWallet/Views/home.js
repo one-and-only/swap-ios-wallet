@@ -2,14 +2,14 @@ import * as React from "react";
 import * as Settings from "../Helpers/settings";
 import { View, Text, StyleSheet, Animated, Easing, Dimensions, TouchableOpacity, } from "react-native";
 
-const {width, height} = Dimensions.get("window");
-const widthScale = width/375;
+const { width, height } = Dimensions.get("window");
+const widthScale = width / 375;
 
 export default class SwapMainHome extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {spinAnim: new Animated.Value(0)};
+		this.state = { spinAnim: new Animated.Value(0) };
 	}
 
 	componentDidMount() {
@@ -25,7 +25,7 @@ export default class SwapMainHome extends React.Component {
 	}
 
 	// normalize the input so that it scales evenly across devices
-	normalize (pre, scale) {
+	normalize(pre, scale) {
 		return Math.floor(pre * scale);
 	}
 
@@ -38,8 +38,8 @@ export default class SwapMainHome extends React.Component {
 		});
 
 		return (
-			<View style={[styles.flexContainer, {flex: 2, backgroundColor: "#052344"}]}>
-				<View style={[styles.flexContainerChild, {flex: 2}]}>
+			<View style={[styles.flexContainer, { flex: 2, backgroundColor: "#052344" }]}>
+				<View style={[styles.flexContainerChild, { flex: 2 }]}>
 					<Text
 						style={{
 							color: "white",
@@ -50,10 +50,10 @@ export default class SwapMainHome extends React.Component {
 							textAlign: "center",
 							fontWeight: "700"
 						}}>
-                        Welcome - Wilkommen - Bonvenon - Bienvenido - Bienvenue - Välkommen - Selemanat datang - Benvenuto - 歡迎 - Welkom - Bem Vindo - Добро пожаловать
+						Welcome - Wilkommen - Bonvenon - Bienvenido - Bienvenue - Välkommen - Selemanat datang - Benvenuto - 歡迎 - Welkom - Bem Vindo - Добро пожаловать
 					</Text>
 				</View>
-				<View style={[styles.flexContainerChild, {flex: 5}]}>
+				<View style={[styles.flexContainerChild, { flex: 5 }]}>
 					<Animated.Image
 						source={require("../Resources/Images/world-flags-globe.png")}
 						style={{
@@ -65,16 +65,16 @@ export default class SwapMainHome extends React.Component {
 						}}
 					/>
 				</View>
-				<View style={[styles.flexContainerChild, {flexDirection: "row", flex: 1}]}>
+				<View style={[styles.flexContainerChild, { flexDirection: "row", flex: 1 }]}>
 					<TouchableOpacity onPress={() => alert("Changing the app language is not currently supported.")} style={[styles.buttonContainer, { marginRight: width * 0.05 }]}>
 						<Text style={styles.buttonText}>Language</Text>
 					</TouchableOpacity>
-					<TouchableOpacity onPress={() => { var defaultPage = Settings.select("defaultPage"); defaultPage.then((value) => {if (value != "Open Wallet") {Settings.insert("defaultPage", "Welcome");}}).catch(); this.props.navigation.navigate("Welcome");}} style={styles.buttonContainer}>
+					<TouchableOpacity onPress={() => { var defaultPage = Settings.select("defaultPage"); defaultPage.then((value) => { if (value != "Open Wallet") { Settings.insert("defaultPage", "Welcome"); } }).catch(); this.props.navigation.navigate("Welcome"); }} style={styles.buttonContainer}>
 						<Text style={styles.buttonText}>Continue</Text>
 					</TouchableOpacity>
 				</View>
-				<View style={[styles.flexContainerChild, {flex: 1}]}>
-					<Text style={{color: "white", alignSelf: "center", fontWeight: "700", fontSize: this.normalize(14, widthScale)}}>
+				<View style={[styles.flexContainerChild, { flex: 1 }]}>
+					<Text style={{ color: "white", alignSelf: "center", fontWeight: "700", fontSize: this.normalize(14, widthScale) }}>
 						©2021 Antonios Papadakis
 					</Text>
 				</View>

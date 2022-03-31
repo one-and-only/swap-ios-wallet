@@ -4,7 +4,7 @@ import RNRestart from "react-native-restart";
 
 import * as Settings from "../../Helpers/settings";
 
-const { width, height } = Dimensions.get("window");
+const { width } = Dimensions.get("window");
 const widthScale = width / 375;
 
 // normalize the input so that it scales evenly across devices
@@ -20,7 +20,7 @@ const handleSpendKeyPub = (text) => {
 };
 const handleEnableAnalytics = (bool) => {
 	Settings.insert("enableAnalytics", JSON.stringify(bool));
-}
+};
 const logout = () => {
 	Alert.alert("Logout", "Are you sure you want to logout?",
 		[
@@ -33,8 +33,8 @@ const logout = () => {
 				}
 			}
 		]
-	)
-}
+	);
+};
 
 export default class SwapSettings extends React.Component {
 	constructor(props) {
@@ -46,9 +46,9 @@ export default class SwapSettings extends React.Component {
 			enableAnalytics: false,
 		};
 
-		spendKeySec = Settings.select("spendKey_sec");
-		spendKeyPub = Settings.select("spendKey_pub");
-		enableAnalytics = Settings.select("enableAnalytics");
+		const spendKeySec = Settings.select("spendKey_sec");
+		const spendKeyPub = Settings.select("spendKey_pub");
+		const enableAnalytics = Settings.select("enableAnalytics");
 
 		Promise.all([spendKeySec, spendKeyPub, enableAnalytics]).then((settings) => {
 			let spendKey_sec;
@@ -94,8 +94,8 @@ export default class SwapSettings extends React.Component {
 						/>
 					</View>
 				</View>
-				<View style={{ flexDirection: "row", marginTop: normalize(10), alignSelf: "center", marginTop: height * 0.05 }}>
-					<TouchableOpacity style={styles.buttonContainer} onPress={logout}><Text style={[styles.text, {color: "white"}]}>Logout</Text></TouchableOpacity>
+				<View style={{ flexDirection: "row", marginTop: normalize(10), alignSelf: "center", }}>
+					<TouchableOpacity style={styles.buttonContainer} onPress={logout}><Text style={[styles.text, { color: "white" }]}>Logout</Text></TouchableOpacity>
 				</View>
 			</ScrollView>
 		);
@@ -114,16 +114,8 @@ const styles = StyleSheet.create({
 		alignItems: "flex-start",
 		backgroundColor: "#052344",
 		display: "flex",
-		paddingLeft: normalize(10),
 		flex: 1,
-	},
-
-	txContainer: {
-		flexDirection: "column",
-	},
-
-	row: {
-		flexDirection: "row",
+		paddingLeft: normalize(10),
 	},
 
 	text: {

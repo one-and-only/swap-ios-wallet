@@ -1,4 +1,4 @@
-import EncryptedStorage from 'react-native-encrypted-storage';
+import EncryptedStorage from "react-native-encrypted-storage";
 
 export const insert = async (key, value) => {
 	try {
@@ -31,4 +31,4 @@ export const clear = async () => {
 	} catch (e) {
 		alert("Error while clearing encrypted storage");
 	}
-}
+};

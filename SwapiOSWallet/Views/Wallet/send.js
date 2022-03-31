@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Dimensions, Text, View, StyleSheet, TextInput, Image, TouchableOpacity, Alert } from "react-native";
-import * as Progress from 'react-native-progress';
+import * as Progress from "react-native-progress";
 
 import * as Settings from "../../Helpers/settings";
 import * as Blockchain from "../../Helpers/blockchain";
@@ -33,7 +33,7 @@ export default class SwapSend extends React.Component {
 			progressBar: null,
 		};
 
-		spendKeyPromise = Settings.select("spendKey");
+		const spendKeyPromise = Settings.select("spendKey");
 
 		Promise.all([spendKeyPromise]).then((settings) => {
 			let spendKey;
@@ -49,7 +49,6 @@ export default class SwapSend extends React.Component {
 	}
 
 	async sendXWP() {
-		// TODO use these instead of the hardcoded values
 		const address = await Settings.select("walletAddress");
 		const viewKey = await Settings.select("viewKey_sec");
 		const spendKey_pub = await Settings.select("spendKey_pub");
@@ -92,16 +91,16 @@ export default class SwapSend extends React.Component {
 				body: data,
 			}).then(response => response.json().then(responseJson => {
 				switch (responseJson.success) {
-					case true:
-						Alert.alert("Success", `Sucessfully sent ${auToSend} XWP.\n\nPlease check the Transactions page for more details.`);
-						break;
-					case false:
-						Alert.alert("Error", `Error sending ${auToSend} XWP:\n\n${responseJson.err_msg}`);
-						break;
-					default:
-						Alert.alert("Error", `An unkown error occured while sending ${auToSend} XWP. Please notify the developers of the app. Raw error message:\n\n${responseJson}`);
+				case true:
+					Alert.alert("Success", `Sucessfully sent ${auToSend} XWP.\n\nPlease check the Transactions page for more details.`);
+					break;
+				case false:
+					Alert.alert("Error", `Error sending ${auToSend} XWP:\n\n${responseJson.err_msg}`);
+					break;
+				default:
+					Alert.alert("Error", `An unkown error occured while sending ${auToSend} XWP. Please notify the developers of the app. Raw error message:\n\n${responseJson}`);
 				}
-			}).catch(error => console.log("error while sending XWP:", error)));
+			})).catch(() => Alert.alert("Error", "Failed to connect to our servers. Check your internet connection and try again."));
 		} else {
 			Alert.alert("Error", `Error sending ${auToSend} XWP:\n\nYour wallet is not synchronized yet. Please wait until it is synchronized and try again later.`);
 		}
@@ -150,17 +149,10 @@ export default class SwapSend extends React.Component {
 }
 
 const styles = StyleSheet.create({
-	statusText: {
-		textAlign: "center",
-		color: "white",
-		margin: normalize(12),
-		fontSize: normalize(18),
-	},
 	addressImage: {
 		height: normalize(22),
 		width: normalize(24.68),
 	},
-
 	balanceImage: {
 		height: normalize(22),
 		width: normalize(22),
@@ -170,9 +162,9 @@ const styles = StyleSheet.create({
 		backgroundColor: "#2074d4",
 		borderRadius: 5,
 		elevation: 8,
+		height: height * 0.06,
 		paddingHorizontal: 12,
 		paddingVertical: 10,
-		height: height * 0.06,
 	},
 
 	buttonText: {
@@ -194,6 +186,13 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: "flex-start",
 		paddingLeft: width * 0.025,
+	},
+
+	statusText: {
+		color: "white",
+		fontSize: normalize(18),
+		margin: normalize(12),
+		textAlign: "center",
 	},
 
 	text: {

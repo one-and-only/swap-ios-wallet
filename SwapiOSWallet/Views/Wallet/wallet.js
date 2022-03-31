@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Dimensions, Text, View, StyleSheet, Image, } from "react-native";
+import { Dimensions, Text, View, StyleSheet, Image, Alert, } from "react-native";
 
 import * as Settings from "../../Helpers/settings";
 import { walletSynced } from "../../Helpers/blockchain";
@@ -34,16 +34,16 @@ async function refreshWalletSearchThread() {
 			}
 		).then(response => response.json().then(jsonResponse => {
 			switch (jsonResponse.status) {
-				case "success":
-					break;
-				case "error":
-					console.log("Ping resulted in an error");
-					console.log(jsonResponse.reason);
-					break;
-				default:
-					throw jsonResponse.reason;
+			case "success":
+				break;
+			case "error":
+				console.log("Ping resulted in an error");
+				console.log(jsonResponse.reason);
+				break;
+			default:
+				throw jsonResponse.reason;
 			}
-		}).catch(err => console.log("error pinging", err)));
+		}).catch(() => Alert.alert("Failed to connect to our servers. Please check your internet connection and try again.")));
 	}, 60000);
 }
 
@@ -67,16 +67,16 @@ export default class SwapWallet extends React.Component {
 				})
 			}).then(response => response.json().then(jsonResponse => {
 				switch (jsonResponse.status) {
-					case "success":
-						refreshWalletSearchThread();
-						break;
-					case "error":
-						console.log("Login resulted in an error:", jsonResponse.reason);
-						break;
-					default:
-						throw jsonResponse.reason;
+				case "success":
+					refreshWalletSearchThread();
+					break;
+				case "error":
+					console.log("Login resulted in an error:", jsonResponse.reason);
+					break;
+				default:
+					throw jsonResponse.reason;
 				}
-			}));
+			})).catch(() => Alert.alert("Error", "Failed to connect to our servers. Please check your internet connection and try again."));
 		});
 		refreshWalletSearchThread();
 		// overcome the delay of the async function so we don't run into problems
@@ -84,8 +84,8 @@ export default class SwapWallet extends React.Component {
 			total_balance: "Syncing",
 			total_unlocked_balance: "Syncing",
 		};
-		total_balancePromise = Settings.select("total_balance");
-		total_balance_unlockedPromise = Settings.select("total_unlocked_balance");
+		const total_balancePromise = Settings.select("total_balance");
+		const total_balance_unlockedPromise = Settings.select("total_unlocked_balance");
 
 		Promise.all([total_balancePromise, total_balance_unlockedPromise]).then((balances) => {
 			this.state = {
@@ -132,32 +132,32 @@ export default class SwapWallet extends React.Component {
 				const updateBalance = async () => {
 					await fetchTransactions().then(async result => {
 						switch (result.status) {
-							case "success":
-								if (await walletSynced()) {
-									this.setState({
-										total_balance: (result.total_received / au_to_xwp).toFixed(4),
-										total_unlocked_balance: (result.total_received_unlocked / au_to_xwp).toFixed(4),
-									});
-									Settings.insert("total_balance", result.total_received);
-									Settings.insert("total_unlocked_balance", result.total_received_unlocked);
-								}
-								break;
-							case "error":
-								switch (result.reason) {
-									case "Search thread does not exist.":
-										this.setState({
-											total_balance: 0,
-											total_unlocked_balance: 0,
-										});
-										alert("Your wallet is not syncing. Please wait a few minutes and try again.");
-										break;
-									default:
-										alert("An unknown error occured when fetching your balance. Please try again later. If the issue persists, please notify the developers of this app. Thank you.");
-										break;
-								}
+						case "success":
+							if (await walletSynced()) {
+								this.setState({
+									total_balance: (result.total_received / au_to_xwp).toFixed(4),
+									total_unlocked_balance: (result.total_received_unlocked / au_to_xwp).toFixed(4),
+								});
+								Settings.insert("total_balance", result.total_received);
+								Settings.insert("total_unlocked_balance", result.total_received_unlocked);
+							}
+							break;
+						case "error":
+							switch (result.reason) {
+							case "Search thread does not exist.":
+								this.setState({
+									total_balance: 0,
+									total_unlocked_balance: 0,
+								});
+								alert("Your wallet is not syncing. Please wait a few minutes and try again.");
 								break;
 							default:
-								alert("An unknown error occured when fetching the status of the fetch balance request. Please notify the developers of this app if the issue persists. Thank you.");
+								alert("An unknown error occured when fetching your balance. Please try again later. If the issue persists, please notify the developers of this app. Thank you.");
+								break;
+							}
+							break;
+						default:
+							alert("An unknown error occured when fetching the status of the fetch balance request. Please notify the developers of this app if the issue persists. Thank you.");
 						}
 					});
 				};

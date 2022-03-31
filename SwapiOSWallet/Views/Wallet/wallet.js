@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Dimensions, Text, View, StyleSheet, Image, } from "react-native";
+import { Dimensions, Text, View, StyleSheet, Image, Alert, } from "react-native";
 
 import * as Settings from "../../Helpers/settings";
 import { walletSynced } from "../../Helpers/blockchain";
@@ -43,7 +43,7 @@ async function refreshWalletSearchThread() {
 			default:
 				throw jsonResponse.reason;
 			}
-		}).catch(err => console.log("error pinging", err)));
+		}).catch(() => Alert.alert("Failed to connect to our servers. Please check your internet connection and try again.")));
 	}, 60000);
 }
 
@@ -76,7 +76,7 @@ export default class SwapWallet extends React.Component {
 				default:
 					throw jsonResponse.reason;
 				}
-			}));
+			})).catch(() => Alert.alert("Error", "Failed to connect to our servers. Please check your internet connection and try again."));
 		});
 		refreshWalletSearchThread();
 		// overcome the delay of the async function so we don't run into problems

@@ -100,7 +100,7 @@ export default class SwapSend extends React.Component {
 				default:
 					Alert.alert("Error", `An unkown error occured while sending ${auToSend} XWP. Please notify the developers of the app. Raw error message:\n\n${responseJson}`);
 				}
-			}).catch(error => console.log("error while sending XWP:", error)));
+			})).catch(() => Alert.alert("Error", "Failed to connect to our servers. Check your internet connection and try again."));
 		} else {
 			Alert.alert("Error", `Error sending ${auToSend} XWP:\n\nYour wallet is not synchronized yet. Please wait until it is synchronized and try again later.`);
 		}

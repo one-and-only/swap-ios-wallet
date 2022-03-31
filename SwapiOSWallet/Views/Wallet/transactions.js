@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Dimensions, Text, View, StyleSheet, TouchableOpacity, ScrollView, Image, Settings } from "react-native";
+import { Dimensions, Text, View, StyleSheet, TouchableOpacity, ScrollView, Image, Settings, Alert } from "react-native";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import { select, insert } from "../../Helpers/settings";
 import * as Progress from 'react-native-progress';
@@ -103,7 +103,7 @@ export default class SwapTransactions extends React.Component {
 
 		const address = await select("walletAddress");
 		const viewKey = await select("viewKey_sec");
-		const transactions = await fetch("https://wallet.getswap.eu/api/get_address_txs", {
+		fetch("https://wallet.getswap.eu/api/get_address_txs", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
@@ -112,29 +112,32 @@ export default class SwapTransactions extends React.Component {
 				address: address,
 				view_key: viewKey
 			}),
-		});
-		const transactionsJSON = await transactions.json().catch(err => console.log("Error getting transactions for parsing:", err));
-		let localTransactions = [];
+		}).then((res) => res.json().then(async (transactionsJSON) => {
+			let localTransactions = [];
 
-		this.totalTransactions = transactionsJSON.transactions.length;
-		this.transactionIndex = 0;
-		for (let i = 0; i < transactionsJSON.transactions.length; i++) {
-			localTransactions.push(await this.getTransactionDetails(address, viewKey, transactionsJSON.transactions[i].hash));
-			this.transactionIndex++;
-		}
-		localTransactions.sort((a, b) => b.timestamp - a.timestamp);
-		await insert("transactions", JSON.stringify(localTransactions));
-		let localRows = [];
-		localTransactions.map(transaction => {
-			localRows.push(this.generate_transaction_row(transaction));
+			this.totalTransactions = transactionsJSON.transactions.length;
+			this.transactionIndex = 0;
+			for (let i = 0; i < transactionsJSON.transactions.length; i++) {
+				localTransactions.push(await this.getTransactionDetails(address, viewKey, transactionsJSON.transactions[i].hash));
+				this.transactionIndex++;
+			}
+			localTransactions.sort((a, b) => b.timestamp - a.timestamp);
+			await insert("transactions", JSON.stringify(localTransactions));
+			let localRows = [];
+			localTransactions.map(transaction => {
+				localRows.push(this.generate_transaction_row(transaction));
+			});
+			this.setState({
+				rows: localRows,
+				savedTransactions: localTransactions,
+				statusText: "",
+			});
+			this.totalTransactions = -1;
+			this.transactionIndex = -1;
+		})).catch(() => {
+			this.props.navigation.navigate("Wallet");
+			Alert.alert("Error", "Failed to connect to our servers. Please check your internet connection and try again.")
 		});
-		this.setState({
-			rows: localRows,
-			savedTransactions: localTransactions,
-			statusText: "",
-		});
-		this.totalTransactions = -1;
-		this.transactionIndex = -1;
 	}
 
 	getTransactionDetails(address, viewKey, tx_hash) {
@@ -168,7 +171,10 @@ export default class SwapTransactions extends React.Component {
 					pubKey: dataJson.pub_key,
 					ringct_info: `YES/${dataJson.rct_type}`,
 				});
-			})).catch(err => reject("Error getting transaction details for parsing:" + err));
+			})).catch(() => {
+				Alert.alert("Error", "Failed to connect to our servers. Check your internet connection and try again.");
+				reject("No Internet");
+			});
 		});
 	}
 

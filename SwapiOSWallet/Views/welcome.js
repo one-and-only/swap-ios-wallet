@@ -17,7 +17,7 @@ export default class SwapWelcome extends React.Component {
 	render() {
 		return (
 			<View style={[styles.flexContainer, { backgroundColor: "#052344", flex: 1, }]}>
-				<View style={[styles.flexContainer, { flex: 4, marginTop: normalize(15), paddingTop: height * 0.1, }]}>
+				<View style={[styles.flexContainer, { flex: 4, marginTop: normalize(15), }]}>
 					<View style={[styles.flexContainerChild, { flex: 1, }]}>
 						<TouchableOpacity style={{ flexDirection: "row", }} onPress={() => this.props.navigation.navigate("Create Wallet")}>
 							<View style={[styles.flexContainer, { flexDirection: "row", width: "95%", }]}>
@@ -29,7 +29,7 @@ export default class SwapWelcome extends React.Component {
 							</View>
 						</TouchableOpacity>
 					</View>
-					<View style={[styles.flexContainerChild, { flex: 2, marginLeft: normalize(5), marginTop: height * 0.05, }]}>
+					<View style={[styles.flexContainerChild, { flex: 1, marginLeft: normalize(5), marginTop: height * 0.05, }]}>
 						<TouchableOpacity style={{ flexDirection: "row" }} onPress={() => this.props.navigation.navigate("Restore Wallet From Keys")}>
 							<View style={[styles.flexContainer, { flexDirection: "row", width: "90%", }]}>
 								<Image source={require("../Resources/Images/restore-wallet.png")} style={{ height: normalize(75), width: normalize(75), resizeMode: "stretch" }} />
@@ -40,7 +40,7 @@ export default class SwapWelcome extends React.Component {
 							</View>
 						</TouchableOpacity>
 					</View>
-					<View style={[styles.flexContainerChild, { flex: 2, marginLeft: normalize(5), marginTop: height * 0.05, }]}>
+					<View style={[styles.flexContainerChild, { flex: 1, marginLeft: normalize(5), marginTop: height * 0.05, }]}>
 						<TouchableOpacity style={{ flexDirection: "row" }} onPress={() => this.props.navigation.navigate("Restore Wallet From Mnemonic")}>
 							<View style={[styles.flexContainer, { flexDirection: "row", width: "90%", }]}>
 								<Image source={require("../Resources/Images/restore-wallet.png")} style={{ height: normalize(75), width: normalize(75), resizeMode: "stretch" }} />
@@ -52,8 +52,8 @@ export default class SwapWelcome extends React.Component {
 						</TouchableOpacity>
 					</View>
 				</View>
-				<View style={[styles.flexContainer, { backgroundColor: "#052344", flex: 8, }]}>
-					<View style={[styles.flexContainerChild, { flexDirection: "row", flex: 1, marginTop: height * 0.35, }]}>
+				<View style={[styles.flexContainer, { backgroundColor: "#052344", flex: 4, }]}>
+					<View style={[styles.flexContainerChild, { flexDirection: "row", flex: 1, marginTop: height * 0.25, }]}>
 						<TouchableOpacity onPress={() => this.props.navigation.navigate("Home")} style={[styles.buttonContainer, { marginRight: width * 0.05 }]}>
 							<Text style={styles.buttonText}>Cancel</Text>
 						</TouchableOpacity>

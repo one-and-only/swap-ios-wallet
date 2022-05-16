@@ -59,9 +59,7 @@ static void ClearKeychainIfNecessary() {
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  if ([FIRApp defaultApp] == nil) {
-    [FIRApp configure];
-  }
+  [FIRApp configure];
   // disable flipper due to build issues
   /*#ifdef FB_SONARKIT_ENABLED
     InitializeFlipper(application);

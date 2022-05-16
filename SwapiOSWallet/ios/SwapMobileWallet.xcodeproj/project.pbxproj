@@ -12,7 +12,8 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		68A5838571384EE2066E3F83 /* libPods-SwapMobileWallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21E363778F96D56A5DBBB1F6 /* libPods-SwapMobileWallet.a */; };
-		EA53BE5626D6E252006AD42D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAEB8BBA26D6DE2300A86F51 /* GoogleService-Info.plist */; };
+		EAE0E4F128329B3F004CC0DA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAE0E4F028329B3F004CC0DA /* GoogleService-Info.plist */; };
+		EAE0E4F228329B3F004CC0DA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAE0E4F028329B3F004CC0DA /* GoogleService-Info.plist */; };
 		EAEEA7AA26D6C5D40093719F /* VerbLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB137F1CC15E4823980A947E /* VerbLight.ttf */; };
 		FA0C33170CC913F503760146 /* libPods-SwapMobileWallet-SwapMobileWalletTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 003A53D1E60C0DC822997729 /* libPods-SwapMobileWallet-SwapMobileWalletTests.a */; };
 /* End PBXBuildFile section */
@@ -58,7 +59,7 @@
 		D08D4DD20F804B5EA00B01C7 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		DB137F1CC15E4823980A947E /* VerbLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = VerbLight.ttf; path = ../Resources/fonts/VerbLight.ttf; sourceTree = "<group>"; };
 		DDFE3507EF48489680F5B054 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
-		EAEB8BBA26D6DE2300A86F51 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EAE0E4F028329B3F004CC0DA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F5357347E520429BBAE4BDEA /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		F9FFAE0A51E3476E97998360 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
@@ -116,7 +117,6 @@
 		13B07FAE1A68108700A75B9A /* SwapMobileWallet */ = {
 			isa = PBXGroup;
 			children = (
-				EAEB8BBA26D6DE2300A86F51 /* GoogleService-Info.plist */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -170,6 +170,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				EAE0E4F028329B3F004CC0DA /* GoogleService-Info.plist */,
 				39F601EA2619580400D819E8 /* SplashScreen.storyboard */,
 				13B07FAE1A68108700A75B9A /* SwapMobileWallet */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -283,6 +284,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAE0E4F228329B3F004CC0DA /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,7 +294,7 @@
 			files = (
 				EAEEA7AA26D6C5D40093719F /* VerbLight.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				EA53BE5626D6E252006AD42D /* GoogleService-Info.plist in Resources */,
+				EAE0E4F128329B3F004CC0DA /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,7 +550,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KKHJNPDDK5;
+				DEVELOPMENT_TEAM = 9XVCS3444W;
 				ENABLE_BITCODE = NO;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = SwapMobileWallet/Info.plist;
@@ -557,13 +559,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = eu.getswap.mobile;
+				PRODUCT_BUNDLE_IDENTIFIER = "eu.getswap.mobile-wallet";
 				PRODUCT_NAME = SwapMobileWallet;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -591,13 +593,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = eu.getswap.mobile;
+				PRODUCT_BUNDLE_IDENTIFIER = "eu.getswap.mobile-wallet";
 				PRODUCT_NAME = SwapMobileWallet;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

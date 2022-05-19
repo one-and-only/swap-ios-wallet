@@ -95,7 +95,7 @@ export default class SwapTransactions extends React.Component {
 				});
 				this.setState({
 					rows: localRows,
-					savedTransactions: localTransactions,
+					savedTransactions: transactionsJson,
 					statusText: "",
 				});
 			}
@@ -114,7 +114,7 @@ export default class SwapTransactions extends React.Component {
 			}),
 		}).then((res) => res.json().then(async (transactionsJSON) => {
 			let localTransactions = [];
-
+			
 			this.totalTransactions = transactionsJSON.transactions.length;
 			this.transactionIndex = 0;
 			for (let i = 0; i < transactionsJSON.transactions.length; i++) {
@@ -161,7 +161,7 @@ export default class SwapTransactions extends React.Component {
 				resolve({
 					hash: dataJson.tx_hash,
 					receiving: dataJson.total_sent > dataJson.total_received,
-					amount: (dataJson.total_sent > dataJson.total_received) ? (dataJson.total_sent / 1000000000000).toPrecision(4) : (dataJson.total_received / 1000000000000).toPrecision(4),
+					amount: (dataJson.total_sent > dataJson.total_received) ? ((dataJson.total_sent - dataJson.total_received) / 1000000000000).toPrecision(4) : (dataJson.total_received - dataJson.total_sent / 1000000000000).toPrecision(4),
 					fee: dataJson.fee / 1000000000000, // AU to XWP
 					timestamp: dataJson.timestamp,
 					height: dataJson.tx_height,

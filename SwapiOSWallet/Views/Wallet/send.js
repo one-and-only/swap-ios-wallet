@@ -3,7 +3,6 @@ import { Dimensions, Text, View, StyleSheet, TextInput, Image, TouchableOpacity,
 import * as Progress from "react-native-progress";
 
 import * as Settings from "../../Helpers/settings";
-import * as Blockchain from "../../Helpers/blockchain";
 
 const { width, height } = Dimensions.get("window");
 const widthScale = width / 375;
@@ -59,51 +58,44 @@ export default class SwapSend extends React.Component {
 			statusText: "Status: Checking Wallet Status",
 			progressBar: <Progress.Bar indeterminate={true} color="#22b6f2" unfilledColor="#a260f8" width={width * 0.75} height={8} />,
 		});
+		this.setState({
+			spendKey: this.state.spendKey,
+			statusText: "Status: Sending XWP",
+			progressBar: <Progress.Bar indeterminate={true} color="#22b6f2" unfilledColor="#a260f8" width={width * 0.75} height={8} />,
+		});
 
-		const walletIsSynced = await Blockchain.walletSynced();
+		const data = JSON.stringify({
+			"from_address_string": address,
+			"view_key": viewKey,
+			"spendKey_sec": spendKey_sec,
+			"spendKey_pub": spendKey_pub,
+			"is_sweeping": false,
+			"payment_id_string": null,
+			"sending_amount": auToSend,
+			"to_address_string": addressToSendTo,
+			"priority": 1,
+			"nettype": 0
+		});
 
-		if (walletIsSynced) {
-			this.setState({
-				spendKey: this.state.spendKey,
-				statusText: "Status: Sending XWP",
-				progressBar: <Progress.Bar indeterminate={true} color="#22b6f2" unfilledColor="#a260f8" width={width * 0.75} height={8} />,
-			});
-
-			const data = JSON.stringify({
-				"from_address_string": address,
-				"view_key": viewKey,
-				"spendKey_sec": spendKey_sec,
-				"spendKey_pub": spendKey_pub,
-				"is_sweeping": false,
-				"payment_id_string": null,
-				"sending_amount": auToSend,
-				"to_address_string": addressToSendTo,
-				"priority": 1,
-				"nettype": 0
-			});
-
-			await fetch("https://wallet.getswap.eu/mobileapi/send_funds", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-					"Content-Length": data.length,
-				},
-				body: data,
-			}).then(response => response.json().then(responseJson => {
-				switch (responseJson.success) {
-				case true:
-					Alert.alert("Success", `Sucessfully sent ${auToSend} XWP.\n\nPlease check the Transactions page for more details.`);
-					break;
-				case false:
-					Alert.alert("Error", `Error sending ${auToSend} XWP:\n\n${responseJson.err_msg}`);
-					break;
-				default:
-					Alert.alert("Error", `An unkown error occured while sending ${auToSend} XWP. Please notify the developers of the app. Raw error message:\n\n${responseJson}`);
-				}
-			})).catch(() => Alert.alert("Error", "Failed to connect to our servers. Check your internet connection and try again."));
-		} else {
-			Alert.alert("Error", `Error sending ${auToSend} XWP:\n\nYour wallet is not synchronized yet. Please wait until it is synchronized and try again later.`);
-		}
+		await fetch("https://wallet.getswap.eu/mobileapi/send_funds", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				"Content-Length": data.length,
+			},
+			body: data,
+		}).then(response => response.json().then(responseJson => {
+			switch (responseJson.success) {
+			case true:
+				Alert.alert("Success", `Sucessfully sent ${auToSend} XWP.\n\nPlease check the Transactions page for more details.`);
+				break;
+			case false:
+				Alert.alert("Error", `Error sending ${auToSend} XWP:\n\n${responseJson.err_msg}`);
+				break;
+			default:
+				Alert.alert("Error", `An unkown error occured while sending ${auToSend} XWP. Please notify the developers of the app. Raw error message:\n\n${responseJson}`);
+			}
+		})).catch(() => Alert.alert("Error", "Failed to connect to our servers. Check your internet connection and try again."));
 
 		this.setState({
 			spendKey: this.state.spendKey,

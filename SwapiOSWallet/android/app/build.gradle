@@ -135,8 +135,8 @@ android {
         applicationId "eu.getswap.mobile"
         minSdkVersion 30
         targetSdkVersion 31
-        versionCode 130
-        versionName "0.13.0"
+        versionCode 1030
+        versionName "1.0.3"
     }
     splits {
         abi {

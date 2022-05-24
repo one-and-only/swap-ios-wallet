@@ -1,6 +1,6 @@
 {
   "name": "swap-mobile-wallet",
-  "version": "0.12.0",
+  "version": "1.0.3",
   "private": true,
   "scripts": {
     "check-dependencies": "rnx-dep-check",
@@ -16,23 +16,23 @@
   "dependencies": {
     "@react-native-clipboard/clipboard": "^1.9.0",
     "@react-native-community/art": "^1.2.0",
-    "@react-native-masked-view/masked-view": "^0.2.0",
+    "@react-native-masked-view/masked-view": "^0.2.6",
     "@react-native-firebase/analytics": "^12.7.3",
     "@react-native-firebase/app": "^12.7.3",
     "@react-navigation/bottom-tabs": "^5.11.11",
-    "@react-navigation/native": "^5.7.3",
-    "@react-navigation/stack": "^5.9.0",
+    "@react-navigation/native": "^6.0.8",
+    "@react-navigation/stack": "^6.2.0",
     "node-fetch": "^2.6.1",
     "patch-package": "^6.4.7",
     "react": "17.0.2",
-    "react-native": "0.66.4",
+    "react-native": "^0.68.2",
     "react-native-encrypted-storage": "^4.0.2",
-    "react-native-gesture-handler": "^1.10.3",
+    "react-native-gesture-handler": "^2.3.2",
     "react-native-progress": "^4.1.2",
-    "react-native-reanimated": "2.2.3",
+    "react-native-reanimated": "^2.5.0",
     "react-native-restart": "^0.0.24",
     "react-native-safe-area-context": "^3.2.0",
-    "react-native-screens": "^2.18.1",
+    "react-native-screens": "^3.13.1",
     "react-native-vector-icons": "^8.1.0",
     "react-navigation-stack": "^2.10.4"
   },
@@ -44,7 +44,7 @@
     "eslint": "^7.29.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-native": "^3.11.0",
-    "metro-react-native-babel-preset": "^0.66.2",
+    "metro-react-native-babel-preset": "^0.67.0",
     "react-test-renderer": "17.0.2"
   },
   "jest": {

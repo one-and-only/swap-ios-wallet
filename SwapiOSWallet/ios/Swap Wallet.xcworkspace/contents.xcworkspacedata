@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/antoniospapadakis/github-repos/swap-ios-wallet/SwapiOSWallet/ios/Swap Wallet.xcodeproj">
+      location = "group:Swap Wallet.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

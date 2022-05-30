@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Dimensions, Text, View, StyleSheet, TouchableOpacity, ScrollView, Image, Settings, Alert } from "react-native";
+import { Dimensions, Text, View, StyleSheet, TouchableOpacity, Image, Alert, FlatList } from "react-native";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import { select, insert } from "../../Helpers/settings";
 import * as Progress from 'react-native-progress';
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
 		display: "flex",
 		flex: 1,
 		backgroundColor: "#052344",
-		alignItems: "center",
+		alignItems: "center"
 	},
 
 	titleText: {
@@ -40,10 +40,6 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 	},
 
-	txContainer: {
-		flexDirection: "column",
-	},
-
 	swapCurrencyLogo: {
 		height: normalize(22),
 		width: normalize(22),
@@ -52,8 +48,9 @@ const styles = StyleSheet.create({
 	statusText: {
 		textAlign: "center",
 		color: "white",
-		margin: normalize(12),
 		fontSize: normalize(18),
+		marginTop: normalize(10),
+		marginBottom: normalize(10),
 	},
 });
 
@@ -62,17 +59,21 @@ export default class SwapTransactions extends React.Component {
 	totalTransactions = -1;
 	hasInitialSync = false;
 
-	generate_transaction_row(transaction) {
+	generate_transaction_row({ item: transaction }) {
 		const date = new Date(transaction.timestamp).toLocaleDateString();
 		const txColor = (transaction.receiving) ? "lime" : "orange";
 		const directionIcon = (transaction.receiving) ? "arrow-down" : "arrow-up";
 		return (
 			// we need some sort of unique key for each row so RN doesn't complain. tx_hash works great for this
-			<TouchableOpacity key={transaction.hash} style={styles.row} onPress={() => { this.props.navigation.navigate("Transaction Details", { hash: transaction.hash, amount: transaction.amount, timestamp: transaction.timestamp, block: transaction.height, size: transaction.size, fee: transaction.fee, version: transaction.version, confirmations: transaction.confirmations, pubKey: transaction.pubKey, ringCT_type: transaction.ringct_info }) }}>
+			<TouchableOpacity style={styles.row} onPress={() => { this.props.navigation.navigate("Transaction Details", { hash: transaction.hash, amount: transaction.amount, timestamp: transaction.timestamp, block: transaction.height, size: transaction.size, fee: transaction.fee, version: transaction.version, confirmations: transaction.confirmations, pubKey: transaction.pubKey, ringCT_type: transaction.ringct_info }) }}>
 				<Text style={[styles.item, { color: txColor, }]}><FontAwesome5 size={normalize(18)} name={"calendar-day"} color={txColor} solid />  {date}</Text>
 				<Text style={[styles.item, { marginLeft: width * 0.15, color: txColor, }]}><FontAwesome5 size={normalize(18)} name={directionIcon} color={txColor} solid /> <Image source={require("../../Resources/Images/logo-circle-white-nofill.png")} style={styles.swapCurrencyLogo} /> {transaction.amount}</Text>
 			</TouchableOpacity>
 		);
+	}
+
+	extractTransactionRowKey(transaction) {
+		return transaction.hash;
 	}
 
 	constructor(props) {
@@ -84,17 +85,28 @@ export default class SwapTransactions extends React.Component {
 		this.getTransactions();
 	}
 
+	getItemLayout(data, index) {
+		return {
+			length: 54, // 44 item height, 10 item padding
+			offset: 54 * index,
+			index
+		}
+	}
+
 	async getTransactions() {
 		select("transactions").then(transactions => {
 			const transactionsJson = transactions ? JSON.parse(transactions) : [];
 			if (transactionsJson.length > 0) {
 				this.hasInitialSync = true;
-				let localRows = [];
-				transactionsJson.map(transaction => {
-					localRows.push(this.generate_transaction_row(transaction));
-				});
 				this.setState({
-					rows: localRows,
+					rows: <FlatList
+						data={transactionsJson}
+						renderItem={this.generate_transaction_row}
+						keyExtractor={this.extractTransactionRowKey}
+						getItemLayout={this.getItemLayout}
+						maxToRenderPerBatch={(height / 54) * 2}
+						initialNumToRender={(height / 54) * 2}
+					/>,
 					savedTransactions: transactionsJson,
 					statusText: "",
 				});
@@ -114,7 +126,7 @@ export default class SwapTransactions extends React.Component {
 			}),
 		}).then((res) => res.json().then(async (transactionsJSON) => {
 			let localTransactions = [];
-			
+
 			this.totalTransactions = transactionsJSON.transactions.length;
 			this.transactionIndex = 0;
 			for (let i = 0; i < transactionsJSON.transactions.length; i++) {
@@ -123,12 +135,15 @@ export default class SwapTransactions extends React.Component {
 			}
 			localTransactions.sort((a, b) => b.timestamp - a.timestamp);
 			await insert("transactions", JSON.stringify(localTransactions));
-			let localRows = [];
-			localTransactions.map(transaction => {
-				localRows.push(this.generate_transaction_row(transaction));
-			});
 			this.setState({
-				rows: localRows,
+				rows: <FlatList
+					data={localTransactions}
+					renderItem={this.generate_transaction_row}
+					keyExtractor={this.extractTransactionRowKey}
+					getItemLayout={this.getItemLayout}
+					maxToRenderPerBatch={(height / 54) * 2}
+					initialNumToRender={(height / 54) * 2}
+				/>,
 				savedTransactions: localTransactions,
 				statusText: "",
 			});
@@ -181,13 +196,8 @@ export default class SwapTransactions extends React.Component {
 	render() {
 		return (
 			<View style={styles.mainView}>
-				<Text style={[styles.titleText, { paddingBottom: height * 0.05, }]}>Transactions</Text>
-				<ScrollView>
-					<View style={styles.txContainer}>
-						<Text style={styles.statusText}>{this.state.statusText}</Text>
-						{this.state.rows}
-					</View>
-				</ScrollView>
+				<Text style={styles.statusText}>{this.state.statusText}</Text>
+				{this.state.rows}
 			</View>
 		);
 	}

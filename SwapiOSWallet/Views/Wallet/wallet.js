@@ -43,7 +43,7 @@ async function refreshWalletSearchThread() {
 			default:
 				throw jsonResponse.reason;
 			}
-		}).catch(() => Alert.alert("Failed to connect to our servers. Please check your internet connection and try again.")));
+		}).catch(() => Alert.alert("Error", "Failed to connect to our servers. Please check your internet connection and try again.")));
 	}, 60000);
 }
 

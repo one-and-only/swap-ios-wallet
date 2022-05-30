@@ -6,6 +6,9 @@
 #
 **GoogleService-Info.plist**
 
+# VSCode
+.vscode
+
 # Xcode
 #
 build/

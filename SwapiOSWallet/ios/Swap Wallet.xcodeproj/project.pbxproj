@@ -11,11 +11,11 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		223715822B4394293F5E0A88 /* libPods-Swap Wallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70D236E5598334AC4725DC1C /* libPods-Swap Wallet.a */; };
+		38FE9C91F7B13725A9551D06 /* libPods-Swap Wallet-Swap WalletTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E21D26FFE2F48ED595876D0D /* libPods-Swap Wallet-Swap WalletTests.a */; };
 		EAE0E4F128329B3F004CC0DA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAE0E4F028329B3F004CC0DA /* GoogleService-Info.plist */; };
 		EAE0E4F228329B3F004CC0DA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAE0E4F028329B3F004CC0DA /* GoogleService-Info.plist */; };
 		EAEEA7AA26D6C5D40093719F /* VerbLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB137F1CC15E4823980A947E /* VerbLight.ttf */; };
-		ED161A80538603F59EED093E /* libPods-Swap Mobile Wallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CCFC73178AFB27D824E06E93 /* libPods-Swap Mobile Wallet.a */; };
-		FB0D85116081283DACCAE959 /* libPods-Swap Mobile Wallet-Swap Mobile WalletTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2352ADBAB10F37F27DC0173E /* libPods-Swap Mobile Wallet-Swap Mobile WalletTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,18 +29,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00E356EE1AD99517003FC87E /* Swap Mobile WalletTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Swap Mobile WalletTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* Swap WalletTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Swap WalletTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* SwapMobileWalletTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwapMobileWalletTests.m; sourceTree = "<group>"; };
 		0749AB89287D7D49DF9D833F /* Pods-Swap Mobile Wallet-Swap Mobile WalletTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swap Mobile Wallet-Swap Mobile WalletTests.release.xcconfig"; path = "Target Support Files/Pods-Swap Mobile Wallet-Swap Mobile WalletTests/Pods-Swap Mobile Wallet-Swap Mobile WalletTests.release.xcconfig"; sourceTree = "<group>"; };
 		097C3BB7EA204E8B92BC1630 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* Swap Mobile Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swap Mobile Wallet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* Swap Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swap Wallet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = SwapMobileWallet/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = SwapMobileWallet/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = SwapMobileWallet/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = SwapMobileWallet/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = SwapMobileWallet/main.m; sourceTree = "<group>"; };
-		2352ADBAB10F37F27DC0173E /* libPods-Swap Mobile Wallet-Swap Mobile WalletTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Swap Mobile Wallet-Swap Mobile WalletTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1998093A3A54F9A761C954D5 /* Pods-Swap Wallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swap Wallet.debug.xcconfig"; path = "Target Support Files/Pods-Swap Wallet/Pods-Swap Wallet.debug.xcconfig"; sourceTree = "<group>"; };
 		278AAAD93B08480D91EDE6AE /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		39F601EA2619580400D819E8 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = SwapMobileWallet/SplashScreen.storyboard; sourceTree = "<group>"; };
 		3B09D969597741FBB37332CD /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
@@ -48,21 +48,25 @@
 		43DD877AB58B419399EE3F12 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		6C7E66E104EF3C4E14795924 /* Pods-SwapMobileWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwapMobileWallet.release.xcconfig"; path = "Target Support Files/Pods-SwapMobileWallet/Pods-SwapMobileWallet.release.xcconfig"; sourceTree = "<group>"; };
 		70B73D3AB803405583C54037 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
+		70D236E5598334AC4725DC1C /* libPods-Swap Wallet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Swap Wallet.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		780B283594364893A0A1CCAE /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		7C3ECF541DC7412C98006E24 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		7D4392E4B2CC8D3B08E85642 /* Pods-SwapMobileWallet-SwapMobileWalletTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwapMobileWallet-SwapMobileWalletTests.debug.xcconfig"; path = "Target Support Files/Pods-SwapMobileWallet-SwapMobileWalletTests/Pods-SwapMobileWallet-SwapMobileWalletTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7EFB95F546DA65E625E39BB9 /* Pods-Swap Wallet-Swap WalletTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swap Wallet-Swap WalletTests.release.xcconfig"; path = "Target Support Files/Pods-Swap Wallet-Swap WalletTests/Pods-Swap Wallet-Swap WalletTests.release.xcconfig"; sourceTree = "<group>"; };
 		81C654C449E54DDC89DB218B /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		911EF0FFAF00DC66A05F96A5 /* Pods-Swap Mobile Wallet-Swap Mobile WalletTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swap Mobile Wallet-Swap Mobile WalletTests.debug.xcconfig"; path = "Target Support Files/Pods-Swap Mobile Wallet-Swap Mobile WalletTests/Pods-Swap Mobile Wallet-Swap Mobile WalletTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A4E93A69A5F898F7A86E05AE /* Pods-Swap Wallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swap Wallet.release.xcconfig"; path = "Target Support Files/Pods-Swap Wallet/Pods-Swap Wallet.release.xcconfig"; sourceTree = "<group>"; };
 		AD9EDF0A4157428FAB0F65A2 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		BBEFB397940B4E2797A8F3DF /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		C0E650A0DCED785D16DFA835 /* Pods-SwapMobileWallet-SwapMobileWalletTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwapMobileWallet-SwapMobileWalletTests.release.xcconfig"; path = "Target Support Files/Pods-SwapMobileWallet-SwapMobileWalletTests/Pods-SwapMobileWallet-SwapMobileWalletTests.release.xcconfig"; sourceTree = "<group>"; };
 		C5A8828966C94617B830183B /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
-		CCFC73178AFB27D824E06E93 /* libPods-Swap Mobile Wallet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Swap Mobile Wallet.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD8DEDD1600C0214ABBBA31D /* Pods-SwapMobileWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwapMobileWallet.debug.xcconfig"; path = "Target Support Files/Pods-SwapMobileWallet/Pods-SwapMobileWallet.debug.xcconfig"; sourceTree = "<group>"; };
 		D08D4DD20F804B5EA00B01C7 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		DB137F1CC15E4823980A947E /* VerbLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = VerbLight.ttf; path = ../Resources/fonts/VerbLight.ttf; sourceTree = "<group>"; };
 		DDFE3507EF48489680F5B054 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
+		E21D26FFE2F48ED595876D0D /* libPods-Swap Wallet-Swap WalletTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Swap Wallet-Swap WalletTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E286DC051484E1568D56A292 /* Pods-Swap Mobile Wallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swap Mobile Wallet.debug.xcconfig"; path = "Target Support Files/Pods-Swap Mobile Wallet/Pods-Swap Mobile Wallet.debug.xcconfig"; sourceTree = "<group>"; };
+		E38B0DD6B2433C0DB554D908 /* Pods-Swap Wallet-Swap WalletTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swap Wallet-Swap WalletTests.debug.xcconfig"; path = "Target Support Files/Pods-Swap Wallet-Swap WalletTests/Pods-Swap Wallet-Swap WalletTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EAE0E4F028329B3F004CC0DA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F5357347E520429BBAE4BDEA /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
@@ -75,7 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB0D85116081283DACCAE959 /* libPods-Swap Mobile Wallet-Swap Mobile WalletTests.a in Frameworks */,
+				38FE9C91F7B13725A9551D06 /* libPods-Swap Wallet-Swap WalletTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,7 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED161A80538603F59EED093E /* libPods-Swap Mobile Wallet.a in Frameworks */,
+				223715822B4394293F5E0A88 /* libPods-Swap Wallet.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +122,10 @@
 				3B35F0444AE2C1FD0B999987 /* Pods-Swap Mobile Wallet.release.xcconfig */,
 				911EF0FFAF00DC66A05F96A5 /* Pods-Swap Mobile Wallet-Swap Mobile WalletTests.debug.xcconfig */,
 				0749AB89287D7D49DF9D833F /* Pods-Swap Mobile Wallet-Swap Mobile WalletTests.release.xcconfig */,
+				1998093A3A54F9A761C954D5 /* Pods-Swap Wallet.debug.xcconfig */,
+				A4E93A69A5F898F7A86E05AE /* Pods-Swap Wallet.release.xcconfig */,
+				E38B0DD6B2433C0DB554D908 /* Pods-Swap Wallet-Swap WalletTests.debug.xcconfig */,
+				7EFB95F546DA65E625E39BB9 /* Pods-Swap Wallet-Swap WalletTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -138,8 +146,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				CCFC73178AFB27D824E06E93 /* libPods-Swap Mobile Wallet.a */,
-				2352ADBAB10F37F27DC0173E /* libPods-Swap Mobile Wallet-Swap Mobile WalletTests.a */,
+				70D236E5598334AC4725DC1C /* libPods-Swap Wallet.a */,
+				E21D26FFE2F48ED595876D0D /* libPods-Swap Wallet-Swap WalletTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -196,8 +204,8 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* Swap Mobile Wallet.app */,
-				00E356EE1AD99517003FC87E /* Swap Mobile WalletTests.xctest */,
+				13B07F961A680F5B00A75B9A /* Swap Wallet.app */,
+				00E356EE1AD99517003FC87E /* Swap WalletTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -205,9 +213,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* Swap Mobile WalletTests */ = {
+		00E356ED1AD99517003FC87E /* Swap WalletTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "Swap Mobile WalletTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "Swap WalletTests" */;
 			buildPhases = (
 				194F54B0A5014D5EFF4E3099 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -221,14 +229,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = "Swap Mobile WalletTests";
+			name = "Swap WalletTests";
 			productName = SwapMobileWalletTests;
-			productReference = 00E356EE1AD99517003FC87E /* Swap Mobile WalletTests.xctest */;
+			productReference = 00E356EE1AD99517003FC87E /* Swap WalletTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* Swap Mobile Wallet */ = {
+		13B07F861A680F5B00A75B9A /* Swap Wallet */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Swap Mobile Wallet" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Swap Wallet" */;
 			buildPhases = (
 				206DCACF85752B41527DA628 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
@@ -244,9 +252,9 @@
 			);
 			dependencies = (
 			);
-			name = "Swap Mobile Wallet";
+			name = "Swap Wallet";
 			productName = SwapMobileWallet;
-			productReference = 13B07F961A680F5B00A75B9A /* Swap Mobile Wallet.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* Swap Wallet.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -268,7 +276,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Swap Mobile Wallet" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Swap Wallet" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -281,8 +289,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* Swap Mobile Wallet */,
-				00E356ED1AD99517003FC87E /* Swap Mobile WalletTests */,
+				13B07F861A680F5B00A75B9A /* Swap Wallet */,
+				00E356ED1AD99517003FC87E /* Swap WalletTests */,
 			);
 		};
 /* End PBXProject section */
@@ -329,15 +337,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Swap Mobile Wallet-Swap Mobile WalletTests/Pods-Swap Mobile Wallet-Swap Mobile WalletTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Swap Wallet-Swap WalletTests/Pods-Swap Wallet-Swap WalletTests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Swap Mobile Wallet-Swap Mobile WalletTests/Pods-Swap Mobile Wallet-Swap Mobile WalletTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Swap Wallet-Swap WalletTests/Pods-Swap Wallet-Swap WalletTests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Swap Mobile Wallet-Swap Mobile WalletTests/Pods-Swap Mobile Wallet-Swap Mobile WalletTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Swap Wallet-Swap WalletTests/Pods-Swap Wallet-Swap WalletTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		194F54B0A5014D5EFF4E3099 /* [CP] Check Pods Manifest.lock */ = {
@@ -355,7 +363,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Swap Mobile Wallet-Swap Mobile WalletTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Swap Wallet-Swap WalletTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -390,7 +398,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Swap Mobile Wallet-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Swap Wallet-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -403,15 +411,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Swap Mobile Wallet/Pods-Swap Mobile Wallet-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Swap Wallet/Pods-Swap Wallet-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Swap Mobile Wallet/Pods-Swap Mobile Wallet-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Swap Wallet/Pods-Swap Wallet-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Swap Mobile Wallet/Pods-Swap Mobile Wallet-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Swap Wallet/Pods-Swap Wallet-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E5F2123C90D7ECE0065410E5 /* [CP] Copy Pods Resources */ = {
@@ -420,15 +428,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Swap Mobile Wallet/Pods-Swap Mobile Wallet-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Swap Wallet/Pods-Swap Wallet-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Swap Mobile Wallet/Pods-Swap Mobile Wallet-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Swap Wallet/Pods-Swap Wallet-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Swap Mobile Wallet/Pods-Swap Mobile Wallet-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Swap Wallet/Pods-Swap Wallet-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FAC5B4D39EE38F0E9F628DA0 /* [CP] Embed Pods Frameworks */ = {
@@ -437,15 +445,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Swap Mobile Wallet-Swap Mobile WalletTests/Pods-Swap Mobile Wallet-Swap Mobile WalletTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Swap Wallet-Swap WalletTests/Pods-Swap Wallet-Swap WalletTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Swap Mobile Wallet-Swap Mobile WalletTests/Pods-Swap Mobile Wallet-Swap Mobile WalletTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Swap Wallet-Swap WalletTests/Pods-Swap Wallet-Swap WalletTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Swap Mobile Wallet-Swap Mobile WalletTests/Pods-Swap Mobile Wallet-Swap Mobile WalletTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Swap Wallet-Swap WalletTests/Pods-Swap Wallet-Swap WalletTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -492,7 +500,7 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* Swap Mobile Wallet */;
+			target = 13B07F861A680F5B00A75B9A /* Swap Wallet */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -500,7 +508,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 911EF0FFAF00DC66A05F96A5 /* Pods-Swap Mobile Wallet-Swap Mobile WalletTests.debug.xcconfig */;
+			baseConfigurationReference = E38B0DD6B2433C0DB554D908 /* Pods-Swap Wallet-Swap WalletTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -521,13 +529,13 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Swap Mobile Wallet.app/Swap Mobile Wallet";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Swap Wallet.app/Swap Wallet";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0749AB89287D7D49DF9D833F /* Pods-Swap Mobile Wallet-Swap Mobile WalletTests.release.xcconfig */;
+			baseConfigurationReference = 7EFB95F546DA65E625E39BB9 /* Pods-Swap Wallet-Swap WalletTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -545,13 +553,13 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Swap Mobile Wallet.app/Swap Mobile Wallet";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Swap Wallet.app/Swap Wallet";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E286DC051484E1568D56A292 /* Pods-Swap Mobile Wallet.debug.xcconfig */;
+			baseConfigurationReference = 1998093A3A54F9A761C954D5 /* Pods-Swap Wallet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -567,14 +575,14 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.4;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "eu.getswap.mobile-wallet";
-				PRODUCT_NAME = "Swap Mobile Wallet";
+				PRODUCT_NAME = "Swap Wallet";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -585,7 +593,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B35F0444AE2C1FD0B999987 /* Pods-Swap Mobile Wallet.release.xcconfig */;
+			baseConfigurationReference = A4E93A69A5F898F7A86E05AE /* Pods-Swap Wallet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -601,14 +609,14 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.4;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "eu.getswap.mobile-wallet";
-				PRODUCT_NAME = "Swap Mobile Wallet";
+				PRODUCT_NAME = "Swap Wallet";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -742,7 +750,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "Swap Mobile WalletTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "Swap WalletTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -751,7 +759,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Swap Mobile Wallet" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Swap Wallet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -760,7 +768,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Swap Mobile Wallet" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Swap Wallet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

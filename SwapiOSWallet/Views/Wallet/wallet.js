@@ -1,3 +1,5 @@
+// TODO: Clear all intervals in `componentWillUnmount` to avoid minor memory leak
+
 import * as React from "react";
 import { Dimensions, Text, View, StyleSheet, Image, Alert, } from "react-native";
 

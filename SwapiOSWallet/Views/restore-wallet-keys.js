@@ -43,7 +43,6 @@ export default class SwapRestoreWalletFromKeys extends React.Component {
 				.then((res) => {
 					switch (res.status) {
 					case "success":
-						// TODO make this using `.then` (i.e syncrhonous)
 						Settings.insert("defaultPage", "Wallet Home").then(() => {
 							Settings.select("defaultPage").then((defaultPage) =>
 								this.props.navigation.navigate(defaultPage)

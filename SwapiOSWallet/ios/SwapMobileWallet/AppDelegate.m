@@ -5,9 +5,7 @@
 #import <React/RCTDevLoadingView.h>
 #endif
 
-#import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
-#import <React/RCTRootView.h>
 
 #ifdef FB_SONARKIT_ENABLED
 #import <FlipperKit/FlipperClient.h>
@@ -58,52 +56,17 @@ static void ClearKeychainIfNecessary() {
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  self.moduleName = @"SwapMobileWallet";
+  // You can add your custom initial props in the dictionary below.
+  // They will be passed down to the ViewController used by React Native.
+  self.initialProps = @{};
+
   [FIRApp configure];
-  #ifdef FB_SONARKIT_ENABLED
-    InitializeFlipper(application);
-  #endif
   
   // Clear the keychain if app has launched for the first time
   ClearKeychainIfNecessary();
-  
-  /**
-   Set the bundle location as an NSString
-   If the app is of type DEBUG, then the location should be the URL that the bundler is listening on
-   if the app is of type RELEASE, then the location should be the relative file path of the bundle inside the app binary (main.jsbundle)
-   */
-  NSString* bundleLocation;
-  #if DEBUG
-    bundleLocation = @"http://localhost:8081/index.bundle?platform=ios";
-  #else
-    bundleLocation = @"main.jsbundle";
-  #endif
-  
-  
-  // In this case, index.bundle matches the index.js file that contains your component code
-  NSURL *jsCodeLocation = [NSURL URLWithString:bundleLocation];
 
-  RCTBridge *bridge = [[RCTBridge alloc] initWithBundleURL:jsCodeLocation
-                                              moduleProvider:nil
-                                               launchOptions:launchOptions];
-  #if RCT_DEV
-    [bridge moduleForClass:[RCTDevLoadingView class]];
-  #endif
-    RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
-                                                     moduleName:@"SwapMobileWallet"
-                                              initialProperties:nil];
-
-  if (@available(iOS 13.0, *)) {
-      rootView.backgroundColor = [UIColor systemBackgroundColor];
-  } else {
-      rootView.backgroundColor = [UIColor whiteColor];
-  }
-
-  self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-  UIViewController *rootViewController = [UIViewController new];
-  rootViewController.view = rootView;
-  self.window.rootViewController = rootViewController;
-  [self.window makeKeyAndVisible];
-  return YES;
+  return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
@@ -113,6 +76,16 @@ static void ClearKeychainIfNecessary() {
 #else
   return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 #endif
+}
+
+/// This method controls whether the `concurrentRoot`feature of React18 is turned on or off.
+///
+/// @see: https://reactjs.org/blog/2022/03/29/react-v18.html
+/// @note: This requires to be rendering on Fabric (i.e. on the New Architecture).
+/// @return: `true` if the `concurrentRoot` feature is enabled. Otherwise, it returns `false`.
+- (BOOL)concurrentRootEnabled
+{
+  return true;
 }
 
 @end

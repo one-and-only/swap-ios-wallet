@@ -26,7 +26,7 @@
     "node-fetch": "^3.3.1",
     "patch-package": "^6.4.7",
     "react": "18.2.0",
-    "react-native": "^0.71.0",
+    "react-native": "^0.71.12",
     "react-native-encrypted-storage": "^4.0.3",
     "react-native-gesture-handler": "^2.9.0",
     "react-native-gradle-plugin": "^0.71.19",
@@ -38,14 +38,14 @@
     "react-native-vector-icons": "^9.2.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9",
-    "@babel/runtime": "^7.12.5",
-    "@react-native-community/eslint-config": "^2.0.0",
+    "@babel/core": "^7.20.0",
+    "@babel/runtime": "^7.20.0",
+    "@react-native-community/eslint-config": "^3.2.0",
     "@rnx-kit/dep-check": "^1.12.15",
-    "eslint": "^7.29.0",
-    "eslint-plugin-react": "^7.24.0",
-    "eslint-plugin-react-native": "^3.11.0",
-    "metro-react-native-babel-preset": "^0.73.7",
+    "eslint": "^8.44.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-native": "^4.0.0",
+    "metro-react-native-babel-preset": "^0.73.10",
     "react-test-renderer": "18.2.0"
   },
   "jest": {

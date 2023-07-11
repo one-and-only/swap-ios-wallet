@@ -17,3 +17,5 @@ SwapiOSWallet/android/app/src/main/res/raw/app.json
 SwapiOSWallet/android/app/src/main/res/raw/node_modules_reactnativevectoricons_glyphmaps_fontawesome5free_meta.json
 SwapiOSWallet/android/app/src/main/res/raw/node_modules_reactnativevectoricons_glyphmaps_fontawesome5free.json
 SwapiOSWallet/android/app/google-services.json
+
+.vscode**

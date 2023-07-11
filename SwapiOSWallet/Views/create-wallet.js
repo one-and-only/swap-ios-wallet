@@ -7,7 +7,7 @@ import * as Settings from "../Helpers/settings";
 const { width, height } = Dimensions.get("window");
 const widthScale = width / 375;
 
-export default class SwapLoadingScreen extends React.Component {
+export default class SwapCreateWallet extends React.Component {
 	constructor(props) {
 		super(props);
 

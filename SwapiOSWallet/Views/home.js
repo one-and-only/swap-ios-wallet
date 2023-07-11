@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as Settings from "../Helpers/settings";
-import { View, Text, StyleSheet, Animated, Easing, Dimensions, TouchableOpacity, } from "react-native";
+import { View, Text, StyleSheet, Animated, Easing, Dimensions, Alert, TouchableOpacity, } from "react-native";
 
 const { width, height } = Dimensions.get("window");
 const widthScale = width / 375;
@@ -66,7 +66,7 @@ export default class SwapMainHome extends React.Component {
 					/>
 				</View>
 				<View style={[styles.flexContainerChild, { flexDirection: "row", flex: 1 }]}>
-					<TouchableOpacity onPress={() => alert("Changing the app language is not currently supported.")} style={[styles.buttonContainer, { marginRight: width * 0.05 }]}>
+					<TouchableOpacity onPress={() => Alert.alert("Unsupported", "Changing the app language is not currently supported.")} style={[styles.buttonContainer, { marginRight: width * 0.05 }]}>
 						<Text style={styles.buttonText}>Language</Text>
 					</TouchableOpacity>
 					<TouchableOpacity onPress={() => { var defaultPage = Settings.select("defaultPage"); defaultPage.then((value) => { if (value != "Open Wallet") { Settings.insert("defaultPage", "Welcome"); } }).catch(); this.props.navigation.navigate("Welcome"); }} style={styles.buttonContainer}>

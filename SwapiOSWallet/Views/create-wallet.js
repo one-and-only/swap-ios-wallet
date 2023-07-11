@@ -11,49 +11,19 @@ export default class SwapCreateWallet extends React.Component {
 	constructor(props) {
 		super(props);
 
-		function create_wallet(props) {
-			fetch("https://wallet.getswap.eu/mobileapi/create_wallet").then(response => response.json()).then(new_wallet => {
-				var data = "{\"address\":\"" + new_wallet.wallet_address + "\",\"view_key\":\"" + new_wallet.viewKey_sec + "\",\"create_account\":true,\"generated_locally\":true}";
-				fetch(
-					"https://wallet.getswap.eu/api/login",
-					{
-						method: "POST",
-						headers: {
-							"Content-Type": "application/json"
-						},
-						body: data
-					}
-				).then(response => response.json())
-					.then(async (jsonResponse) => {
-						switch (jsonResponse.status) {
-						case "success":
-							switch (jsonResponse.new_address) {
-							case true:
-								await Settings.insert("spendKey_pub", new_wallet.spendKey_pub);
-								await Settings.insert("viewKey_pub", new_wallet.viewKey_pub);
-								await Settings.insert("spendKey_sec", new_wallet.spendKey_sec);
-								await Settings.insert("viewKey_sec", new_wallet.viewKey_sec);
-								await Settings.insert("mnemonic", new_wallet.mnemonic);
-								await Settings.insert("walletAddress", new_wallet.wallet_address);
-								await Settings.insert("defaultPage", "Wallet Home");
-								props.navigation.navigate("Wallet Home");
-								break;
-							case false:
-								create_wallet(); // recursion in case somehow we generated the same wallet as someone else
-								break;
-							}
-							break;
-						case "error":
-							alert("An error occured while creating a wallet. Please try again later.");
-							Settings.select("defaultPage").then(defaultPage => props.navigation.navigate(defaultPage));
-							break;
-						}
-					}).catch(err => { throw "Fatal error when creating a wallet:\n\n" + err + "\n\nPlease report this to our repository or Swap's Discord"; });
-			}).catch(() => {
-				Alert.alert("Error", "Failed to connect to our servers. Please check your internet connection and try again!");
-				props.navigation.navigate("Welcome");
-			});
+		async function create_wallet(props) {
+			const new_wallet = await (await fetch(process.env.MOBILE_WALLET_API_PREFIX)).json();
+
+			await Settings.insert("spendKey_pub", new_wallet.spendKey_pub);
+			await Settings.insert("viewKey_pub", new_wallet.viewKey_pub);
+			await Settings.insert("spendKey_sec", new_wallet.spendKey_sec);
+			await Settings.insert("viewKey_sec", new_wallet.viewKey_sec);
+			await Settings.insert("mnemonic", new_wallet.mnemonic);
+			await Settings.insert("walletAddress", new_wallet.wallet_address);
+			await Settings.insert("defaultPage", "Wallet Home");
+			props.navigation.navigate("Wallet Home");
 		}
+
 		create_wallet(this.props);
 	}
 

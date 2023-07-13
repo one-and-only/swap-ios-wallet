@@ -1,21 +1,4 @@
 SwapiOSWallet/android/app/src/main/assets/index.android.bundle
-SwapiOSWallet/android/app/src/main/res/drawable-hdpi/node_modules_reactnavigation_stack_src_views_assets_backicon.png
-SwapiOSWallet/android/app/src/main/res/drawable-mdpi/node_modules_reactnavigation_stack_src_views_assets_backicon.png
-SwapiOSWallet/android/app/src/main/res/drawable-mdpi/node_modules_reactnavigation_stack_src_views_assets_backiconmask.png
-SwapiOSWallet/android/app/src/main/res/drawable-mdpi/resources_images_addressbook.png
-SwapiOSWallet/android/app/src/main/res/drawable-mdpi/resources_images_headerlogo.png
-SwapiOSWallet/android/app/src/main/res/drawable-mdpi/resources_images_info.png
-SwapiOSWallet/android/app/src/main/res/drawable-mdpi/resources_images_logocirclewhitenofill.png
-SwapiOSWallet/android/app/src/main/res/drawable-mdpi/resources_images_maskot.png
-SwapiOSWallet/android/app/src/main/res/drawable-mdpi/resources_images_newwallet.png
-SwapiOSWallet/android/app/src/main/res/drawable-mdpi/resources_images_restorewallet.png
-SwapiOSWallet/android/app/src/main/res/drawable-mdpi/resources_images_worldflagsglobe.png
-SwapiOSWallet/android/app/src/main/res/drawable-xhdpi/node_modules_reactnavigation_stack_src_views_assets_backicon.png
-SwapiOSWallet/android/app/src/main/res/drawable-xxhdpi/node_modules_reactnavigation_stack_src_views_assets_backicon.png
-SwapiOSWallet/android/app/src/main/res/drawable-xxxhdpi/node_modules_reactnavigation_stack_src_views_assets_backicon.png
-SwapiOSWallet/android/app/src/main/res/raw/app.json
-SwapiOSWallet/android/app/src/main/res/raw/node_modules_reactnativevectoricons_glyphmaps_fontawesome5free_meta.json
-SwapiOSWallet/android/app/src/main/res/raw/node_modules_reactnativevectoricons_glyphmaps_fontawesome5free.json
-SwapiOSWallet/android/app/google-services.json
+SwapiOSWallet/android/app/src/main/res**
 
 .vscode**

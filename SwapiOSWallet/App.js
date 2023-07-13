@@ -27,8 +27,9 @@ import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 //Analytics
 import { logPageView } from "./Helpers/analytics";
+import DefaultStatusBar from "./Helpers/default-status-bar";
 
-const { width, height } = Dimensions.get("window");
+const { width } = Dimensions.get("window");
 const widthScale = width / 375;
 
 // normalize the input so that it scales evenly across devices
@@ -112,15 +113,16 @@ class Navigator extends React.Component {
 					this.routeNameRef.current = currentRouteName;
 				}}
 			>
-				<Stack.Navigator initialRouteName="Loading Screen">
-					<Stack.Screen name="Loading Screen" navigation={this.props.navigation} component={SwapLoadingScreen} options={this.options} />
-					<Stack.Screen name="Home" navigation={this.props.navigation} component={SwapMainHome} options={this.options} />
-					<Stack.Screen name="Welcome" navigation={this.props.navigation} component={SwapWelcome} options={this.options} />
-					<Stack.Screen name="Create Wallet" navigation={this.props.navigation} component={SwapCreateWallet} options={this.options} />
-					<Stack.Screen name="Restore Wallet From Keys" navigation={this.props.navigation} component={SwapRestoreWalletFromKeys} options={this.options} />
-					<Stack.Screen name="Restore Wallet From Mnemonic" navigation={this.props.navigation} component={SwapRestoreWalletFromMnemonic} options={this.options} />
-					<Stack.Screen name="Wallet Home" navigation={this.props.navigation} component={SwapWalletHome} options={this.options} />
-				</Stack.Navigator>
+					<DefaultStatusBar />
+					<Stack.Navigator initialRouteName="Loading Screen">
+						<Stack.Screen name="Loading Screen" navigation={this.props.navigation} component={SwapLoadingScreen} options={this.options} />
+						<Stack.Screen name="Home" navigation={this.props.navigation} component={SwapMainHome} options={this.options} />
+						<Stack.Screen name="Welcome" navigation={this.props.navigation} component={SwapWelcome} options={this.options} />
+						<Stack.Screen name="Create Wallet" navigation={this.props.navigation} component={SwapCreateWallet} options={this.options} />
+						<Stack.Screen name="Restore Wallet From Keys" navigation={this.props.navigation} component={SwapRestoreWalletFromKeys} options={this.options} />
+						<Stack.Screen name="Restore Wallet From Mnemonic" navigation={this.props.navigation} component={SwapRestoreWalletFromMnemonic} options={this.options} />
+						<Stack.Screen name="Wallet Home" navigation={this.props.navigation} component={SwapWalletHome} options={this.options} />
+					</Stack.Navigator>
 			</NavigationContainer>
 		);
 	}

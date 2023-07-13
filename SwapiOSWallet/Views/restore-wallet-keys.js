@@ -2,14 +2,10 @@ import * as React from "react";
 import { Dimensions, StyleSheet, Text, TextInput, TouchableOpacity, View, Alert } from "react-native";
 
 import * as Settings from "../Helpers/settings";
+import { normalize } from "../Helpers/gui";
 
 const { width, height } = Dimensions.get("window");
 const widthScale = width / 375;
-
-// normalize the input so that it scales evenly across devices
-function normalize(pre) {
-	return Math.floor(pre * widthScale);
-}
 
 const handleWalletAddress = (text) => {
 	Settings.insert("walletAddress", text);
@@ -62,11 +58,11 @@ export default class SwapRestoreWalletFromKeys extends React.Component {
 	render() {
 		return (
 			<View style={[styles.flexContainer, { backgroundColor: "#052344", flex: 1, }]}>
-				<View style={[styles.flexContainer, { flex: 8, marginTop: normalize(15), paddingTop: height * 0.1, }]}>
+				<View style={[styles.flexContainer, { flex: 8, marginTop: normalize(15, widthScale), paddingTop: height * 0.1, }]}>
 					<View style={[styles.flexContainerChild, { flex: 2, marginTop: height * 0.05, }]}>
 						<Text style={{ flexDirection: "row" }} onPress={() => this.props.navigation.navigate("Restore Wallet")}>
 							<View style={[styles.flexContainer, { flexDirection: "row", width: "90%", }]}>
-								<View style={{ flexDirection: "row", flexWrap: "wrap", marginLeft: normalize(20), }}>
+								<View style={{ flexDirection: "row", flexWrap: "wrap", marginLeft: normalize(20, widthScale), }}>
 									<Text style={styles.titleText}>Wallet Address</Text>
 								</View>
 							</View>
@@ -99,7 +95,7 @@ export default class SwapRestoreWalletFromKeys extends React.Component {
 						</TouchableOpacity>
 					</View>
 					<View style={[styles.flexContainerChild, { flex: 1, marginTop: height * 0.05, }]}>
-						<Text style={{ color: "white", alignSelf: "center", fontWeight: "700", fontSize: normalize(14) }}>
+						<Text style={{ color: "white", alignSelf: "center", fontWeight: "700", fontSize: normalize(14, widthScale) }}>
 						</Text>
 					</View>
 				</View>
@@ -139,12 +135,12 @@ const styles = StyleSheet.create({
 
 	textBox: {
 		color: "white",
-		fontSize: normalize(22),
+		fontSize: normalize(22, widthScale),
 		height: 45,
 	},
 
 	titleText: {
 		color: "white",
-		fontSize: normalize(30),
+		fontSize: normalize(30, widthScale),
 	},
 });

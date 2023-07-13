@@ -28,14 +28,10 @@ import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 //Analytics
 import { logPageView } from "./Helpers/analytics";
 import DefaultStatusBar from "./Helpers/default-status-bar";
+import { normalize } from "./Helpers/gui";
 
 const { width } = Dimensions.get("window");
 const widthScale = width / 375;
-
-// normalize the input so that it scales evenly across devices
-function normalize(pre) {
-	return Math.floor(pre * widthScale);
-}
 
 class Navigator extends React.Component {
 
@@ -64,8 +60,8 @@ class Navigator extends React.Component {
 
 		const headerLeft = () => {
 			return (
-				<TouchableOpacity onPress={() => { Alert.alert("About", "Swap Mobile Wallet v1.1.0\n©2021 Antonios Papadakis"); }}>
-					<FontAwesome5 style={styles.infoIcon} size={normalize(30)} name={"info-circle"} color={"white"} />
+				<TouchableOpacity onPress={() => { Alert.alert("About", "Swap Mobile Wallet v1.1.0\n©2023 Antonios Papadakis"); }}>
+					<FontAwesome5 style={styles.infoIcon} size={normalize(30, widthScale)} name={"info-circle"} color={"white"} />
 				</TouchableOpacity>
 			);
 		};
@@ -133,15 +129,15 @@ const styles = StyleSheet.create({
 	centerText: {
 		color: "#fff",
 		fontFamily: "VerbLight",
-		fontSize: normalize(30),
+		fontSize: normalize(30, widthScale),
 		fontWeight: "normal",
 	},
 	infoIcon: {
-		marginLeft: normalize(30),
+		marginLeft: normalize(30, widthScale),
 	},
 	swapLogo: {
-		height: normalize(30),
-		width: normalize(30),
+		height: normalize(30, widthScale),
+		width: normalize(30, widthScale),
 	},
 });
 export default Navigator;

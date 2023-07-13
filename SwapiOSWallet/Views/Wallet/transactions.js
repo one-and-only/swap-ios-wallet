@@ -2,16 +2,12 @@ import * as React from "react";
 import { Dimensions, Text, View, StyleSheet, TouchableOpacity, Image, Alert, FlatList } from "react-native";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import { select, insert } from "../../Helpers/settings";
+import { normalize } from "../../Helpers/gui";
 import * as Progress from 'react-native-progress';
 import Promise from "bluebird";
 
 const { width, height } = Dimensions.get("window");
 const widthScale = width / 375;
-
-// normalize the input so that it scales evenly across devices
-function normalize(pre) {
-	return Math.floor(pre * widthScale);
-}
 
 // styles need to be defined before
 // dynamic generation of rows
@@ -24,16 +20,16 @@ const styles = StyleSheet.create({
 	},
 
 	titleText: {
-		paddingTop: normalize(5),
+		paddingTop: normalize(5, widthScale),
 		color: "white",
-		fontSize: normalize(25),
+		fontSize: normalize(25, widthScale),
 		fontWeight: "bold",
 		textAlign: "center",
 	},
 
 	item: {
-		marginTop: normalize(10),
-		fontSize: normalize(22),
+		marginTop: normalize(10, widthScale),
+		fontSize: normalize(22, widthScale),
 		height: 44,
 	},
 
@@ -42,16 +38,16 @@ const styles = StyleSheet.create({
 	},
 
 	swapCurrencyLogo: {
-		height: normalize(22),
-		width: normalize(22),
+		height: normalize(22, widthScale),
+		width: normalize(22, widthScale),
 	},
 
 	statusText: {
 		textAlign: "center",
 		color: "white",
-		fontSize: normalize(18),
-		marginTop: normalize(10),
-		marginBottom: normalize(10),
+		fontSize: normalize(18, widthScale),
+		marginTop: normalize(10, widthScale),
+		marginBottom: normalize(10, widthScale),
 	},
 });
 
@@ -66,8 +62,8 @@ export default class SwapTransactions extends React.Component {
 		const directionIcon = (transaction.receiving) ? "arrow-down" : "arrow-up";
 		return (
 			<TouchableOpacity key={transaction.hash} style={styles.row} onPress={() => this.props.navigation.navigate("Transaction Details", { hash: transaction.hash, amount: transaction.amount, timestamp: transaction.timestamp, block: transaction.height, size: transaction.size, fee: transaction.fee, version: transaction.version, confirmations: transaction.confirmations, pubKey: transaction.pubKey, ringCT_type: transaction.ringct_info })}>
-				<Text style={[styles.item, { color: txColor, }]}><FontAwesome5 size={normalize(18)} name={"calendar-day"} color={txColor} solid />  {date}</Text>
-				<Text style={[styles.item, { marginLeft: width * 0.15, color: txColor, }]}><FontAwesome5 size={normalize(18)} name={directionIcon} color={txColor} solid /> <Image source={require("../../Resources/Images/logo-circle-white-nofill.png")} style={styles.swapCurrencyLogo} /> {transaction.amount}</Text>
+				<Text style={[styles.item, { color: txColor, }]}><FontAwesome5 size={normalize(18, widthScale)} name={"calendar-day"} color={txColor} solid />  {date}</Text>
+				<Text style={[styles.item, { marginLeft: width * 0.15, color: txColor, }]}><FontAwesome5 size={normalize(18, widthScale)} name={directionIcon} color={txColor} solid /> <Image source={require("../../Resources/Images/logo-circle-white-nofill.png")} style={styles.swapCurrencyLogo} /> {transaction.amount}</Text>
 			</TouchableOpacity>
 		);
 	}

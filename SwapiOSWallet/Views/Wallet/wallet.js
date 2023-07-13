@@ -1,19 +1,13 @@
-// TODO: Clear all intervals in `componentWillUnmount` to avoid minor memory leak
-
 import * as React from "react";
 import { Dimensions, Text, View, StyleSheet, Image, Alert, } from "react-native";
 
 import * as Settings from "../../Helpers/settings";
 import { walletSynced } from "../../Helpers/blockchain";
+import { normalize } from "../../Helpers/gui";
 
 const { width, height } = Dimensions.get("window");
 const widthScale = width / 375;
 const au_to_xwp = 1000000000000; // 1,000,000,000,000 atomic units in one XWP (like XMR)
-
-// normalize the input so that it scales evenly across devices
-function normalize(pre) {
-	return Math.floor(pre * widthScale);
-}
 
 async function refreshWalletSearchThread() {
 	// every 1 minute, send a "heartbeat" to the web wallet
@@ -175,11 +169,11 @@ export default class SwapWallet extends React.Component {
 				<View style={styles.balanceContainer}>
 					<View style={[styles.balanceChildContainer, { paddingTop: height * 0.03, }]}>
 						<Text numberOfLines={1} style={styles.balanceText}>Unlocked: {this.state.total_unlocked_balance}</Text>
-						<Image style={[styles.balanceImage, { marginLeft: normalize(5), }]} source={require("../../Resources/Images/logo-circle-white-nofill.png")} />
+						<Image style={[styles.balanceImage, { marginLeft: normalize(5, widthScale), }]} source={require("../../Resources/Images/logo-circle-white-nofill.png")} />
 					</View>
-					<View style={[styles.balanceChildContainer, { marginTop: normalize(15), }]}>
+					<View style={[styles.balanceChildContainer, { marginTop: normalize(15, widthScale), }]}>
 						<Text numberOfLines={1} style={styles.balanceText}>Total: {this.state.total_balance}</Text>
-						<Image style={[styles.balanceImage, { marginLeft: normalize(5), }]} source={require("../../Resources/Images/logo-circle-white-nofill.png")} />
+						<Image style={[styles.balanceImage, { marginLeft: normalize(5, widthScale), }]} source={require("../../Resources/Images/logo-circle-white-nofill.png")} />
 					</View>
 				</View>
 			</View>
@@ -199,13 +193,13 @@ const styles = StyleSheet.create({
 	},
 
 	balanceImage: {
-		height: normalize(22),
-		width: normalize(22),
+		height: normalize(22, widthScale),
+		width: normalize(22, widthScale),
 	},
 
 	balanceText: {
 		color: "white",
-		fontSize: normalize(18),
+		fontSize: normalize(18, widthScale),
 		maxWidth: width * 0.8,
 	}
 });

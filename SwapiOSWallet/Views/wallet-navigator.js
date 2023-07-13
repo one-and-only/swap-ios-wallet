@@ -13,43 +13,39 @@ import SwapSettings from "./Wallet/settings";
 import SwapWalletInfo from "./Wallet/info";
 import SwapTransactionInfo from "./Wallet/transaction-info";
 import { logPageView } from "../Helpers/analytics";
+import { normalize } from "../Helpers/gui";
 
 const { width, height } = Dimensions.get("window");
 const widthScale = width / 375;
 
-// normalize the input so that it scales evenly across devices
-function normalize(pre) {
-	return Math.floor(pre * widthScale);
-}
-
 const walletOptions = {
 	tabBarIcon: ({ color }) => (
-		<FontAwesome5 size={normalize(30)} name={"wallet"} color={color} solid />
+		<FontAwesome5 size={normalize(30, widthScale)} name={"wallet"} color={color} solid />
 	),
 };
 
 const transactionsOptions = {
 	title: "TXs",
 	tabBarIcon: ({ color }) => (
-		<FontAwesome5 size={normalize(30)} name={"exchange-alt"} color={color} solid />
+		<FontAwesome5 size={normalize(30, widthScale)} name={"exchange-alt"} color={color} solid />
 	),
 };
 
 const sendOptions = {
 	tabBarIcon: ({ color }) => (
-		<FontAwesome5 size={normalize(30)} name={"paper-plane"} color={color} solid />
+		<FontAwesome5 size={normalize(30, widthScale)} name={"paper-plane"} color={color} solid />
 	),
 };
 
 const settingsOptions = {
 	tabBarIcon: ({ color }) => (
-		<FontAwesome5 size={normalize(30)} name={"cogs"} color={color} solid />
+		<FontAwesome5 size={normalize(30, widthScale)} name={"cogs"} color={color} solid />
 	),
 };
 
 const infoOptions = {
 	tabBarIcon: ({ color }) => (
-		<FontAwesome5 size={normalize(30)} name={"address-book"} color={color} solid />
+		<FontAwesome5 size={normalize(30, widthScale)} name={"address-book"} color={color} solid />
 	),
 };
 
@@ -57,12 +53,12 @@ const navigatorOptions = {
 	activeTintColor: "#a260f8",
 	inactiveTintColor: "#AEAEAE",
 	labelStyle: {
-		fontSize: normalize(15),
+		fontSize: normalize(15, widthScale),
 	},
 	style: {
 		backgroundColor: "#052344",
 		height: height * 0.12,
-		paddingRight: normalize(10),
+		paddingRight: normalize(10, widthScale),
 	}
 };
 

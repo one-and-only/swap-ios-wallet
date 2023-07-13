@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as Settings from "../Helpers/settings";
 import { View, Text, StyleSheet, Animated, Easing, Dimensions, Alert, TouchableOpacity, } from "react-native";
+import { normalize } from "../Helpers/gui";
 
 const { width, height } = Dimensions.get("window");
 const widthScale = width / 375;
@@ -24,14 +25,7 @@ export default class SwapMainHome extends React.Component {
 		)).start();
 	}
 
-	// normalize the input so that it scales evenly across devices
-	normalize(pre, scale) {
-		return Math.floor(pre * scale);
-	}
-
-	// return the page data to display
 	render() {
-		// map animation 0-1 range to CSS 0-360 deg range
 		const spin = this.state.spinAnim.interpolate({
 			inputRange: [0, 1],
 			outputRange: ["0deg", "360deg"],
@@ -43,8 +37,8 @@ export default class SwapMainHome extends React.Component {
 					<Text
 						style={{
 							color: "white",
-							marginTop: "0%",
-							fontSize: this.normalize(14, widthScale),
+							marginTop: 0,
+							fontSize: normalize(14, widthScale),
 							flexWrap: "wrap",
 							marginBottom: height * 0.05,
 							textAlign: "center",
@@ -57,8 +51,8 @@ export default class SwapMainHome extends React.Component {
 					<Animated.Image
 						source={require("../Resources/Images/world-flags-globe.png")}
 						style={{
-							maxWidth: this.normalize(350, widthScale),
-							maxHeight: this.normalize(344, widthScale),
+							maxWidth: normalize(350, widthScale),
+							maxHeight: normalize(344, widthScale),
 							resizeMode: "stretch",
 							transform: [{ rotate: spin }],
 							marginBottom: height * 0.05
@@ -74,8 +68,8 @@ export default class SwapMainHome extends React.Component {
 					</TouchableOpacity>
 				</View>
 				<View style={[styles.flexContainerChild, { flex: 1 }]}>
-					<Text style={{ color: "white", alignSelf: "center", fontWeight: "700", fontSize: this.normalize(14, widthScale) }}>
-						©2021 Antonios Papadakis
+					<Text style={{ color: "white", alignSelf: "center", fontWeight: "700", fontSize: normalize(14, widthScale) }}>
+						©2023 Antonios Papadakis
 					</Text>
 				</View>
 			</View>

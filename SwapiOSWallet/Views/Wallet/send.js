@@ -3,16 +3,12 @@ import { Dimensions, Text, View, StyleSheet, TextInput, Image, TouchableOpacity,
 import * as Progress from "react-native-progress";
 
 import * as Settings from "../../Helpers/settings";
+import { normalize } from "../../Helpers/gui";
 
 const { width, height } = Dimensions.get("window");
 const widthScale = width / 375;
 var auToSend = "";
 var addressToSendTo = "";
-
-// normalize the input so that it scales evenly across devices
-function normalize(pre) {
-	return Math.floor(pre * widthScale);
-}
 
 const handleAmount = (text) => {
 	auToSend = text;
@@ -108,18 +104,18 @@ export default class SwapSend extends React.Component {
 		return (
 			<View style={styles.mainView}>
 				<View style={{ flex: 3 }}>
-					<View style={{ flexDirection: "row", marginTop: normalize(10), }}>
+					<View style={{ flexDirection: "row", marginTop: normalize(10, widthScale), }}>
 						<Text style={styles.text}>Amount:</Text>
-						<View style={[styles.flexContainerChild, { marginLeft: normalize(10), }]}>
+						<View style={[styles.flexContainerChild, { marginLeft: normalize(10, widthScale), }]}>
 							<TextInput style={[styles.text, styles.textBox]} underlineColorAndroid='transparent' placeholder='Amount' placeholderTextColor='#c9c9c9' autoCapitalize='none' keyboardType='decimal-pad' onChangeText={handleAmount}></TextInput>
-							<Image style={[styles.balanceImage, { marginLeft: normalize(5), marginTop: normalize(5), }]} source={require("../../Resources/Images/logo-circle-white-nofill.png")} />
+							<Image style={[styles.balanceImage, { marginLeft: normalize(5, widthScale), marginTop: normalize(5, widthScale), }]} source={require("../../Resources/Images/logo-circle-white-nofill.png")} />
 						</View>
 					</View>
-					<View style={{ flexDirection: "row", marginTop: normalize(15), }}>
+					<View style={{ flexDirection: "row", marginTop: normalize(15, widthScale), }}>
 						<Text style={styles.text}>Address:</Text>
-						<View style={[styles.flexContainerChild, { marginLeft: normalize(10), }]}>
+						<View style={[styles.flexContainerChild, { marginLeft: normalize(10, widthScale), }]}>
 							<TextInput style={[styles.text, styles.textBox]} underlineColorAndroid='transparent' placeholder='Address' placeholderTextColor='#c9c9c9' autoCapitalize='none' keyboardType='ascii-capable' onChangeText={handleAddress}></TextInput>
-							<Image style={[styles.addressImage, { marginLeft: normalize(5), marginTop: normalize(7), marginBottom: normalize(3), }]} source={require("../../Resources/Images/address-book.png")} />
+							<Image style={[styles.addressImage, { marginLeft: normalize(5, widthScale), marginTop: normalize(7, widthScale), marginBottom: normalize(3, widthScale), }]} source={require("../../Resources/Images/address-book.png")} />
 						</View>
 					</View>
 				</View>
@@ -142,12 +138,12 @@ export default class SwapSend extends React.Component {
 
 const styles = StyleSheet.create({
 	addressImage: {
-		height: normalize(22),
-		width: normalize(24.68),
+		height: normalize(22, widthScale),
+		width: normalize(24.68, widthScale),
 	},
 	balanceImage: {
-		height: normalize(22),
-		width: normalize(22),
+		height: normalize(22, widthScale),
+		width: normalize(22, widthScale),
 	},
 
 	buttonContainer: {
@@ -162,7 +158,7 @@ const styles = StyleSheet.create({
 	buttonText: {
 		alignSelf: "center",
 		color: "#fff",
-		fontSize: normalize(18),
+		fontSize: normalize(18, widthScale),
 		fontWeight: "700",
 	},
 
@@ -182,14 +178,14 @@ const styles = StyleSheet.create({
 
 	statusText: {
 		color: "white",
-		fontSize: normalize(18),
-		margin: normalize(12),
+		fontSize: normalize(18, widthScale),
+		margin: normalize(12, widthScale),
 		textAlign: "center",
 	},
 
 	text: {
 		color: "white",
-		fontSize: normalize(22),
+		fontSize: normalize(22, widthScale),
 	},
 
 	textBox: {

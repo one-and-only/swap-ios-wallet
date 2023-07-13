@@ -3,13 +3,10 @@ import { View, Dimensions, StyleSheet, Text, ScrollView, TouchableOpacity, } fro
 
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
+import { normalize } from "../../Helpers/gui";
+
 const { width, height } = Dimensions.get("window");
 const widthScale = width / 375;
-
-// normalize the input so that it scales evenly across devices
-function normalize(pre) {
-	return Math.floor(pre * widthScale);
-}
 
 // initializing a simple letiable to store
 // route parameters means less typing + cleaner code
@@ -48,16 +45,16 @@ export default class SwapTransactionInfo extends React.Component {
 		return (
 			<ScrollView contentContainerStyle={styles.mainView}>
 				<View style={[styles.propertyContainer, styles.text]}>
-					<Text style={[styles.propertyText, styles.text]}><FontAwesome5 size={normalize(18)} name={"calendar-day"} color={"white"} solid /> TX Date (Local): <Text style={{ color: "lime" }}>{_txdate}</Text></Text>
-					<Text style={[styles.propertyText, styles.text]}><FontAwesome5 size={normalize(18)} name={"cube"} color={"white"} solid /> Block: <Text style={{ color: "lime" }}>{params.block}</Text></Text>
-					<Text style={[styles.propertyText, styles.text]}><FontAwesome5 size={normalize(18)} name={"code-branch"} color={"white"} solid /> Tx Version: <Text style={{ color: "lime" }}>{params.version}</Text></Text>
-					<Text style={[styles.propertyText, styles.text]}><FontAwesome5 size={normalize(18)} name={"file-invoice-dollar"} color={"white"} solid /> Fee: <Text style={{ color: "lime" }}>{params.fee}</Text></Text>
-					<Text style={[styles.propertyText, styles.text]}><FontAwesome5 size={normalize(18)} name={"handshake"} color={"white"} solid /> # Of Confirmations: <Text style={{ color: confirmationColor }}>{params.confirmations}</Text>{confirmationWarning}</Text>
-					<Text style={[styles.propertyText, styles.text]}><FontAwesome5 size={normalize(18)} name={"clock"} color={"white"} solid /> Age: <Text style={{ color: "lime" }}>{_txage}</Text></Text>
-					<Text style={[styles.propertyText, styles.text]}><FontAwesome5 size={normalize(18)} name={"hdd"} color={"white"} solid /> Size: <Text style={{ color: "lime" }}>{params.size} kB</Text></Text>
-					<Text style={[styles.propertyText, styles.text]}><FontAwesome5 size={normalize(18)} name={"shield-alt"} color={"white"} solid /> RingCT/type: <Text style={{ color: "lime" }}>{params.ringCT_type}</Text></Text>
+					<Text style={[styles.propertyText, styles.text]}><FontAwesome5 size={normalize(18, widthScale)} name={"calendar-day"} color={"white"} solid /> TX Date (Local): <Text style={{ color: "lime" }}>{_txdate}</Text></Text>
+					<Text style={[styles.propertyText, styles.text]}><FontAwesome5 size={normalize(18, widthScale)} name={"cube"} color={"white"} solid /> Block: <Text style={{ color: "lime" }}>{params.block}</Text></Text>
+					<Text style={[styles.propertyText, styles.text]}><FontAwesome5 size={normalize(18, widthScale)} name={"code-branch"} color={"white"} solid /> Tx Version: <Text style={{ color: "lime" }}>{params.version}</Text></Text>
+					<Text style={[styles.propertyText, styles.text]}><FontAwesome5 size={normalize(18, widthScale)} name={"file-invoice-dollar"} color={"white"} solid /> Fee: <Text style={{ color: "lime" }}>{params.fee}</Text></Text>
+					<Text style={[styles.propertyText, styles.text]}><FontAwesome5 size={normalize(18, widthScale)} name={"handshake"} color={"white"} solid /> # Of Confirmations: <Text style={{ color: confirmationColor }}>{params.confirmations}</Text>{confirmationWarning}</Text>
+					<Text style={[styles.propertyText, styles.text]}><FontAwesome5 size={normalize(18, widthScale)} name={"clock"} color={"white"} solid /> Age: <Text style={{ color: "lime" }}>{_txage}</Text></Text>
+					<Text style={[styles.propertyText, styles.text]}><FontAwesome5 size={normalize(18, widthScale)} name={"hdd"} color={"white"} solid /> Size: <Text style={{ color: "lime" }}>{params.size} kB</Text></Text>
+					<Text style={[styles.propertyText, styles.text]}><FontAwesome5 size={normalize(18, widthScale)} name={"shield-alt"} color={"white"} solid /> RingCT/type: <Text style={{ color: "lime" }}>{params.ringCT_type}</Text></Text>
 				</View>
-				<View style={{ marginTop: normalize(height * 0.16) }}></View>
+				<View style={{ marginTop: normalize(height * 0.16, widthScale) }}></View>
 				<TouchableOpacity onPress={() => this.props.navigation.navigate("Transactions")} style={styles.buttonContainer}>
 					<Text style={styles.buttonText}>Show All Transactions</Text>
 				</TouchableOpacity>
@@ -96,8 +93,8 @@ const styles = StyleSheet.create({
 	},
 
 	propertyText: {
-		fontSize: normalize(20),
-		margin: normalize(10),
+		fontSize: normalize(20, widthScale),
+		margin: normalize(10, widthScale),
 	},
 
 	text: {

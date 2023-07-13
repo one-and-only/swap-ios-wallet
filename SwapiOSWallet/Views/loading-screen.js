@@ -2,8 +2,8 @@ import * as React from "react";
 import { Dimensions, View } from "react-native";
 import * as Progress from "react-native-progress";
 import { logActionError, logAppLaunch } from "../Helpers/analytics";
-
 import * as Settings from "../Helpers/settings";
+import { normalize } from "../Helpers/gui";
 
 const { width, height } = Dimensions.get("window");
 const widthScale = width / 375;
@@ -29,15 +29,10 @@ export default class SwapLoadingScreen extends React.Component {
 		});
 	}
 
-	// normalize the input so that it scales evenly across devices
-	normalize(pre) {
-		return Math.floor(pre * widthScale);
-	}
-
 	render() {
 		return (
 			<View style={{ backgroundColor: "#052344", paddingBottom: height * 0.5, }}>
-				<Progress.CircleSnail size={this.normalize(300)} indeterminate={true} color={["#22b6f2", "#a260f8"]} indeterminateAnimationDuration='500' style={{ marginTop: height * 0.2 }} />
+				<Progress.CircleSnail size={normalize(300, widthScale)} indeterminate={true} color={["#22b6f2", "#a260f8"]} indeterminateAnimationDuration='500' style={{ marginTop: height * 0.2 }} />
 			</View>
 		);
 	}

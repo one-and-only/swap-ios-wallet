@@ -27,15 +27,10 @@ export default class SwapCreateWallet extends React.Component {
 		create_wallet(this.props);
 	}
 
-	// normalize the input so that it scales evenly across devices
-	normalize(pre) {
-		return Math.floor(pre * widthScale);
-	}
-
 	render() {
 		return (
 			<View style={{ backgroundColor: "#052344", paddingBottom: height * 0.5, }}>
-				<Progress.CircleSnail size={this.normalize(300)} indeterminate={true} color={["#22b6f2", "#a260f8"]} indeterminateAnimationDuration='500' style={{ marginTop: height * 0.2 }} />
+				<Progress.CircleSnail size={this.normalize(300, widthScale)} indeterminate={true} color={["#22b6f2", "#a260f8"]} indeterminateAnimationDuration='500' style={{ marginTop: height * 0.2 }} />
 			</View>
 		);
 	}

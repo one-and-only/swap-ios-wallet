@@ -3,14 +3,10 @@ import { Dimensions, Text, View, ScrollView, StyleSheet, TextInput, Switch, Touc
 import RNRestart from "react-native-restart";
 
 import * as Settings from "../../Helpers/settings";
+import { normalize } from "../../Helpers/gui";
 
 const { width } = Dimensions.get("window");
 const widthScale = width / 375;
-
-// normalize the input so that it scales evenly across devices
-function normalize(pre) {
-	return Math.floor(pre * widthScale);
-}
 
 const handleSpendKeySec = (text) => {
 	Settings.insert("spendKey_sec", text);
@@ -70,21 +66,21 @@ export default class SwapSettings extends React.Component {
 	render() {
 		return (
 			<ScrollView contentContainerStyle={styles.mainView}>
-				<View style={{ flexDirection: "row", marginTop: normalize(10), }}>
+				<View style={{ flexDirection: "row", marginTop: normalize(10, widthScale), }}>
 					<Text style={styles.text}>Spend Key (Private):</Text>
-					<View style={[styles.flexContainerChild, { marginLeft: normalize(10), }]}>
+					<View style={[styles.flexContainerChild, { marginLeft: normalize(10, widthScale), }]}>
 						<TextInput style={[styles.text, styles.textBox]} underlineColorAndroid='transparent' placeholder='Spend Key (Private)' placeholderTextColor='#c9c9c9' defaultValue={this.state.spendKey_sec} autoCapitalize='none' onChangeText={handleSpendKeySec}></TextInput>
 					</View>
 				</View>
-				<View style={{ flexDirection: "row", marginTop: normalize(10), }}>
+				<View style={{ flexDirection: "row", marginTop: normalize(10, widthScale), }}>
 					<Text style={styles.text}>Spend Key (Public):</Text>
-					<View style={[styles.flexContainerChild, { marginLeft: normalize(10), }]}>
+					<View style={[styles.flexContainerChild, { marginLeft: normalize(10, widthScale), }]}>
 						<TextInput style={[styles.text, styles.textBox]} underlineColorAndroid='transparent' placeholder='Spend Key (Public)' placeholderTextColor='#c9c9c9' defaultValue={this.state.spendKey_pub} autoCapitalize='none' onChangeText={handleSpendKeyPub}></TextInput>
 					</View>
 				</View>
-				<View style={{ flexDirection: "row", marginTop: normalize(10), }}>
+				<View style={{ flexDirection: "row", marginTop: normalize(10, widthScale), }}>
 					<Text style={styles.text}>Enable Analytics:</Text>
-					<View style={[styles.flexContainerChild, { marginLeft: normalize(10), }]}>
+					<View style={[styles.flexContainerChild, { marginLeft: normalize(10, widthScale), }]}>
 						<Switch
 							trackColor={{ false: "#767577", true: "#55a1f3" }}
 							thumbColor={this.state.enableAnalytics ? "#a065fa" : "#a065fa"}
@@ -94,7 +90,7 @@ export default class SwapSettings extends React.Component {
 						/>
 					</View>
 				</View>
-				<View style={{ flexDirection: "row", marginTop: normalize(10), alignSelf: "center", }}>
+				<View style={{ flexDirection: "row", marginTop: normalize(10, widthScale), alignSelf: "center", }}>
 					<TouchableOpacity style={styles.buttonContainer} onPress={logout}><Text style={[styles.text, { color: "white" }]}>Logout</Text></TouchableOpacity>
 				</View>
 			</ScrollView>
@@ -115,12 +111,12 @@ const styles = StyleSheet.create({
 		backgroundColor: "#052344",
 		display: "flex",
 		flex: 1,
-		paddingLeft: normalize(10),
+		paddingLeft: normalize(10, widthScale),
 	},
 
 	text: {
 		color: "white",
-		fontSize: normalize(18),
+		fontSize: normalize(18, widthScale),
 	},
 
 	textBox: {

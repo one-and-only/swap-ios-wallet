@@ -3,6 +3,7 @@ import { Alert, Dimensions, View } from "react-native";
 import * as Progress from "react-native-progress";
 
 import * as Settings from "../Helpers/settings";
+import { normalize } from "../Helpers/gui";
 
 const { width, height } = Dimensions.get("window");
 const widthScale = width / 375;

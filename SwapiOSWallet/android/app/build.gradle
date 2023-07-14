@@ -141,7 +141,7 @@ android {
         versionCode 1100
         versionName "1.1.0"
         minSdkVersion 21
-        targetSdkVersion 33
+        targetSdkVersion 34
     }
     splits {
         abi {
@@ -159,12 +159,6 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
-        release {
-            storeFile file('android-prod.keystore')
-            storePassword 'mav8tsC9BmUjZz'
-            keyAlias 'production'
-            keyPassword 'mav8tsC9BmUjZz'
-        }
     }
     buildFeatures {
         buildConfig true
@@ -179,7 +173,6 @@ android {
             }
         }
         release {
-            signingConfig signingConfigs.release
             shrinkResources true
             minifyEnabled true
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"

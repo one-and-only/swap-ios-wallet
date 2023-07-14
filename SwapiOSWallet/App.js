@@ -44,7 +44,7 @@ class Navigator extends React.Component {
 	options() {
 		const headerRight = () => {
 			return (
-				<TouchableOpacity onPress={() => { Linking.openURL("https://swap.foundation"); }}>
+				<TouchableOpacity onPress={() => { Linking.openURL("https://getswap.eu"); }}>
 					<Image
 						source={require("./Resources/Images/maskot.png")}
 						style={{

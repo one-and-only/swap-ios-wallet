@@ -37,24 +37,17 @@ export default class SwapRestoreWalletFromMnemonic extends React.Component {
 								"Content-Type": "application/json"
 							},
 							body: data
-						}).then((res) => res.json().then((loginResponseJson) => {
+						}).then((res) => res.json().then(async (loginResponseJson) => {
 							switch (loginResponseJson.status) {
 							case "success":
-								Settings.insert("defaultPage", "Wallet Home").then(() => {
-									Settings.insert("spendKey_pub", walletDataJson.wallet.pub_spendKey_string).then(() => {
-										Settings.insert("viewKey_pub", walletDataJson.wallet.pub_viewKey_string).then(() => {
-											Settings.insert("walletAddress", walletDataJson.wallet.address_string).then(() => {
-												Settings.insert("spendKey_sec", walletDataJson.wallet.sec_spendKey_string).then(() => {
-													Settings.insert("viewKey_sec", walletDataJson.wallet.sec_viewKey_string).then(() => {
-														Settings.insert("mnemonic", mnemonic).then(() => {
-															this.props.navigation.navigate("Wallet Home");
-														});
-													});
-												});
-											});
-										});
-									});
-								});
+								await Settings.insert("spendKey_pub", new_wallet.spendKey_pub);
+								await Settings.insert("viewKey_pub", new_wallet.viewKey_pub);
+								await Settings.insert("spendKey_sec", new_wallet.spendKey_sec);
+								await Settings.insert("viewKey_sec", new_wallet.viewKey_sec);
+								await Settings.insert("mnemonic", new_wallet.mnemonic);
+								await Settings.insert("walletAddress", new_wallet.wallet_address);
+								await Settings.insert("defaultPage", "Wallet Home");
+								props.navigation.navigate("Wallet Home");
 								break;
 							case "error":
 								alert("Login Error. Check your address and private key");

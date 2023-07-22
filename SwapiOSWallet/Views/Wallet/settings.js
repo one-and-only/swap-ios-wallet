@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Dimensions, Text, View, ScrollView, StyleSheet, TextInput, Switch, TouchableOpacity, Alert } from "react-native";
+import { Dimensions, Text, View, ScrollView, StyleSheet, Switch, TouchableOpacity, Alert } from "react-native";
 import RNRestart from "react-native-restart";
 
 import * as Settings from "../../Helpers/settings";
@@ -8,12 +8,6 @@ import { normalize } from "../../Helpers/gui";
 const { width } = Dimensions.get("window");
 const widthScale = width / 375;
 
-const handleSpendKeySec = (text) => {
-	Settings.insert("spendKey_sec", text);
-};
-const handleSpendKeyPub = (text) => {
-	Settings.insert("spendKey_pub", text);
-};
 const handleEnableAnalytics = (bool) => {
 	Settings.insert("enableAnalytics", JSON.stringify(bool));
 };

@@ -7,78 +7,45 @@ import { normalize } from "../Helpers/gui";
 const { width, height } = Dimensions.get("window");
 const widthScale = width / 375;
 
-const handleMnemonic = (text) => {
-	Settings.insert("mnemonic", text);
-};
+async function handleMnemonic(text) {
+	await Settings.insert("mnemonic", text);
+}
 
 export default class SwapRestoreWalletFromMnemonic extends React.Component {
 	constructor(props) {
 		super(props);
 	}
 
-	mnemonicLogin() {
-		Settings.select("mnemonic").then((mnemonic) => {
-			if (mnemonic) {
-				fetch("https://wallet.getswap.eu/mobileapi/login_with_mnemonic", {
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify({
-						mnemonic: mnemonic,
-						nettype: 0,
-					}),
-				}).then((res) => res.json().then((walletDataJson) => {
-					if (walletDataJson.success) {
-						let data = "{\"withCredentials\":true,\"address\":\"" + walletDataJson.wallet.address_string + "\",\"view_key\":\"" + walletDataJson.wallet.sec_viewKey_string + "\",\"create_account\":true,\"generated_locally\":false}";
-						fetch("https://wallet.getswap.eu/api/login", {
-							method: "POST",
-							headers: {
-								"Content-Type": "application/json"
-							},
-							body: data
-						}).then((res) => res.json().then(async (loginResponseJson) => {
-							switch (loginResponseJson.status) {
-							case "success":
-								await Settings.insert("spendKey_pub", new_wallet.spendKey_pub);
-								await Settings.insert("viewKey_pub", new_wallet.viewKey_pub);
-								await Settings.insert("spendKey_sec", new_wallet.spendKey_sec);
-								await Settings.insert("viewKey_sec", new_wallet.viewKey_sec);
-								await Settings.insert("mnemonic", new_wallet.mnemonic);
-								await Settings.insert("walletAddress", new_wallet.wallet_address);
-								await Settings.insert("defaultPage", "Wallet Home");
-								props.navigation.navigate("Wallet Home");
-								break;
-							case "error":
-								alert("Login Error. Check your address and private key");
-								break;
-							default:
-								alert("Login Error. Check your address and private key");
-							}
-						}));
-					} else {
-						switch (walletDataJson.err_msg) {
-						case "Invalid 25-word mnemonic":
-							alert("Invalid 25-word mnemonic");
-							break;
-						case "Please enter a 25- or 13-word secret mnemonic.":
-							alert("Please enter a 25- or 13-word secret mnemonic");
-							break;
-						case "Invalid 13-word mnemonic":
-							alert("Invalid 13-word mnemonic");
-							break;
-						default:
-							alert("An unknown error occured while verifying your Mnemonic. Please try again.");
-							break;
-						}
-					}
-				})).catch(() => {
-					Alert.alert("Error", "Failed to connect to our servers. Please check your internet connection and try again.");
-				});
-			} else {
-				Alert.alert("Error", "Please enter a 13 or 25-word mnemonic");
-			}
-		});
+	async mnemonicLogin() {
+		const mnemonic = await Settings.select("mnemonic");
+
+		if (!mnemonic) {
+			Alert.alert("Error", "Please enter your mnemonic");
+			return;
+		}
+
+		const response = await (await fetch(`${MOBILE_WALLET_API_PREFIX}/restore_from_mnemonic`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				mnemonic: mnemonic
+			})
+		})).json();
+
+		if (!response.success) {
+			Alert.alert("Error", "Invalid mnemonic");
+			return;
+		}
+
+		await Settings.insert("spendKey_pub", response.public_spend_key);
+		await Settings.insert("viewKey_pub", response.public_view_key);
+		await Settings.insert("spendKey_sec", response.private_spend_key);
+		await Settings.insert("viewKey_sec", response.private_view_key);
+		await Settings.insert("walletAddress", response.address);
+		await Settings.insert("defaultPage", "Wallet Home");
+		props.navigation.navigate("Wallet Home");
 	}
 
 	render() {

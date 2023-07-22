@@ -7,11 +7,11 @@ import { normalize } from "../../Helpers/gui";
 
 const { width, height } = Dimensions.get("window");
 const widthScale = width / 375;
-var auToSend = "";
-var addressToSendTo = "";
+let xwpToSend = "";
+let addressToSendTo = "";
 
 const handleAmount = (text) => {
-	auToSend = text;
+	xwpToSend = text;
 };
 
 const handleAddress = (text) => {
@@ -44,6 +44,12 @@ export default class SwapSend extends React.Component {
 	}
 
 	async sendXWP() {
+		this.setState({
+			spendKey: this.state.spendKey,
+			statusText: "Status: Checking Wallet Status",
+			progressBar: <Progress.Bar indeterminate={true} color="#22b6f2" unfilledColor="#a260f8" width={width * 0.75} height={8} />,
+		});
+
 		const address = await Settings.select("walletAddress");
 		const viewKey = await Settings.select("viewKey_sec");
 		const spendKey_pub = await Settings.select("spendKey_pub");
@@ -51,47 +57,35 @@ export default class SwapSend extends React.Component {
 
 		this.setState({
 			spendKey: this.state.spendKey,
-			statusText: "Status: Checking Wallet Status",
-			progressBar: <Progress.Bar indeterminate={true} color="#22b6f2" unfilledColor="#a260f8" width={width * 0.75} height={8} />,
-		});
-		this.setState({
-			spendKey: this.state.spendKey,
 			statusText: "Status: Sending XWP",
 			progressBar: <Progress.Bar indeterminate={true} color="#22b6f2" unfilledColor="#a260f8" width={width * 0.75} height={8} />,
 		});
 
-		const data = JSON.stringify({
-			"from_address_string": address,
-			"view_key": viewKey,
-			"spendKey_sec": spendKey_sec,
-			"spendKey_pub": spendKey_pub,
-			"is_sweeping": false,
-			"payment_id_string": null,
-			"sending_amount": auToSend,
-			"to_address_string": addressToSendTo,
-			"priority": 1,
-			"nettype": 0
-		});
+		const amount = parseFloat(xwpToSend);
 
-		await fetch("https://wallet.getswap.eu/mobileapi/send_funds", {
+		const response = await (await fetch(`${MOBILE_WALLET_API_PREFIX}/mobileapi/send_funds`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
 				"Content-Length": data.length,
 			},
-			body: data,
-		}).then(response => response.json().then(responseJson => {
-			switch (responseJson.success) {
-			case true:
-				Alert.alert("Success", `Sucessfully sent ${auToSend} XWP.\n\nPlease check the Transactions page for more details.`);
-				break;
-			case false:
-				Alert.alert("Error", `Error sending ${auToSend} XWP:\n\n${responseJson.err_msg}`);
-				break;
-			default:
-				Alert.alert("Error", `An unkown error occured while sending ${auToSend} XWP. Please notify the developers of the app. Raw error message:\n\n${responseJson}`);
-			}
-		})).catch(() => Alert.alert("Error", "Failed to connect to our servers. Check your internet connection and try again."));
+			body: JSON.stringify({
+				is_sweeping: false,
+				amount: amount,
+				from_address: address,
+				private_view_key: viewKey,
+				private_spend_key: spendKey_sec,
+				public_spend_key: spendKey_pub,
+				to_address: addressToSendTo
+			}),
+		})).json();
+
+		if (!response.success) {
+			Alert.alert("Error", `Failed to send $XWP: ${response.error}`);
+			return;
+		}
+
+		Alert.alert("Success", `Successfully Sent $XWP\n\nSubtotal: ${amount.toFixed(4)}\nFee: ${response.used_fee.toFixed(4)}\nTotal Spent: ${(amount + response.used_fee).toFixed(4)}`);
 
 		this.setState({
 			spendKey: this.state.spendKey,

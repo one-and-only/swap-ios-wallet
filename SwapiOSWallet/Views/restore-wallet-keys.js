@@ -12,47 +12,40 @@ const handleWalletAddress = (text) => {
 };
 
 const handleViewKey = (text) => {
-	Settings.insert("viewKey", text);
+	Settings.insert("viewKey_sec", text);
 };
+
+async function handleSpendKey(text) {
+	await Settings.insert("spendKey_sec", text);
+}
 
 export default class SwapRestoreWalletFromKeys extends React.Component {
 	constructor(props) {
 		super(props);
 	}
 
-	restoreWalletFromKeys() {
-		let addressPromise = Settings.select("walletAddress"),
-			viewKeyPromise = Settings.select("viewKey_sec");
-		Promise.all([addressPromise, viewKeyPromise]).then((walletInfo) => {
-			let payload =
-				"{\"withCredentials\":true,\"address\":\"" +
-				walletInfo[0] +
-				"\",\"view_key\":\"" +
-				walletInfo[1] +
-				"\",\"create_account\":true,\"generated_locally\":false}";
-			fetch("https://wallet.getswap.eu/api/login", {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: payload,
-			})
-				.then((res) => res.json())
-				.then((res) => {
-					switch (res.status) {
-					case "success":
-						Settings.insert("defaultPage", "Wallet Home").then(() => {
-							Settings.select("defaultPage").then((defaultPage) =>
-								this.props.navigation.navigate(defaultPage)
-							);
-						});
-						break;
-					case "error":
-						Alert.alert("Login Error. Check your address and private key");
-					}
-				})
-				.catch(() => {
-					Alert.alert("Error", "Failed to connect to our servers. Check your internet connection and try again!");
-				});
-		});
+	async restoreWalletFromKeys() {
+		const address = await Settings.select("walletAddress");
+		const private_view_key = await Settings.select("viewKey_sec");
+		const private_spend_key = await Settings.select("spendKey_sec");
+
+		const response = await (await fetch(`${MOBILE_WALLET_API_PREFIX}/restore_from_keys`, {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+				private_view_key: private_view_key,
+				private_spend_key: private_spend_key,
+				address: address
+			}),
+		})).json();
+
+		if (!response.success) {
+			Alert.alert("Error", "One or more invalid private keys");
+			return;
+		}
+
+		await Settings.insert("defaultPage", "Wallet Home");
+		this.props.navigation.navigate(await Settings.select("defaultPage"));
 	}
 
 	render() {
@@ -75,13 +68,25 @@ export default class SwapRestoreWalletFromKeys extends React.Component {
 						<Text style={{ flexDirection: "row" }} onPress={() => this.props.navigation.navigate("Restore Wallet")}>
 							<Text style={[styles.flexContainer, { flexDirection: "row", width: "90%", }]}>
 								<View style={{ flexDirection: "row", flexWrap: "wrap", }}>
-									<Text style={styles.titleText}>View Key</Text>
+									<Text style={styles.titleText}>Private View Key</Text>
 								</View>
 							</Text>
 						</Text>
 					</View>
 					<View style={[styles.flexContainerChild, { flex: 2, marginTop: height * 0.05, }]}>
 						<TextInput style={styles.textBox} placeholder='View Key' placeholderTextColor='#c9c9c9' autoCapitalize='none' onChangeText={handleViewKey}></TextInput>
+					</View>
+					<View style={[styles.flexContainerChild, { flex: 2, marginTop: height * 0.05, }]}>
+						<Text style={{ flexDirection: "row" }} onPress={() => this.props.navigation.navigate("Restore Wallet")}>
+							<Text style={[styles.flexContainer, { flexDirection: "row", width: "90%", }]}>
+								<View style={{ flexDirection: "row", flexWrap: "wrap", }}>
+									<Text style={styles.titleText}>Private Spend Key</Text>
+								</View>
+							</Text>
+						</Text>
+					</View>
+					<View style={[styles.flexContainerChild, { flex: 2, marginTop: height * 0.05, }]}>
+						<TextInput style={styles.textBox} placeholder='Private Spend Key' placeholderTextColor='#c9c9c9' autoCapitalize='none' onChangeText={handleSpendKey}></TextInput>
 					</View>
 				</View>
 				<View style={[styles.flexContainer, { flex: 4, }]}></View>

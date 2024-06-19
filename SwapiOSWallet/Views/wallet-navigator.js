@@ -50,16 +50,20 @@ const infoOptions = {
 };
 
 const navigatorOptions = {
-	activeTintColor: "#a260f8",
-	inactiveTintColor: "#AEAEAE",
-	labelStyle: {
+	headerShown: false,
+	tabBarActiveTintColor: "#a260f8",
+	tabBarInactiveTintColor: "#AEAEAE",
+	tabBarLabelStyle: {
 		fontSize: normalize(15, widthScale),
 	},
-	style: {
-		backgroundColor: "#052344",
-		height: height * 0.12,
-		paddingRight: normalize(10, widthScale),
-	}
+	tabBarStyle: [
+		{
+			backgroundColor: "#052344",
+			height: height * 0.12,
+			paddingRight: normalize(10, widthScale)
+		},
+		null
+	]
 };
 
 export default class SwapWalletHome extends React.Component {
@@ -99,7 +103,7 @@ export default class SwapWalletHome extends React.Component {
 					this.routeNameRef.current = currentRouteName;
 				}}
 			>
-				<Tab.Navigator initialRouteName="Wallet" barStyle={{ height: height * 0.08, }} backBehavior="initialRoute" tabBarOptions={navigatorOptions}>
+				<Tab.Navigator initialRouteName="Wallet" barStyle={{ height: height * 0.08, }} screenOptions={navigatorOptions} backBehavior="initialRoute">
 					<Tab.Screen name="Wallet" navigation={this.props.navigation} component={SwapWallet} options={walletOptions} />
 					<Tab.Screen name="Transactions" navigation={this.props.navigation} component={SwapTransactions} options={transactionsOptions} />
 					<Tab.Screen name="Send" navigation={this.props.navigation} component={SwapSend} options={sendOptions} />

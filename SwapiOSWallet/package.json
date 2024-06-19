@@ -29,7 +29,7 @@
     "node-fetch": "^3.3.1",
     "patch-package": "^7.0.0",
     "react": "18.2.0",
-    "react-native": "^0.72.4",
+    "react-native": "^0.72.15",
     "react-native-dotenv": "^3.4.9",
     "react-native-encrypted-storage": "^4.0.3",
     "react-native-gesture-handler": "^2.12.0",
@@ -45,12 +45,11 @@
     "@babel/core": "^7.20.0",
     "@babel/runtime": "^7.20.0",
     "@react-native/eslint-config": "^0.72.2",
-    "@react-native/metro-config": "^0.72.11",
-    "@rnx-kit/dep-check": "^1.12.15",
+    "@react-native/metro-config": "^0.72.12",
     "eslint": "^8.44.0",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-native": "^4.0.0",
-    "metro-react-native-babel-preset": "^0.76.8",
+    "metro-react-native-babel-preset": "^0.76.9",
     "react-test-renderer": "18.2.0"
   },
   "engines": {

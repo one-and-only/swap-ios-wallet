@@ -45,7 +45,11 @@ async function refreshWalletSearchThread() {
 
 export default class SwapWallet extends React.Component {
 	constructor(props) {
-		// super(props);
+		super(props);
+		this.state = {
+			total_balance: "Syncing...",
+			total_unlocked_balance: "Syncing...",
+		};
 		// const address = Settings.select("walletAddress");
 		// const viewKey = Settings.select("viewKey_sec");
 		// Promise.all([address, viewKey]).then(wallet => {
@@ -76,18 +80,12 @@ export default class SwapWallet extends React.Component {
 		// });
 		// refreshWalletSearchThread();
 		// // overcome the delay of the async function so we don't run into problems
-		// this.state = {
-		// 	total_balance: "Syncing",
-		// 	total_unlocked_balance: "Syncing",
-		// };
-		// const total_balancePromise = Settings.select("total_balance");
-		// const total_balance_unlockedPromise = Settings.select("total_unlocked_balance");
 
-		// Promise.all([total_balancePromise, total_balance_unlockedPromise]).then((balances) => {
-		// 	this.state = {
-		// 		total_balance: (typeof balances[0] == "number" && !isNaN(balances[0])) ? balances[0] / au_to_xwp : "Syncing",
-		// 		total_unlocked_balance: (typeof balances[1] == "number" && !isNaN(balances[1])) ? balances[1] / au_to_xwp : "Syncing",
-		// 	};
+		// Promise.all([Settings.select("total_balance"), Settings.select("total_unlocked_balance")]).then((balances) => {
+		// 	this.setState({
+		// 		total_balance: (typeof balances[0] == "number" && !isNaN(balances[0])) ? balances[0] / au_to_xwp : "Syncing...",
+		// 		total_unlocked_balance: (typeof balances[1] == "number" && !isNaN(balances[1])) ? balances[1] / au_to_xwp : "Syncing...",
+		// 	});
 		// });
 	}
 

@@ -25,8 +25,6 @@ import SwapWalletHome from "./Views/wallet-navigator";
 //FontAwesome
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
-//Analytics
-import { logPageView } from "./Helpers/analytics";
 import DefaultStatusBar from "./Helpers/default-status-bar";
 import { normalize } from "./Helpers/gui";
 
@@ -99,14 +97,9 @@ class Navigator extends React.Component {
 					this.routeNameRef.current = this.navigationRef.current.getCurrentRoute().name;
 				}}
 				onStateChange={async () => {
-					const previousRouteName = this.routeNameRef.current;
-					const currentRouteName = this.navigationRef.current.getCurrentRoute().name;
-
-					if (previousRouteName !== currentRouteName) {
-						await logPageView(currentRouteName);
-					}
 					// Save the current route name for later comparison
-					this.routeNameRef.current = currentRouteName;
+					//! tbh not sure why we even need this
+					this.routeNameRef.current = this.navigationRef.current.getCurrentRoute().name;
 				}}
 			>
 					<DefaultStatusBar />

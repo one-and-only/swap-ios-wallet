@@ -1,5 +1,4 @@
 #import "AppDelegate.h"
-#import <Firebase.h>
 
 #if RCT_DEV
 #import <React/RCTDevLoadingView.h>
@@ -60,8 +59,6 @@ static void ClearKeychainIfNecessary() {
   // You can add your custom initial props in the dictionary below.
   // They will be passed down to the ViewController used by React Native.
   self.initialProps = @{};
-
-  [FIRApp configure];
   
   // Clear the keychain if app has launched for the first time
   ClearKeychainIfNecessary();

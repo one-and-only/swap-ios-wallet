@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Dimensions, View } from "react-native";
 import * as Progress from "react-native-progress";
-import { logActionError, logAppLaunch } from "../Helpers/analytics";
 import * as Settings from "../Helpers/settings";
 import { normalize } from "../Helpers/gui";
 
@@ -16,15 +15,12 @@ export default class SwapLoadingScreen extends React.Component {
 	componentDidMount() {
 		Settings.select("defaultPage").then(defaultPage => {
 			if (defaultPage != null) {
-				defaultPage == "Wallet Home" ? logAppLaunch(true) : logAppLaunch(false);
 				this.props.navigation.navigate(defaultPage);
 			} else {
-				logAppLaunch(false);
 				this.props.navigation.navigate("Home");
 			}
 		}).catch((error) => {
 			console.log(error);
-			logActionError("Select Default Page", error);
 			this.props.navigation.navigate("Home");
 		});
 	}

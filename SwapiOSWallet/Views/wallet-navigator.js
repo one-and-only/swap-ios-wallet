@@ -12,7 +12,6 @@ import SwapSend from "./Wallet/send";
 import SwapSettings from "./Wallet/settings";
 import SwapWalletInfo from "./Wallet/info";
 import SwapTransactionInfo from "./Wallet/transaction-info";
-import { logPageView } from "../Helpers/analytics";
 import { normalize } from "../Helpers/gui";
 
 const { width, height } = Dimensions.get("window");
@@ -93,14 +92,9 @@ export default class SwapWalletHome extends React.Component {
 					this.routeNameRef.current = this.navigationRef.current.getCurrentRoute().name;
 				}}
 				onStateChange={async () => {
-					const previousRouteName = this.routeNameRef.current;
-					const currentRouteName = this.navigationRef.current.getCurrentRoute().name;
-
-					if (previousRouteName !== currentRouteName) {
-						await logPageView(currentRouteName);
-					}
 					// Save the current route name for later comparison
-					this.routeNameRef.current = currentRouteName;
+					//! tbh not even sure we need this
+					this.routeNameRef.current = this.navigationRef.current.getCurrentRoute().name;
 				}}
 			>
 				<Tab.Navigator initialRouteName="Wallet" barStyle={{ height: height * 0.08, }} screenOptions={navigatorOptions} backBehavior="initialRoute">

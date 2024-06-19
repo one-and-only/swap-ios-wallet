@@ -5,7 +5,7 @@ require Pod::Executable.execute_command('node', ['-p',
     {paths: [process.argv[1]]},
   )', __dir__]).strip
 
-platform :ios, '12.4'
+platform :ios, '13.4'
 prepare_react_native_project!
 
 # If you are using a `react-native-flipper` your iOS build will fail when `NO_FLIPPER=1` is set.
@@ -30,9 +30,6 @@ target 'Swap Wallet' do
 
   use_react_native!(
     :path => config[:reactNativePath],
-    # Hermes is now enabled by default. Disable by setting this flag to false.
-    :hermes_enabled => true,
-    :fabric_enabled => true,
     # Enables Flipper.
     #
     # Note that if you have use_frameworks! enabled, Flipper will not work and
@@ -69,6 +66,5 @@ target 'Swap Wallet' do
     		end
   	end
   	react_native_post_install(installer)
-    	__apply_Xcode_12_5_M1_post_install_workaround(installer)
   end
 end

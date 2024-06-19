@@ -12,7 +12,6 @@ const widthScale = width / 375;
 export default class SwapCreateWallet extends React.Component {
 	async create_wallet(props) {
 		try {
-			console.log(`${MOBILE_WALLET_API_PREFIX}/create_wallet`);
 			const new_wallet = await (await fetch(`${MOBILE_WALLET_API_PREFIX}/create_wallet`)).json();
 
 			await Settings.insert("spendKey_pub", new_wallet.public_spend_key);
@@ -20,7 +19,7 @@ export default class SwapCreateWallet extends React.Component {
 			await Settings.insert("spendKey_sec", new_wallet.private_spend_key);
 			await Settings.insert("viewKey_sec", new_wallet.private_view_key);
 			await Settings.insert("mnemonic", new_wallet.mnemonic);
-			await Settings.insert("walletAddress", new_wallet.address);
+			await Settings.insert("walletAddress", new_wallet.wallet_address);
 			await Settings.insert("defaultPage", "Wallet Home");
 			props.navigation.navigate("Wallet Home");
 		} catch (e) {

@@ -1,4 +1,3 @@
-import { MOBILE_WALLET_API_PREFIX } from "@config";
 import * as React from "react";
 import { Alert, Dimensions, View } from "react-native";
 import * as Progress from "react-native-progress";
@@ -12,7 +11,7 @@ const widthScale = width / 375;
 export default class SwapCreateWallet extends React.Component {
 	async create_wallet(props) {
 		try {
-			const new_wallet = await (await fetch(`${MOBILE_WALLET_API_PREFIX}/create_wallet`)).json();
+			const new_wallet = await (await fetch("https://wallet.getswap.eu/mobileapi/create_wallet")).json();
 
 			await Settings.insert("spendKey_pub", new_wallet.public_spend_key);
 			await Settings.insert("viewKey_pub", new_wallet.public_view_key);

@@ -29,7 +29,7 @@ export default class SwapRestoreWalletFromKeys extends React.Component {
 		const private_view_key = await Settings.select("viewKey_sec");
 		const private_spend_key = await Settings.select("spendKey_sec");
 
-		const response = await (await fetch(`${MOBILE_WALLET_API_PREFIX}/restore_from_keys`, {
+		const response = await (await fetch("https://wallet.getswap.eu/mobileapi/restore_from_keys", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({

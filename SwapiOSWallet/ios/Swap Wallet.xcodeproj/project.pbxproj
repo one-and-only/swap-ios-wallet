@@ -13,6 +13,8 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		229B4790DD409868284877B3 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F6CE603BF7F4E413E95AE189 /* PrivacyInfo.xcprivacy */; };
 		C402A61A717E1D449BAC8640 /* libPods-Swap Wallet-Swap WalletTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 969879B945E3BC8C2DA2C827 /* libPods-Swap Wallet-Swap WalletTests.a */; };
+		EA4B8F042C23D7CE009B1618 /* ci_post_clone.sh in Resources */ = {isa = PBXBuildFile; fileRef = EA4B8F032C23D7CE009B1618 /* ci_post_clone.sh */; };
+		EA4B8F052C23D7CE009B1618 /* ci_post_clone.sh in Resources */ = {isa = PBXBuildFile; fileRef = EA4B8F032C23D7CE009B1618 /* ci_post_clone.sh */; };
 		EAEEA7AA26D6C5D40093719F /* VerbLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB137F1CC15E4823980A947E /* VerbLight.ttf */; };
 		FFD8F99082D331D8F3156612 /* libPods-Swap Wallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05AFC17685019E9BAD830912 /* libPods-Swap Wallet.a */; };
 /* End PBXBuildFile section */
@@ -66,6 +68,7 @@
 		E286DC051484E1568D56A292 /* Pods-Swap Mobile Wallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swap Mobile Wallet.debug.xcconfig"; path = "Target Support Files/Pods-Swap Mobile Wallet/Pods-Swap Mobile Wallet.debug.xcconfig"; sourceTree = "<group>"; };
 		E38B0DD6B2433C0DB554D908 /* Pods-Swap Wallet-Swap WalletTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swap Wallet-Swap WalletTests.debug.xcconfig"; path = "Target Support Files/Pods-Swap Wallet-Swap WalletTests/Pods-Swap Wallet-Swap WalletTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EA0A09692C2286F900978828 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = SwapMobileWallet/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		EA4B8F032C23D7CE009B1618 /* ci_post_clone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F5357347E520429BBAE4BDEA /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		F6CE603BF7F4E413E95AE189 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = SwapMobileWallet/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
@@ -187,6 +190,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				EA4B8F022C23D7A5009B1618 /* ci_scripts */,
 				13B07FAE1A68108700A75B9A /* SwapMobileWallet */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* SwapMobileWalletTests */,
@@ -207,6 +211,14 @@
 				00E356EE1AD99517003FC87E /* Swap WalletTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		EA4B8F022C23D7A5009B1618 /* ci_scripts */ = {
+			isa = PBXGroup;
+			children = (
+				EA4B8F032C23D7CE009B1618 /* ci_post_clone.sh */,
+			);
+			path = ci_scripts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,6 +310,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA4B8F052C23D7CE009B1618 /* ci_post_clone.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +320,7 @@
 			files = (
 				EAEEA7AA26D6C5D40093719F /* VerbLight.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				EA4B8F042C23D7CE009B1618 /* ci_post_clone.sh in Resources */,
 				229B4790DD409868284877B3 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -682,18 +696,9 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_CFLAGS = (
-					"$(inherited)",
-					" ",
-				);
-				OTHER_CPLUSPLUSFLAGS = (
-					"$(inherited)",
-					" ",
-				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_CFLAGS = "$(inherited)  ";
+				OTHER_CPLUSPLUSFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
@@ -761,18 +766,9 @@
 					"\"$(inherited)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_CFLAGS = (
-					"$(inherited)",
-					" ",
-				);
-				OTHER_CPLUSPLUSFLAGS = (
-					"$(inherited)",
-					" ",
-				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_CFLAGS = "$(inherited)  ";
+				OTHER_CPLUSPLUSFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;

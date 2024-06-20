@@ -32,11 +32,8 @@ const { width } = Dimensions.get("window");
 const widthScale = width / 375;
 
 class Navigator extends React.Component {
-
 	constructor(props) {
 		super(props);
-		this.routeNameRef = React.createRef();
-		this.navigationRef = React.createRef();
 	}
 
 	options() {
@@ -91,17 +88,7 @@ class Navigator extends React.Component {
 		const Stack = createStackNavigator();
 
 		return (
-			<NavigationContainer
-				ref={this.navigationRef}
-				onReady={() => {
-					this.routeNameRef.current = this.navigationRef.current.getCurrentRoute().name;
-				}}
-				onStateChange={async () => {
-					// Save the current route name for later comparison
-					//! tbh not sure why we even need this
-					this.routeNameRef.current = this.navigationRef.current.getCurrentRoute().name;
-				}}
-			>
+			<NavigationContainer>
 					<DefaultStatusBar />
 					<Stack.Navigator initialRouteName="Loading Screen">
 						<Stack.Screen name="Loading Screen" navigation={this.props.navigation} component={SwapLoadingScreen} options={this.options} />

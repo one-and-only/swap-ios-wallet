@@ -68,8 +68,6 @@ const navigatorOptions = {
 export default class SwapWalletHome extends React.Component {
 	constructor(props) {
 		super(props);
-		this.routeNameRef = React.createRef();
-		this.navigationRef = React.createRef();
 	}
 
 	hiddenOptions = {
@@ -85,18 +83,7 @@ export default class SwapWalletHome extends React.Component {
 		const Tab = createBottomTabNavigator();
 
 		return (
-			<NavigationContainer
-				independent={true}
-				ref={this.navigationRef}
-				onReady={() => {
-					this.routeNameRef.current = this.navigationRef.current.getCurrentRoute().name;
-				}}
-				onStateChange={async () => {
-					// Save the current route name for later comparison
-					//! tbh not even sure we need this
-					this.routeNameRef.current = this.navigationRef.current.getCurrentRoute().name;
-				}}
-			>
+			<NavigationContainer independent={true}>
 				<Tab.Navigator initialRouteName="Wallet" barStyle={{ height: height * 0.08, }} screenOptions={navigatorOptions} backBehavior="initialRoute">
 					<Tab.Screen name="Wallet" navigation={this.props.navigation} component={SwapWallet} options={walletOptions} />
 					<Tab.Screen name="Transactions" navigation={this.props.navigation} component={SwapTransactions} options={transactionsOptions} />
